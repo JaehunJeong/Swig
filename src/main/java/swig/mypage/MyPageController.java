@@ -20,21 +20,10 @@ public class MyPageController {
 	@Resource(name="mypageService")
 	private MyPageService mypageService;
 	
-	//회원번호에 맞는 회원정보 가져오기
-	@RequestMapping("/mypage/mypageView")
-	public ModelAndView mypageView(HttpSession session) throws Exception{
-		if (session.getAttribute("session_m_no") == null) {
-			return new ModelAndView("redirect:/first");
-		}
-		ModelAndView mv = new ModelAndView("/mypage/mypageViewCss");
-		Map<String, Object> member = mypageService.selectOneMember(session.getAttribute("session_m_no"));
-		
-		mv.addObject("member", member);
-		
-		return mv;
-		
-	}
-	
-	
+	//마이페이지 이동
+	@RequestMapping(value="/mypageForm.do")
+	public String mypageForm() throws Exception{
+		return "/mypage/mypageForm";
+	}	
 	
 }
