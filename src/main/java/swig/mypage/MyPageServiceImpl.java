@@ -1,5 +1,5 @@
 package swig.mypage;
 
-public class MyPageServiceImpl {
+public class MyPageServiceImpl implements MyPageService {
 
 }

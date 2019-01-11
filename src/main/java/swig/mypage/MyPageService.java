@@ -1,5 +1,5 @@
 package swig.mypage;
 
-public class MyPageService {
+public interface MyPageService {
 
 }
