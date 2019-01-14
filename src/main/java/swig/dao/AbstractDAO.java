@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import swig.dao.AbstractDAO;
 
-public class AbstractDAO {
+public abstract class AbstractDAO {
 	
 	protected Log log = LogFactory.getLog(AbstractDAO.class);
 	
@@ -20,9 +20,32 @@ public class AbstractDAO {
 		}
 	}
 	
-	public Object update(String queryId,Object params) {
+	//회원정보수정
+	public Object memberUpdate(String queryId,Object params) {
 		printQueryId(queryId);
 		return sqlSession.update(queryId,params);
 	}
-
+	
+	//회원탈퇴
+	public Object memberDelete(String queryId, Object params){
+		printQueryId(queryId);
+		return sqlSession.delete(queryId, params);
+	}
+	
+	//수업신청 리스트 출력
+	public Object lectureApplyList(String queryId, Object params){
+		printQueryId(queryId);
+		return sqlSession.delete(queryId, params);
+	}
+	
+	//수강중인 수업 리스트 출력
+	public Object lectureListForm(String queryId, Object params){
+		printQueryId(queryId);
+		return sqlSession.delete(queryId, params);
+	}
+	//위시리스트 출력
+	public Object wishListForm(String queryId, Object params){
+		printQueryId(queryId);
+		return sqlSession.delete(queryId, params);
+	}
 }

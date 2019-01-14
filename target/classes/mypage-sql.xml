@@ -4,7 +4,7 @@
 <mapper namespace="member">
 
 <!--회원정보 수정  -->
-<update id="update" parameterType="member">
+<update id="updateMember" parameterType="member">
 	update member set m_name = #{m_name},
 					  m_email = #{m_email},
 					  m_passwd = #{m_passwd},
@@ -13,5 +13,32 @@
 					  m_job = #{m_job},
 					  where id = #{id}
 </update>
+
+<!--회원탈퇴  -->
+<delete id="deleteMember" parameterType="member">
+	delete from member
+	where m_passwd = #{m_passwd}
+</delete>
+
+<!--수업신청 리스트 출력  -->
+<select id="lectureApplyList" resultType="lectureOpen">
+
+</select>
+
+<!--수강중인 수업 리스트 출력  -->
+<select id="lectureListForm" resultType="request">
+
+</select>
+
+<!--위시 리스트 출력  -->
+<select id="wishListForm" resultType="wishList">
+	select w_no,
+		   m_no,
+		   l_no,
+		   w_type
+		   from wishlist
+		   where m_no = #{m_no}
+		   order by w_no
+</select>
 
 </mapper>
