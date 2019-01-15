@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lectureFile">
+	
+	<!-- LECTURE FILE 선택 -->
+	<select id="LectureFile" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				LF_NO,
+				LF_CURRI_ORIGINAFILE,
+				LF_CURRI_STOREDFILE,
+				LF_COVER_ORIGINALFILE,
+				LF_COVER_STOREDFILE,
+				LF_STUDY_ORIGINALFILE,
+				LF_STUDY_STOREDFILE
+			FROM L_OPEN_FILE
+			WHERE L_NO=#{L_NO}
+		]]>
+	</select>
+	
+	<!-- INSERT LECTURE FILE -->
+	<insert id="insertLectureFile" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO L_OPEN_FILE
+			(
+				LF_NO,
+				L_NO,
+				LF_CURRI_ORIGINAFILE,
+				LF_CURRI_STOREDFILE,
+				LF_COVER_ORIGINALFILE,
+				LF_COVER_STOREDFILE,
+				LF_STUDY_ORIGINALFILE,
+				LF_STUDY_STOREDFILE
+			)
+			VALUES
+			(
+				LF_NO_SEQ.NEXTVAL,
+				#{L_NO},
+				#{LF_CURRI_ORIGINALFILE},
+				#{LF_CURRI_STOREDFILE},
+				#{LF_COVER_ORIGINALFILE},
+				#{LF_COVER_STOREDFILE},
+				#{LF_STUDY_ORIGINALFILE},
+				#{LF_STUDY_STOREDFILE}
+			)
+		]]>
+	</insert>
+	
+	<!-- UPDATE LECTURE FILE -->
+	<update id="updateLectureFile" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN_FILE
+			SET
+				LF_CURRI_ORIGINAFILE=#{LF_CURRI_ORIGINAFILE},
+				LF_CURRI_STOREDFILE=#{LF_CURRI_ORIGINAFILE},
+				LF_COVER_ORIGINALFILE=#{LF_COVER_ORIGINALFILE},
+				LF_COVER_STOREDFILE=#{LF_COVER_STOREDFILE},
+				LF_STUDY_ORIGINALFILE=#{LF_STUDY_ORIGINALFILE},
+				LF_STUDY_STOREDFILE=#{LF_STUDY_STOREDFILE}
+			WHERE
+				LF_NO=#{LF_NO} AND L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<!-- DELETE LECTURE FILE -->
+	<update id="deleteLectureFile" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN_FILE
+			SET
+				LF_CURRI_ORIGINAFILE='DEL',
+				LF_CURRI_STOREDFILE='DEL',
+				LF_COVER_ORIGINALFILE='DEL',
+				LF_COVER_STOREDFILE='DEL',
+				LF_STUDY_ORIGINALFILE='DEL',
+				LF_STUDY_STOREDFILE='DEL'
+			WHERE
+				LF_NO=#{LF_NO} AND L_NO=#{L_NO}
+		]]>
+	</update>
+</mapper>
