@@ -23,7 +23,29 @@ public class MyPageController {
 	//마이페이지 이동
 	@RequestMapping(value="/mypageForm.do")
 	public String mypageForm() throws Exception{
-		return "/mypage/mypageForm";
-	}	
+		return "/mypageForm";
+	}
+	
+	//회원정보수정
+	@RequestMapping(value="/memberUpdate.do")
+	public String memberUpdate(Member member) throws Exception{
+		
+		MyPageServiceImpl.memberUpdate(member);
+		return "redirect:/memberForm.do";
+	}
+	
+	//회원탈퇴
+	@RequestMapping(value="/memberDelete.do")
+	public String memberDelete(int m_tutor) throws Exception{
+		MyPageServiceImpl.memberDelete(m_tutor);
+		return "redirect:/mypageForm.do";
+	}
+	
+	//수업신청 리스트 출력
+	//@RequestMapping(value="/lectureApplyList.do")
+	//수강중인 수업 리스트 출력
+	
+	//위시 리스트 출력
+	
 	
 }

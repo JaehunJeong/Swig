@@ -19,8 +19,8 @@ public class MyPageServiceImpl implements MyPageService {
 		MyPageDAO.memberUpdate(member);
 	}
 	
-	public void memberDelete(Member member) throws Exception{
-		MyPageDAO.memberDelete(member);
+	public void memberDelete(int m_tutor) throws Exception{
+		MyPageDAO.memberDelete(m_tutor);
 	}
 	
 	public List<Request> lectureApplyList(Request request) throws Exception {

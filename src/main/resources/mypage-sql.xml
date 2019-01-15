@@ -3,6 +3,11 @@
 
 <mapper namespace="member">
 
+<!--회원정보 수정 폼 이동  -->
+<select id = "memberForm" resultType = "member" parameterType="string">
+		select * from members where m_no = #{m_no}
+</select>
+
 <!--회원정보 수정  -->
 <update id="updateMember" parameterType="member">
 	update member set m_name = #{m_name},
@@ -11,34 +16,46 @@
 					  m_birth = #{m_birth},
 					  m_phone = #{m_phone},
 					  m_job = #{m_job},
-					  where id = #{id}
+					  where m_no = #{m_no}
+</update>
+
+<!--튜터회원정보 수정  -->
+<update id="updateTutor" parameterType="tutor">
+	update 
+</update>
+
+<!--튜터회원정보 수정(파일제외)  -->
+<update id="updateMemberExceptFile" parameterType="member">
+	update member set m
 </update>
 
 <!--회원탈퇴  -->
-<delete id="deleteMember" parameterType="member">
-	delete from member
-	where m_passwd = #{m_passwd}
-</delete>
+<update id="deleteMember" parameterType="int">
+	update member set m_tutor = 4
+</update>
 
 <!--수업신청 리스트 출력  -->
-<select id="lectureApplyList" resultType="lectureOpen">
-
+<select id="lectureApplyList" resultType="hashmap">
+	select a.t_nick, b.tf_originprofile, c.l_subject, d.r_regdate 
+	from tutor a, tutor_file b, l_open c, request d
+	where a.t_no=b.t_no and c.m_no=d.m_no 
+	order by d.r_regdate
 </select>
 
 <!--수강중인 수업 리스트 출력  -->
-<select id="lectureListForm" resultType="request">
-
+<select id="lectureListForm" resultType="hashmap">
+	select a.t_nick, b.tf_originprofile, c.l_subject
+	from tutor a, tutor_file b, l_open c
+	where a.t_no=b.t_no
+	order by c.l_regdate
 </select>
 
 <!--위시 리스트 출력  -->
-<select id="wishListForm" resultType="wishList">
-	select w_no,
-		   m_no,
-		   l_no,
-		   w_type
-		   from wishlist
-		   where m_no = #{m_no}
-		   order by w_no
+<select id="wishListForm" resultType="hashmap">
+	select a.tf_originprofile, b.ll_location, c.l_subject, c.l_totalprice, d.lr_totalscore 
+	from tutor_file a, l_location b, l_open c, lecture_review d	
+	where b.l_no=c.l_no and c.l_no=d.l_no 
+	order by c.l_regdate
 </select>
 
 </mapper>
