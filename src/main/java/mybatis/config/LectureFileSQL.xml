@@ -4,7 +4,17 @@
 <mapper namespace="lectureFile">
 	
 	<!-- LECTURE FILE 선택 -->
-	<select id="LectureFile" parameterType="hashmap" resultType="hashmap">
+	<!-- <selecet id="selectlectureCoverFile" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				LF_NO,
+				LF_COVER_ORIGINALFILE,
+				LF_COVER_STOREDFILE,
+			FROM L_OPEN_FILE
+			WHERE L_NO=#{L_NO}
+		]]>
+	</selecet> -->
+	<select id="lectureFile" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				LF_NO,
@@ -20,42 +30,81 @@
 	</select>
 	
 	<!-- INSERT LECTURE FILE -->
-	<insert id="insertLectureFile" parameterType="hashmap">
+	<insert id="insertCurriFile" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO L_OPEN_FILE
+			(
+				LF_CURRI_ORIGINAFILE,
+				LF_CURRI_STOREDFILE
+			)
+			VALUES
+			(
+				#{LF_CURRI_ORIGINALFILE},
+				#{LF_CURRI_STOREDFILE}
+			)
+		]]>
+	</insert>
+	
+	<insert id="insertCoverFile" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO L_OPEN_FILE
 			(
 				LF_NO,
 				L_NO,
-				LF_CURRI_ORIGINAFILE,
-				LF_CURRI_STOREDFILE,
 				LF_COVER_ORIGINALFILE,
-				LF_COVER_STOREDFILE,
-				LF_STUDY_ORIGINALFILE,
-				LF_STUDY_STOREDFILE
+				LF_COVER_STOREDFILE
 			)
 			VALUES
 			(
 				LF_NO_SEQ.NEXTVAL,
 				#{L_NO},
-				#{LF_CURRI_ORIGINALFILE},
-				#{LF_CURRI_STOREDFILE},
 				#{LF_COVER_ORIGINALFILE},
-				#{LF_COVER_STOREDFILE},
+				#{LF_COVER_STOREDFILE}
+			)
+		]]>
+	</insert>
+	
+	<insert id="insertStudyFile" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO L_OPEN_FILE
+			(
+				LF_STUDY_ORIGINALFILE,
+				LF_STUDY_STOREDFILE
+			)
+			VALUES
+			(
 				#{LF_STUDY_ORIGINALFILE},
 				#{LF_STUDY_STOREDFILE}
 			)
 		]]>
 	</insert>
-	
 	<!-- UPDATE LECTURE FILE -->
-	<update id="updateLectureFile" parameterType="hashmap">
+	<update id="updateCurriFile" parameterType="hashmap">
 		<![CDATA[
 			UPDATE L_OPEN_FILE
 			SET
 				LF_CURRI_ORIGINAFILE=#{LF_CURRI_ORIGINAFILE},
-				LF_CURRI_STOREDFILE=#{LF_CURRI_ORIGINAFILE},
+				LF_CURRI_STOREDFILE=#{LF_CURRI_ORIGINAFILE}
+			WHERE
+				LF_NO=#{LF_NO} AND L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<update id="updateCoverFile" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN_FILE
+			SET
 				LF_COVER_ORIGINALFILE=#{LF_COVER_ORIGINALFILE},
-				LF_COVER_STOREDFILE=#{LF_COVER_STOREDFILE},
+				LF_COVER_STOREDFILE=#{LF_COVER_STOREDFILE}
+			WHERE
+				LF_NO=#{LF_NO} AND L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<update id="updateStudyFile" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN_FILE
+			SET
 				LF_STUDY_ORIGINALFILE=#{LF_STUDY_ORIGINALFILE},
 				LF_STUDY_STOREDFILE=#{LF_STUDY_STOREDFILE}
 			WHERE
@@ -78,4 +127,5 @@
 				LF_NO=#{LF_NO} AND L_NO=#{L_NO}
 		]]>
 	</update>
+	
 </mapper>

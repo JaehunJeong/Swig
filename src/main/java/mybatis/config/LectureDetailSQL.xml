@@ -5,7 +5,7 @@
 	
 	<!-- SELECT SQL -->
 	<!-- 강의 상세보기에서 강의장소를 보여주는 SQL문 -->
-	<select id="LectureLocation" parameterType="hashmap" resultType="hashmap">
+	<select id="lectureLocation" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				LL_NO,
@@ -19,7 +19,7 @@
 	</select>
 	
 	<!-- 강의 상세보기에서 강의 장소를 선택했을 때 실행되는 SQL문  장소에 따른 다른 가능 날짜를 보여줌.-->
-	<select id="LectureDate" parameterType="hashmap" resultType="hashmap">
+	<select id="lectureDate" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				LD_NO,
@@ -30,7 +30,7 @@
 	</select>
 	
 	<!-- 강의 상세보기에서 강의 장소를 선택했을 때 실행되는 SQL문  날짜에에 따른 다른 가능 시간을 보여줌.-->
-	<select id="LectureTime" parameterType="hashmap" resultType="hashmap">
+	<select id="lectureTime" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				LT_NO,
@@ -44,7 +44,7 @@
 	</select>
 	
 	<!-- LECTURE 장소를 검색했을 때 실행하는 SQL문 -->
-	<select id="LectureLocationFind"><!-- LECTURE LOCATION으로 LECTURE를 검색할 때 -->
+	<select id="lectureLocationFind"><!-- LECTURE LOCATION으로 LECTURE를 검색할 때 -->
 		<![CDATA[
 			SELECT
 				L_NO
@@ -58,7 +58,7 @@
 	</select>
 	
 	<!-- LECTURE 날짜를 검색했을 때 실행되는 SQL문 -->
-	<select id="LecureDateFind" parameterType="hashmap" resultType="hashmap">
+	<select id="lecureDateFind" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT L_NO
 			FROM L_OPEN L
@@ -71,7 +71,7 @@
 	</select>
 	
 	<!-- LECTURE 시간을 검색했을 때 실행되는 SQL문 -->
-	<select id="LecureTimeFind" parameterType="hashmap" resultType="hashmap">
+	<select id="lecureTimeFind" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT L_NO
 			FROM L_OPEN L

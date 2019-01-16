@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="lecture">
-
-	<select id="lectureBoardList" parameterType="hashmap" resultType="hashmap">
+	
+	<!-- select lecturelist -->
+	<select id="lectureList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				L_NO,
@@ -54,7 +55,7 @@
 		]]>
 		
 	</select>
-	<insert id="insertLectureOne" parameterType="hashmap" useGeneratedKeys="true" keyProperty="L_NO">
+	<insert id="insertLecture" parameterType="hashmap" useGeneratedKeys="true" keyProperty="L_NO">
 		<selectKey keyProperty="L_NO" resultType="string" order="BEFORE">
 			SELECT L_NO_SEQ.IDX.NEXTVAL FROM DUAL
 		</selectKey>
@@ -100,10 +101,7 @@
 				 
 		]]>
 	</insert>
-	
-	<insert id="" parameterType="hashmap">
 		
-	</insert>
 	<update id="updatelectureHitCnt" parameterType="hashmap">
 		<![CDATA[
 			UPDATE L_OPEN

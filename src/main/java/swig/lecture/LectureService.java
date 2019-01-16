@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 public interface LectureService {
 
 		List<Map<String, Object>> lectureBoardList(Map<String, Object> map) throws Exception;
