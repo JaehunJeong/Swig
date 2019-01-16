@@ -3,34 +3,46 @@
 
 <mapper namespace="member">
 
-<!--회원정보 수정 폼 이동  -->
-<select id = "memberForm" resultType = "member" parameterType="string">
+<!--회원정보 가져오기  -->
+<select id = "memberView" resultType="Integer" parameterType="hashmap">
 		select * from members where m_no = #{m_no}
 </select>
 
 <!--회원정보 수정  -->
-<update id="updateMember" parameterType="member">
+<update id="memberUpdate" parameterType="member">
 	update member set m_name = #{m_name},
 					  m_email = #{m_email},
 					  m_passwd = #{m_passwd},
 					  m_birth = #{m_birth},
 					  m_phone = #{m_phone},
-					  m_job = #{m_job},
+					  m_job = #{m_job}
 					  where m_no = #{m_no}
 </update>
 
 <!--튜터회원정보 수정  -->
-<update id="updateTutor" parameterType="tutor">
-	update 
+<update id="tutorUpdate" parameterType="tutor">
+	update tutor set t_nick = #{t_nick},
+					 t_finaledu = #{t_fianledu},
+					 t_college = #{t_college},
+					 t_dept = #{t_dept},
+					 t_qualification = #{t_qualification},
+					 t_scert = #{t_scert},
+					 t_c_name = #{t_c_name}
+					 where m_no = #{m_no}
 </update>
 
 <!--튜터회원정보 수정(파일제외)  -->
-<update id="updateMemberExceptFile" parameterType="member">
-	update member set m
+<update id="memberUpdateExceptFile" parameterType="member">
+	update member set t_nick = #{t_nick},
+					  t_college = #{t_college},
+					  t_dept = #{t_dept},
+					  t_qualification = #{t_qualification},
+				 	  t_c_name = #{t_c_name}
+				 	  where m_no = #{m_no}
 </update>
 
 <!--회원탈퇴  -->
-<update id="deleteMember" parameterType="int">
+<update id="memberDelete" parameterType="int">
 	update member set m_tutor = 4
 </update>
 
@@ -38,7 +50,7 @@
 <select id="lectureApplyList" resultType="hashmap">
 	select a.t_nick, b.tf_originprofile, c.l_subject, d.r_regdate 
 	from tutor a, tutor_file b, l_open c, request d
-	where a.t_no=b.t_no and c.m_no=d.m_no 
+	where a.t_no=b.t_no and c.m_no=d.m_no and d.m_no 
 	order by d.r_regdate
 </select>
 
@@ -56,6 +68,11 @@
 	from tutor_file a, l_location b, l_open c, lecture_review d	
 	where b.l_no=c.l_no and c.l_no=d.l_no 
 	order by c.l_regdate
+</select>
+
+<!--파일(사진) 가져오기  -->
+<select id="selectFile" resultType="string">
+	select t_scert from tutor where m_no = #{m_no}
 </select>
 
 </mapper>

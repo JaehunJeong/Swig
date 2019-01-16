@@ -23,6 +23,13 @@
 	
 	<context:component-scan base-package="first.spring.swig" />
 	
-	
+	<!--파일 업로드  -->
+	    <!-- file Upload -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- max upload size in bytes -->
+        <beans:property name="maxUploadSize" value="100000000" /> <!-- 5MB -->
+        <!-- max size of file in memory (in bytes) -->
+        <beans:property name="maxInMemorySize" value="100000000" /> <!-- 1MB -->
+    </beans:bean>
 	
 </beans:beans>

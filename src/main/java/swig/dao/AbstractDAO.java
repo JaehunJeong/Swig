@@ -20,14 +20,20 @@ public class AbstractDAO {
 		}
 	}
 	
-	//회원정보수정
-	public Object memberUpdate(String queryId, Object params) {
+	//회원정보가져오기,튜터정보가져오기,파일삭제
+	public Object selectOne(String queryId, Object params){
 		printQueryId(queryId);
-		return sqlSession.update(queryId,params);
+		return sqlSession.selectOne(queryId, params);
 	}
 	
-	//회원탈퇴
-	public Object memberDelete(String queryId, Object params){
+	//회원정보수정,튜터정보수정,튜터정보수정(파일제외)
+	public Object update(String queryId, Object params) {
+		printQueryId(queryId);
+		return sqlSession.update(queryId, params);
+	}
+	
+	//회원탈퇴,
+	public Object delete(String queryId, Object params){
 		printQueryId(queryId);
 		return sqlSession.delete(queryId, params);
 	}
