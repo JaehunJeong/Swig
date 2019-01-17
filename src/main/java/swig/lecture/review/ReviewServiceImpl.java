@@ -18,7 +18,7 @@ public class ReviewServiceImpl implements ReviewService {
 	private ReviewDAO reviewDAO;
 
 	@Override	// 리뷰 리스트 보기
-	public List<Map<String, Object>> checkReview(Map<String, Object> map) throws Exception {
+	public List<Map<String, Object>> reviewList(Map<String, Object> map) throws Exception {
 		return reviewDAO.checkReview(map);
 	}
 	
@@ -40,6 +40,11 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override	// 리뷰 삭제
 	public void deleteReview(Map<String, Object> map) throws Exception{
 		reviewDAO.deleteReview(map);
+	}
+	
+	@Override	// 평균 구하기
+	public void avgScore(Map<String, Object> map) throws Exception{
+		reviewDAO.avgScore(map);
 	}
 	
 }

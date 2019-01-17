@@ -69,7 +69,7 @@ public class ProgramingLectureController {
 	public ModelAndView lectureBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mav = new ModelAndView("/lecture/LectureList");
 		
-		List<Map<String,Object>> list = lectureService.lectureBoardList(commandMap.getMap());
+		List<Map<String,Object>> list = lectureService.lectureList(commandMap.getMap());
 		mav.addObject("list", list);
 		
 		return mav;
@@ -88,3 +88,5 @@ public class ProgramingLectureController {
 	
 	
 }
+
+// 각 컨트롤러마다 lecturedetail, 장소와 시간 볼 수 있도록, 리뷰 리스트 볼 수 있도록

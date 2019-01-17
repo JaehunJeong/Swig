@@ -3,144 +3,90 @@ package swig.lecture;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.annotation.Resource;
 
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import swig.lecture.LectureDAO;
-import swig.lecture.model.LectureModel;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-@Service("LectureService")
+import swig.lecture.LectureDAO;
+import swig.lecture.file.util.CoverFileUtils;
+
+
+@Service("lectureService")
 public class LectureServiceImpl implements LectureService{
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="lectureDAO")
 	private LectureDAO lectureDAO;
 	
+	@Resource(name="coverFileUtils")
+	private CoverFileUtils coverFileUtils;
+	
 	@Override
-	public List<Map<String, Object>> lectureBoardList(Map<String, Object> map) throws Exception{
-		return lectureDAO.lectureBoardList(map);
+	public List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception{
+		return lectureDAO.lectureList(map);
+	}
+
+	@Override
+	public void insertLecture(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		lectureDAO.insertLectureP1(map);
+		
+		List<Map<String, Object>> list=coverFileUtils.parseInsertFileInfo(map, request);
+		for(int i=0, size=list.size(); i<size; i++) {
+			lectureDAO.insertLectureCoverFile(list.get(i));
+		}
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multipartFile = null;
+		while(iterator.hasNext()) {
+			multipartFile=multipartHttpServletRequest.getFile(iterator.next());
+			if(multipartFile.isEmpty() == false) {
+				log.debug("--------------file start-----------");
+				log.debug("name : "+multipartFile.getName());
+				log.debug("filename : "+multipartFile.getOriginalFilename());
+				log.debug("size : "+multipartFile.getSize());
+				log.debug("--------------file end-------------\n");
+			}
+		}
 	}
 
 	@Override
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return lectureDAO.selectLectureDetail(map);
 	}
 
 	@Override
-	public void insertLectureOne(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
+	public void updateLecture(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		lectureDAO.updatelectureHitCnt(map);
+		
+		lectureDAO.deleteLectureFile(map);
+		/*List<Map<String,Object>> list = coverFileUtils.parseUpdateFileInfo(map, request);
+	    Map<String,Object> tempMap = null;
+	    for(int i=0, size=list.size(); i<size; i++){
+	        tempMap = list.get(i);
+	        if(tempMap.get("IS_NEW").equals("Y")){
+	            lectureDAO.insertLectureCoverFile(tempMap);;
+	        }
+	        else{
+	        	lectureDAO.updateLectureCoverFile(tempMap);
+	        }
+	    }*/
 		
 	}
 
-	@Override
-	public Map<String, Object> updateLecture(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public void deleteLecture(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+		lectureDAO.deleteLecture(map);
 		
 	}
 
-	@Override
-	public Map<String, Object> LectureLocation(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> LectureDate(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> LectureTime(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> LectureLocationFind(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> LectureDateFind(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> LectureTimeFind(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void insertLectureLocation(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insertLectureDate(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insertTimeLocation(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Map<String, Object> upateLectureLocation(Map<String, Object> map, HttpServletRequest request)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> upateLectureDate(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> upateLectureTime(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteLectureLocation(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteLectureDate(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteLectureTime(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

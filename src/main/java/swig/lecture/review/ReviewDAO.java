@@ -15,22 +15,26 @@ public class ReviewDAO extends AbstractDAO{
 	}
 	
 	public void insertReview(Map<String, Object> map) {
-		insert("lecture.insertReview",map);
-		update("lendplace.RATE",map);
+		insert("review.insertReview",map);
 	}
 	
 	public void updateReview(Map<String, Object> map) {
-		update("lecture.updateReview",map);
+		update("review.updateReview",map);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectReview(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("lecture.selectReview", map);
+		return (List<Map<String, Object>>) selectList("review.selectReview", map);
 	}
 	
 	public void deleteReview(Map<String, Object> map) {
-		delete("lecture.deleteReview",map);
-		update("lecture.RATE",map);
+		delete("review.deleteReview",map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void avgScore(Map<String, Object> map) throws Exception{
+		update("review.avgScore",map);
 		
 	}
+	
 }
