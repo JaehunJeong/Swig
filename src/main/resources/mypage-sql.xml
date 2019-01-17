@@ -50,7 +50,7 @@
 <select id="lectureApplyList" resultType="hashmap">
 	select a.t_nick, b.tf_originprofile, c.l_subject, d.r_regdate 
 	from tutor a, tutor_file b, l_open c, request d
-	where a.t_no=b.t_no and c.m_no=d.m_no and d.m_no 
+	where a.t_no=b.t_no and c.m_no=d.m_no and d.m_no and d.m_no = #{m_no}
 	order by d.r_regdate
 </select>
 
@@ -58,15 +58,15 @@
 <select id="lectureListForm" resultType="hashmap">
 	select a.t_nick, b.tf_originprofile, c.l_subject
 	from tutor a, tutor_file b, l_open c
-	where a.t_no=b.t_no
+	where a.t_no=b.t_no and c.m_no = #{m_no}
 	order by c.l_regdate
 </select>
 
 <!--위시 리스트 출력  -->
 <select id="wishListForm" resultType="hashmap">
 	select a.tf_originprofile, b.ll_location, c.l_subject, c.l_totalprice, d.lr_totalscore 
-	from tutor_file a, l_location b, l_open c, lecture_review d	
-	where b.l_no=c.l_no and c.l_no=d.l_no 
+	from tutor_file a, l_location b, l_open c, lecture_review d, wishlist e
+	where b.l_no=c.l_no and c.l_no=d.l_no and e.m_no = #{m_no}
 	order by c.l_regdate
 </select>
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import swig.mypage.MyPageService;
-import yogi.config.CommandMap;
+import swig.utils.CommandMap;
 
 @Controller
 public class MyPageController {
@@ -54,14 +54,6 @@ public class MyPageController {
 		return "redirect:/tutorForm.do";
 	}
 	
-	//튜터회원정보 수정(파일제외)
-	@RequestMapping(value="/tutorUpdate.do")
-	public String tutorUpdate(Tutor tutor, HttpServletRequest request) throws Exception{
-		MyPageServiceImpl.tutorUpdate(tutor, request);
-		return "redirect:/tutorForm.do";
-	}
-	
-	
 	//회원탈퇴
 	@RequestMapping(value="/memberDelete.do")
 	public String memberDelete(int m_tutor) throws Exception{
@@ -71,17 +63,35 @@ public class MyPageController {
 	
 	//수업신청 리스트 출력
 	@RequestMapping(value="/lectureApplyList.do")
-	public ModelAndView lectureApplyList(Map<String, Object> commandMap) throws Exception{
+	public ModelAndView lectureApplyList(CommandMap commandMap, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView("/lectureApplyList");
-		
-		List<Map<String, Object>> list = myPageService.lectureApplyList(commandMap);
+		commandMap.put("m_no", session.getAttribute("session_m_no"));
+		List<Map<String, Object>> list = myPageService.lectureApplyList(commandMap.getMap());
 		mv.addObject("list", list);
         
         return mv;
 	}
+	
 	//수강중인 수업 리스트 출력
+	@RequestMapping(value="/lectureApplyList.do")
+	public ModelAndView lectureListForm(CommandMap commandMap, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("/lectureApplyList");
+		commandMap.put("m_no", session.getAttribute("session_m_no"));
+		List<Map<String, Object>> list = myPageService.lectureListForm(commandMap.getMap());
+		mv.addObject("list", list);
+        
+        return mv;
+	}
 	
 	//위시 리스트 출력
-	
+	@RequestMapping(value="/lectureApplyList.do")
+	public ModelAndView wishListForm(CommandMap commandMap, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("/lectureApplyList");
+		commandMap.put("m_no", session.getAttribute("session_m_no"));
+		List<Map<String, Object>> list = myPageService.wishListForm(commandMap.getMap());
+		mv.addObject("list", list);
+        
+        return mv;
+	}
 	
 }

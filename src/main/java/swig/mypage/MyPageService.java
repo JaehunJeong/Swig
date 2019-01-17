@@ -3,6 +3,8 @@ package swig.mypage;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface MyPageService {
 	
 	//회원정보 가져오기
@@ -12,7 +14,7 @@ public interface MyPageService {
 	public void memberUpdate(Member member) throws Exception;
 	
 	//튜터 정보수정
-	public void tutorUpdate(Tutor tutor) throws Exception;
+	public void tutorUpdate(Tutor tutor, HttpServletRequest request) throws Exception;
 	
 	//회원탈퇴
 	public void memberDelete(int m_tutor) throws Exception;

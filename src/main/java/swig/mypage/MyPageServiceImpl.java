@@ -12,14 +12,12 @@ import org.springframework.stereotype.Service;
 
 import swig.mypage.MyPageDAO;
 import swig.utils.FileUpload;
-import yogi.common.util.FileUtils;
 
 @Service("MyPageService")
 public class MyPageServiceImpl implements MyPageService {
 
 	Logger log = Logger.getLogger(this.getClass());
 	
-	//new를 사용하여 객체생성하는 것이 아닌 어노테이션을 이용하면 객체선언만 해주면 됨
 	@Resource(name="fileUpload")
 	private FileUpload fileUpload;
 	
@@ -59,7 +57,6 @@ public class MyPageServiceImpl implements MyPageService {
 			MyPageDAO.updateMemberExceptFile(tutor);
 		}
 	}
-
 	
 	@Override
 	public void memberDelete(int m_tutor) throws Exception{
