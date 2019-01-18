@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<select id="selectOneAdminMember" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[	
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY M_NO DESC) RNUM,
+			M_NUM,
+			M_NAME,
+			
+			M_EAMIL,
+			T0_CHAR(M_BIRTH, 'YYYY.MM.DD') AS M_BIRTH,
+			M_PHONE,
+			M_JOB,
+			M_SEX,
+			M_PHONEC
+		FROM
+			MEMBER
+		WHERE
+			M_NO=#{M_NO}
+	]]>
+	<include refid="common.pagingPost"/>
+	</select>
+	
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[	
+		SELECT
+			*
+		FROM 
+			MEMBER
+		WHERE
+			M_TUTOR != '4'
+	]]>
+	</select>
+	<select id="selectMemberDetail" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			M_NO,
+			M_NAME,
+			M_EMAIL,
+			M_PASSWD,
+			M_BIRTH,
+			M_PHONE,
+			M_JOB,
+			M_TUTOR,
+			C_NO,
+			M_PHONEC,
+			M_SEX,
+			M_SNS
+		FROM
+			MEMBER
+		WHERE
+			M_NO = #{M_NO}
+	]]>
+	</select>
+	<update id="deleteMember" parameterType="hashmap">
+	<![CDATA[
+		UPDATE MEMBER
+		SET
+			M_TUTOR = '4'
+		WHERE
+			M_NO = #{M_NO}
+	]]>
+	
+	</update>
+	<select id="selectApplyList" parameterType="hashmap" resultType="hashmap"	>
+	<![CDATA[
+		SELECT
+			T.T_NO,
+			T.M_NO,
+			T.T_NICK,
+			T.T_FINALEDU,
+			T.T_COLLEGE,
+			T.T_DEPT,
+			T.T_QUALIFICATION,
+			T.T_SCERT,
+			T.T_C_NAME,
+			T.T_PASS,
+			F.T_NO,
+			F.TF_NO,
+			F.TF_STOREDPROFILE,
+			F.TF_C_STOREDFILE,
+			F.TF_SCERTSTORED
+		FROM
+			TUTOR T, TUTOR_FILE F
+		WHERE 
+			T.T_NO = F.T_NO
+	]]>
+	
+	</select>
+	<update id="permitRequest" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR
+		SET
+			T_PASS = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="cancelRequest" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR
+		SET
+			T_PASS='N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<select id="selectTutorList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			
+	]]>
+	</select>
+	<update id="deleteTutor" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR
+		SET
+			T_PASS='P'
+		WHERE
+		 T_NO = #{T_NO}
+	]]>
+	</update>
+	
+	<select id="selectCategoryList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			CA_NO,
+			CA_LSECTION,
+			CA_SSECTION
+		FROM
+			CATEGORY
+		
+	]]>
+	</select>
+	<insert id="insertCategory" parameterType="hashmap" >
+	<![CDATA[
+		INSERT INTO CATEGORY
+		(
+			CA_NO,
+			CA_LSECTION,
+			CA_SSECTION
+		)
+		VALUES
+		(
+			#{CA_NO},
+			#{CA_LSECTION},
+			#{CA_SSECTION}
+		)
+	]]>
+	</insert>
+	<select id="selectLectureList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			*
+		FROM
+			L_OPEN
+		WHERE
+			L_NO = #{L_NO}
+			
+			
+	]]>
+	</select>
+	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				LF_NO,
+				LF_CURRI_ORIGINFILE,
+				LF_COVER_ORIGINFILE,
+				LF_STUDY_ORIGINFILE
+			FROM
+				L_OPEN_FILE
+			WHERE
+				LF_NO = #{LF_NO}
+		]]>
+	</select>
+	<update id="updateLecture" parameterType="hashmap">
+	<![CDATA[
+		UPDATE L_OPEN
+	
+	]]>
+	</update>
+	<insert id="insertFile" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO L_OPEN_FILE
+		(
+			LF_NO,
+			L_NO,
+			LF_CURRI_ORIGINALFILE,
+			LF_CURRI_STOREDFILE,
+			LF_COVER_ORIGINALFILE,
+			LF_COVER_STOREDFILE,
+			LF_STUDY_ORIGINALFILE,
+			LF_STUDY_STOREDFILE
+		)
+		VALUES
+		(
+			SEQ_LF_NO.NEXTVAL,
+			#{L_NO},
+			#{LF_CURRI_ORIGINALFILE},
+			#{LF_CURRI_STOREDFILE},
+			#{LF_COVER_ORIGINALFILE},
+			#{LF_COVER_STOREDFILE},
+			#{LF_STUDY_ORIGINALFILE},
+			#{LF_STUDY_STOREDFILE}
+		)
+	]]>
+	</insert>
+	<update id="updateFile" parameterType="hashmap">
+	<![CDATA[
+		UPDATE L_OPEN_FILE
+			
+		WHERE
+			LF_NO = #{LF_NO}
+	]]>
+	</update>
+</mapper>

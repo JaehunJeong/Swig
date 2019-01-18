@@ -1,84 +1,222 @@
 package swig.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
-
+import org.apache.log4j.Logger;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import swig.common.CommandMap;
 import swig.paging.Paging;
 
 @Controller
 public class AdminController {
-	//페이징
-	private int searchNum;
-	private String isSearch;
+	Logger log= Logger.getLogger(this.getClass());
+	// mypage , 생각해보자
+	@Resource(name="adminService") 
+	private AdminService adminService;
 	
-	private int currentPage =1;
-	private int totalCount;
-	private int blockCount=7;
-	private int blockPage=5;
-	private String pagingHtml;
-	private Paging page;
-	
-	ModelAndView mav = new ModelAndView();
-	
-	@RequestMapping(value="/admin")
-	public String mainForm() {
-		return "adminForm";
+	@RequestMapping(value="openMemberList")
+	public ModelAndView openMemberList(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("/admin/memberList");
+		
+		return mv;
 	}
-	
 	//회원 목록
-	@RequestMapping("memberadminList")
-	public ModelAndView memberList(HttpServletRequest request) throws Exception{
-		
-		if(request.getParameter("currentPage") ==null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		}else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	@RequestMapping(value="allUserList")
+	public ModelAndView allUserList(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<Map<String,Object>> list = adminService.selectMemberList(commandMap.getMap());
+		mv.addObject("list",list);
+		if(list.size()>0) {
+			mv.addObject("TOTAL",list.get(0).get("TOTAL_COUNT"));
 		}
-		List<MemberModel> memberlist = adminService.memberList();
-		
-		String search = request.getParameter("isSearch");
-		
-		if(search != null) {
-			int searchNum = Integer.parseInt(request.getParameter("searchNum"));
-			if(searchNum ==0) {
-				memberlist = memberService.adminmemberSearch0(search);
-				
-			}else {
-				memberlist = memberService.adminmemberSearch1(search);
-			}
+		else {
+			mv.addObject("TOTAL",0);
 		}
+		return mv;
 		
-		totalCount = memberlist.size();
+	}
+	//회원 상세보기
+	@RequestMapping(value="userDetail")
+	public ModelAndView userDetail(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/memberDetail");
 		
-		page = new paging(currentPage, totalCount, blockCount, blockPage, "memberadminList");
-		pagingHtml = page.getPagingHtml().toString();
+		Map<String, Object> map = adminService.selectMemberDetail(commandMap.getMap());
+		mav.addObject("map",map.get("map"));
+		mav.addObject("list",map.get("list"));
+		return mav;
+	}
+	@RequestMapping(value="dropUser")
+	public ModelAndView dropUser(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/memberdetail");
 		
-		int lastCount = totalCount;
+		adminService.deleteMember(commandMap.getMap());
 		
-		if(page.getEndCount()< totalCount) {
-			lastCount = page.getEndCount() +1;
+		return mav;
+	}
+	@RequestMapping(value="tutorApplyList")
+	public ModelAndView tutorApplyList(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/applyList");
+		List<Map<String, Object>> applyList = adminService.selectApplyList(commandMap.getMap());
+		mav.addObject("applyList", applyList);
+		
+		if(applyList.size()>0) {
+			mav.addObject("TOTAL", applyList.get(0).get("TOTAL_COUNT"));
 		}
+		else {
+			mav.addObject("TOTAL", 0);
+		}
+		return mav;
+	}
+	@RequestMapping(value="tutorApplyPermit")
+	public ModelAndView tutorApplyPermit(CommandMap commandMap) throws Exception{
+	
+		ModelAndView mav = new ModelAndView("redirect:/admin/applyList");
+		adminService.permitRequest(commandMap.getMap());
 		
-		noticeList = noticeList.subList(page.getSatartCount(), lastCount);
+		return mav;
 		
-		mav.addObject("noticeModel", noticeModel);
-		mav.setViewName("QnAView");
 		
-		mav.addObject("isSearch",isSearch);
-		mav.addObject("searchNum",searchNum);
-		mav.addObject("totalCount", totalCount);
-		mav.addObject("pagingHtml",pagingHtml);
-		mav.addObject("currentPage",currentPage);
-		mav.addObject("noticeList",noticeList);
-		mav.setViewName("adminnoticeList");
+	}
+	@RequestMapping(value="tutorApplyCancel")
+	public ModelAndView tutorApplyCancel(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("redirec:/admin/applyList");
+		adminService.cancelRequest(commandMap.getMap());
 		
+		return mav;
+	}
+	@RequestMapping(value="adminTutorList")
+	public ModelAndView adminTutorList(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/tutorList");
+		List<Map<String, Object>> tutorList = adminService.selectTutorList(commandMap.getMap());
+		mav.addObject("tutorList", tutorList);
+		
+		if(tutorList.size()>0) {
+			mav.addObject("TOTAL", tutorList.get(0).get("TOTAL_COUNT"));
+		}
+		else {
+			mav.addObject("TOTAL", 0);
+		}
+		return mav;
+	}
+	@RequestMapping(value="adminTutorDelete")
+	public ModelAndView adminTutorDelete(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("redirect:/admin/tutorList");
+		adminService.deleteTutor(commandMap.getMap());
+		
+		return mav;
+	}
+	@RequestMapping(value="categoryList")
+	public ModelAndView categoryList(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/categoryList");
+		List<Map<String, Object>> categoryList = adminService.selectCategoryList(commandMap.getMap());
+		mav.addObject("categoryList", categoryList);
+		
+		if(categoryList.size()>0) {
+			mav.addObject("TOTAL", categoryList.get(0).get("TOTAL_COUNT"));
+		}
+		else {
+			mav.addObject("TOTAL", 0);
+		}
+		return mav;
+	}
+	@RequestMapping(value="addCategory")
+	public ModelAndView addCategory(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("redirect:/admin/categoryList");
+		
+		adminService.insertCategory(commandMap.getMap());
+		return mav;
+	}
+
+	@RequestMapping(value="modifyCategory")
+	public ModelAndView modifyCategory(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/modifyCategory");//폼 옮길건지 그자리에 서 바로 수정할건지
+		
+		adminService.modifyCategory(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="deleteCategory")
+	public ModelAndView deleteCategory(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("redirect:/admin/categoryList");
+		adminService.deleteCategory(commandMap.getMap());
+		
+		return mav;
+	}
+	@RequestMapping(value="lectureList")
+	public ModelAndView lectureList(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/lectureList");
+		
+		List<Map<String, Object>> lectureList = adminService.selectLectureList(commandMap.getMap());
+		mav.addObject("lectureList", lectureList);
+		
+		if(lectureList.size()>0) {
+			mav.addObject("TOTAL", lectureList.get(0).get("TOTAL_COUNT"));
+		}
+		else {
+			mav.addObject("TOTAL", 0);
+		}
+		return mav;
+		
+	}
+	@RequestMapping(value="lectureDetail")
+	public ModelAndView lectureDetail(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/lectureDetail");
+		Map<String,Object> map = adminService.selectLectureDetail(commandMap.getMap());
+		
+		mav.addObject("map", map.get("map"));
+		mav.addObject("list", map.get("list"));
+		return mav;
+	}
+	@RequestMapping(value="lectureOpenModify")
+	public ModelAndView lectureOpenModify(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/lectureModify");
+		Map<String,Object> map = adminService.selectLectureDetail(commandMap.getMap());
+		
+		mav.addObject("map", map);
+		mav.addObject("list", map.get("list"));
+		
+		return mav;
+	}
+	@RequestMapping(value="lectureModify")
+	public ModelAndView lectureModify(CommandMap commandMap, HttpServletRequest request) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("redirect:/admin/lectureDetail");
+		
+		adminService.modifyLecture(commandMap.getMap(), request);
+		
+		mav.addObject("L_NO", commandMap.get("L_NO"));
+		return mav;
+	}
+	@RequestMapping(value="lectureDelete")
+	public ModelAndView lectureDelete(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("redirect:/admin/lectureList");
+		
+		adminService.deleteLecture(commandMap.getMap());
 		return mav;
 	}
 }
