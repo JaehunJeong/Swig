@@ -52,11 +52,14 @@ public class LectureController {
 	
 	@RequestMapping(value="/selectLectureList")
 	public ModelAndView selectLectureList(CommandMap commandMap) throws Exception {
+
 		// ajax 등의 요청을 했을 때, json형식으로 return 받기 위해서 사용
 		ModelAndView mav = new ModelAndView("jsonView");
 		
+		
 		List<Map<String,Object>> list = lectureService.lectureList(commandMap.getMap());
 		mav.addObject("list", list);
+		
 		
 		/*if(list.size() > 0){
     		mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
