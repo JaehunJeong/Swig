@@ -2,14 +2,16 @@ package swig.admin.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-
 import javax.servlet.http.HttpServletRequest;
 
 public interface AdminService {
 	List<Map<String,Object>> selectMemberList(Map<String,Object> map) throws Exception;
 	
 	Map<String,Object> selectMemberDetail(Map<String,Object> map)throws Exception;
+	
+	void updateMember(Map<String,Object>map) throws Exception;
+	
+	void updateMemberFile(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 	void deleteMember(Map<String, Object> map) throws Exception;
 	

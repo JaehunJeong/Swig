@@ -2,10 +2,7 @@ package swig.admin.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-
 import org.springframework.stereotype.Repository;
-
 import swig.common.AbstractDAO;
 
 @Repository("adminDAO")
@@ -20,7 +17,13 @@ public class AdminDAO extends AbstractDAO{
 	public Map<String,Object> selectMemberDetail(Map<String, Object> map) throws Exception{
 		return (Map<String,Object>) selectOne("admin.selectMemberDetail",map);
 	}
-	
+	public void updateMember(Map<String,Object> map) throws Exception{
+		update("admin.updateMember",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectMemberFile(Map<String,Object> map)throws Exception{
+		return (List<Map<String,Object>>) selectList("admin.selectMemberFileList", map);
+	}
 	public void deleteMember(Map<String,Object> map) throws Exception{
 		update("admin.deleteMember", map);
 	}

@@ -4,7 +4,7 @@
 
 <mapper namespace="common">
 	
-	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
+<!-- 	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 			    STORED_FILE_NAME,
@@ -14,7 +14,7 @@
 			WHERE
 			    IDX = #{IDX}
 		]]>
-	</select>
+	</select> -->
 	
 	<sql id="pagingPre">
 		<![CDATA[

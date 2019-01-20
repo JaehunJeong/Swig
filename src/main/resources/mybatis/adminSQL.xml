@@ -5,16 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
-	<select id="selectOneAdminMember" parameterType="hashmap" resultType="hashmap">
+	
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
 	<include refid="common.pagingPre"/>
 	<![CDATA[	
 		SELECT
 			ROW_NUMBER() OVER (ORDER BY M_NO DESC) RNUM,
-			M_NUM,
+			M_NO,
 			M_NAME,
-			
-			M_EAMIL,
-			T0_CHAR(M_BIRTH, 'YYYY.MM.DD') AS M_BIRTH,
+			M_EMAIL,
+			M_BIRTH,
 			M_PHONE,
 			M_JOB,
 			M_SEX,
@@ -22,42 +22,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			MEMBER
 		WHERE
-			M_NO=#{M_NO}
+			M_TUTOR !='4'
 	]]>
 	<include refid="common.pagingPost"/>
-	</select>
-	
-	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[	
-		SELECT
-			*
-		FROM 
-			MEMBER
-		WHERE
-			M_TUTOR != '4'
-	]]>
 	</select>
 	<select id="selectMemberDetail" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
-			M_NO,
-			M_NAME,
-			M_EMAIL,
-			M_PASSWD,
-			M_BIRTH,
-			M_PHONE,
-			M_JOB,
-			M_TUTOR,
-			C_NO,
-			M_PHONEC,
-			M_SEX,
-			M_SNS
+			*
 		FROM
 			MEMBER
 		WHERE
 			M_NO = #{M_NO}
 	]]>
 	</select>
+	<update id="updateMember" parameterType="hashmap">
+	<![CDATA[
+		UPDATE MEMBER
+		SET 
+			M_PASSWD=#{M_PASSWD},
+			M_JOB=#{M_JOB}	
+		WHERE
+			M_NO = #{M_NO}
+	]]>
+	</update>
 	<update id="deleteMember" parameterType="hashmap">
 	<![CDATA[
 		UPDATE MEMBER
@@ -166,6 +154,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 	]]>
 	</select>
+	
 	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT

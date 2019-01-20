@@ -4,18 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import swig.common.CommandMap;
-import swig.paging.Paging;
+
 
 @Controller
 public class AdminController {
@@ -53,16 +48,35 @@ public class AdminController {
 		
 		Map<String, Object> map = adminService.selectMemberDetail(commandMap.getMap());
 		mav.addObject("map",map.get("map"));
-		mav.addObject("list",map.get("list"));
+		/*mav.addObject("list",map.get("list"));*/
+		return mav;
+	}
+	@RequestMapping(value="openUserModify")
+	public ModelAndView openUserModify(CommandMap commandMap) throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/memberUpdate");
+		
+		Map<String,Object> map =adminService.selectMemberDetail(commandMap.getMap());
+		mav.addObject("map", map.get("map"));
+		/*mav.addObject("list",map.get("list"));*/
+		return mav;
+	}
+	@RequestMapping(value="userModify")
+	public ModelAndView userModify(CommandMap commandMap)throws Exception{
+		ModelAndView mav = new ModelAndView("redirect:userDetail");
+		
+		adminService.updateMember(commandMap.getMap());
+		//프로필 사진 업로드 되면 그떄는 request 보내야함
+		mav.addObject("M_NO", commandMap.get("M_NO"));
+		
 		return mav;
 	}
 	@RequestMapping(value="dropUser")
 	public ModelAndView dropUser(CommandMap commandMap) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("/admin/memberdetail");
+		ModelAndView mav = new ModelAndView("redirect:openMemberList");
 		
 		adminService.deleteMember(commandMap.getMap());
-		
+		mav.addObject("M_NO", commandMap.get("M_NO"));
 		return mav;
 	}
 	@RequestMapping(value="tutorApplyList")
