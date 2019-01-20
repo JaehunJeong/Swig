@@ -102,6 +102,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectTutorList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
+			T.T_NO,
+			M.M_NO,
+			M.M_NAME,
+			T.T_NICK,
+			T.T_FINALEDU,
+			T.T_COLLEGE,
+			T.T_DEPT,
+			T.T_QUALIFICATION,
+			T.T_SCERT,
+			T.T_C_NAME,
+			T.T_NO
+		FROM
+			TUTOR T, MEMBER M
+		WHERE
+			T.T_PASS = 'Y'
 			
 	]]>
 	</select>

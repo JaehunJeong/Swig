@@ -18,6 +18,13 @@ public class AdminController {
 	// mypage , 생각해보자
 	@Resource(name="adminService") 
 	private AdminService adminService;
+	//////////////////////////////Index//////////////////////
+	@RequestMapping(value="adminForm")
+	public ModelAndView openAdminForm(CommandMap commandMap)throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/adminForm");
+		return mav;
+	}
+	///////////////////////MEMBER///////////////////////////////////
 	
 	@RequestMapping(value="openMemberList")
 	public ModelAndView openMemberList(CommandMap commandMap) throws Exception{
@@ -79,6 +86,51 @@ public class AdminController {
 		mav.addObject("M_NO", commandMap.get("M_NO"));
 		return mav;
 	}
+	///////////////////////////////Tutor///////////////////////
+	@RequestMapping(value="openTutorList")
+	public ModelAndView openTutorList(CommandMap commandMap)throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/tutorList");
+		return mav;
+	}
+	@RequestMapping(value="adminTutorList")
+	public ModelAndView adminTutorList(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<Map<String,Object>> list = adminService.selectTutorList(commandMap.getMap());
+		mv.addObject("list",list);
+		if(list.size()>0) {
+			mv.addObject("TOTAL",list.get(0).get("TOTAL_COUNT"));
+		}
+		else {
+			mv.addObject("TOTAL",0);
+		}
+		return mv;
+	}
+	@RequestMapping(value="adminTutorDetail")
+	public ModelAndView adminTutorDetail(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/memberDetail");
+		
+		Map<String, Object> map = adminService.selectTutorDetail(commandMap.getMap());
+		mav.addObject("map",map.get("map"));
+		/*mav.addObject("list",map.get("list"));*/
+		return mav;
+	}
+	@RequestMapping(value="adminTutorDelete")
+	public ModelAndView adminTutorDelete(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("redirect:/admin/tutorList");
+		adminService.deleteTutor(commandMap.getMap());
+		
+		return mav;
+	}
+	
+	///////////////////////////TutorApply////////////////////////////////
+	@RequestMapping(value="openTutorApplyList")
+	public ModelAndView openTutorApplyList(CommandMap commandMap)throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/adminForm");
+		return mav;
+	}
 	@RequestMapping(value="tutorApplyList")
 	public ModelAndView tutorApplyList(CommandMap commandMap)throws Exception
 	{
@@ -112,27 +164,10 @@ public class AdminController {
 		
 		return mav;
 	}
-	@RequestMapping(value="adminTutorList")
-	public ModelAndView adminTutorList(CommandMap commandMap) throws Exception
-	{
-		ModelAndView mav = new ModelAndView("/admin/tutorList");
-		List<Map<String, Object>> tutorList = adminService.selectTutorList(commandMap.getMap());
-		mav.addObject("tutorList", tutorList);
-		
-		if(tutorList.size()>0) {
-			mav.addObject("TOTAL", tutorList.get(0).get("TOTAL_COUNT"));
-		}
-		else {
-			mav.addObject("TOTAL", 0);
-		}
-		return mav;
-	}
-	@RequestMapping(value="adminTutorDelete")
-	public ModelAndView adminTutorDelete(CommandMap commandMap) throws Exception
-	{
-		ModelAndView mav = new ModelAndView("redirect:/admin/tutorList");
-		adminService.deleteTutor(commandMap.getMap());
-		
+	/////////////////////////category//////////////////////////////
+	@RequestMapping(value="openCategoryList")
+	public ModelAndView openCategoryList(CommandMap commandMap)throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/adminForm");
 		return mav;
 	}
 	@RequestMapping(value="categoryList")
@@ -177,10 +212,16 @@ public class AdminController {
 		
 		return mav;
 	}
+	//////////////////////////////////lecture/////////////////////////////////////
+	@RequestMapping(value="openLectureList")
+	public ModelAndView openLectureList(CommandMap commandMap)throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/adminForm");
+		return mav;
+	}
 	@RequestMapping(value="lectureList")
 	public ModelAndView lectureList(CommandMap commandMap) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("/admin/lectureList");
+		ModelAndView mav = new ModelAndView("jsonView");
 		
 		List<Map<String, Object>> lectureList = adminService.selectLectureList(commandMap.getMap());
 		mav.addObject("lectureList", lectureList);
