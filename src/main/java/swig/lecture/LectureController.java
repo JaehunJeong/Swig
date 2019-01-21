@@ -52,6 +52,7 @@ public class LectureController {
 	
 	@RequestMapping(value="/selectLectureList")
 	public ModelAndView selectLectureList(CommandMap commandMap) throws Exception {
+
 		// ajax 등의 요청을 했을 때, json형식으로 return 받기 위해서 사용
 		ModelAndView mav = new ModelAndView("jsonView");
 		
@@ -67,7 +68,7 @@ public class LectureController {
     		mv.addObject("TOTAL", 0);
     	}
 		페이징 시 필요 */
-
+		
 		return mav;
 	}
 		
@@ -144,5 +145,7 @@ public class LectureController {
 			return mav;
 		}
 }
+
+
 
 // 장소, 시간 선택, 리뷰 작성, 리뷰 삭제, 리뷰 수정, 수업신청, 찜하기, 실시간 톡
