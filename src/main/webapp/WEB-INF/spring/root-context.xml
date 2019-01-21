@@ -18,13 +18,6 @@
 		<property name="username" value="KH1603" />
 		<property name="password" value="oracle" />
     </bean>
-    
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@istudy.iptime.org:7000:ORCL" />
-		<property name="username" value="KH10001" />
-		<property name="password" value="oracle" />
-	</bean> -->
 	
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="dataSourceSpied" />
