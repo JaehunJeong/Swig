@@ -64,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDAO.deleteMember(map);
 	}
-	
+	///////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<Map<String, Object>> selectApplyList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -82,6 +82,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDAO.cancelRequest(map);
 	}
+	///////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<Map<String, Object>> selectTutorList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -92,6 +93,18 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDAO.deleteTutor(map);
 	}
+	@Override
+	public Map<String, Object> selectTutorDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		Map<String,Object> tempMap = adminDAO.selectTutorDetail(map);
+		resultMap.put("map", tempMap);
+		
+		/*List<Map<String,Object>> list = adminDAO.selectMemberFile(map);
+		resultMap.put("list", list);*/
+		return resultMap;
+	}
+	///////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<Map<String, Object>> selectCategoryList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -112,6 +125,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDAO.deleteCategory(map);
 	}
+	///////////////////////////////////////////////////////////////////////
 	@Override
 	public List<Map<String, Object>> selectLectureList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub

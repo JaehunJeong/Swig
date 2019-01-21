@@ -14,16 +14,21 @@ public interface AdminService {
 	void updateMemberFile(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 	void deleteMember(Map<String, Object> map) throws Exception;
+	////////////////////////////////////////////////////////////////////
 	
 	List<Map<String, Object>> selectApplyList(Map<String,Object>map)throws Exception;
 	
 	void permitRequest(Map<String, Object> map) throws Exception;
 	
 	void cancelRequest(Map<String, Object> map) throws Exception;
+	///////////////////////////////////////////////////////////
 	
 	List<Map<String, Object>> selectTutorList(Map<String,Object> map) throws Exception;
 	
+	Map<String,Object> selectTutorDetail(Map<String,Object> map)throws Exception;
+	
 	void deleteTutor (Map<String, Object> map) throws Exception;
+	///////////////////////////////////////////////////////
 	
 	List<Map<String, Object>> selectCategoryList(Map<String,Object>map)throws Exception;
 	

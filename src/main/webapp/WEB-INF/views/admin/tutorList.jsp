@@ -31,7 +31,7 @@
 <%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script type="text/javascript">
 		$(document).ready(function(){
-			window.onload=function(){fn_selectMemberList(1);};
+			window.onload=function(){fn_selectTutorList(1);};
 		      
 		    /* $("a[name='name']").on("click", function(e){ //제목
 		        e.preventDefault();
@@ -39,9 +39,21 @@
 		    });  */
 		});
 		 
-		function fn_openMemberDetail(obj){
+		function fn_openTutorDetail(obj){
 		    var comSubmit = new ComSubmit();
-		    comSubmit.setUrl("<c:url value='adminTutorDetail' />");
+		    comSubmit.setUrl("<c:url value='adminMemberDetail' />");
+		    comSubmit.addParam("M_NO", obj.parent().find("#M_NO").val());
+		    comSubmit.submit();
+		}
+		function fn_openTutorScert(obj){
+		    var comSubmit = new ComSubmit();
+		    comSubmit.setUrl("<c:url value='adminTutorScert' />");
+		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
+		    comSubmit.submit();
+		}
+		function fn_openTutorDetail(obj){
+		    var comSubmit = new ComSubmit();
+		    comSubmit.setUrl("<c:url value='adminTutorCerti' />");
 		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
 		    comSubmit.submit();
 		}
@@ -49,7 +61,7 @@
 		function fn_selectTutorList(pageNo){
 		    var comAjax = new ComAjax();
 		    comAjax.setUrl("<c:url value='adminTutorList' />");
-		    comAjax.setCallback("fn_selectMemberListCallback");
+		    comAjax.setCallback("fn_selectTutorListCallback");
 		    comAjax.addParam("PAGE_INDEX",$("#PAGE_INDEX").val());
 			comAjax.addParam("PAGE_ROW", 15);
 			comAjax.addParam("M_NO_FE", $("#M_NO_FE").val());
@@ -57,7 +69,7 @@
 		}
         
          
-        function fn_selectMemberListCallback(data){
+        function fn_selectTutorListCallback(data){
             var total = data.TOTAL;
             var body = $("table>tbody");
             body.empty();
@@ -72,7 +84,7 @@
                     divId : "PAGE_NAVI",
                     pageIndex : "PAGE_INDEX",
                     totalCount : total,
-                    eventName : "fn_selectMemberList"
+                    eventName : "fn_selectTutorList"
                 };
                 gfn_renderPaging(params);
                  
@@ -89,8 +101,14 @@
                                 "<td>" + value.T_COLLEGE + "</td>" +
                                 "<td>" + value.T_DEPT + "</td>" +
                                 "<td>" + value.T_QUALIFICATION + "</td>" +
-                                "<td>" + value.T_SCERT + "</td>" +
-                                "<td>" + value.T_C_NAME + "</td>" +
+                                "<td class='title'>" +
+                                	"<a href='#this' name='scert'>" + value.T_SCERT + "</a>" +
+                                	"<input type='text' id='M_NO' value=" + value.M_NO + ">" +
+                            	"</td>" +
+                            	"<td class='title'>" +
+                                	"<a href='#this' name='c_name'>" + value.T_C_NAME + "</a>" +
+                                	"<input type='text' id='M_NO' value=" + value.M_NO + ">" +
+                            	"</td>" +
                                 "<td>" + value.T_PASS + "</td>" +
                                 
                             "</tr>";
@@ -99,7 +117,15 @@
                  
                 $("a[name='name']").on("click", function(e){ //제목
                     e.preventDefault();
-                    fn_openMemberDetail($(this));
+                    fn_openTutorDetail($(this));
+                });
+                $("a[name='scert']").on("click", function(e){ //제목
+                    e.preventDefault();
+                    fn_openTutorDetail($(this));
+                });
+                $("a[name='c_name']").on("click", function(e){ //제목
+                    e.preventDefault();
+                    fn_openTutorDetail($(this));
                 });
             }
         }

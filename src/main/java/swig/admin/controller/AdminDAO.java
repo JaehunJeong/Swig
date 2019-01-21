@@ -88,4 +88,8 @@ public class AdminDAO extends AbstractDAO{
 	public void insertFile(Map<String,Object> map) throws Exception{
 		insert("admin.insertFile", map);
 	}
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> selectTutorDetail(Map<String,Object> map) throws Exception{
+		return (Map<String,Object>) selectOne("admin.selectTutorDetail",map);
+	}
 }
