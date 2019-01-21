@@ -15,8 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import swig.lecture.LectureDAO;
-import swig.lecture.file.util.CoverFileUtils;
-
+/*import swig.lecture.file.util.CoverFileUtils;
+*/
 
 @Service("lectureService")
 public class LectureServiceImpl implements LectureService{
@@ -25,15 +25,13 @@ public class LectureServiceImpl implements LectureService{
 	@Resource(name="lectureDAO")
 	private LectureDAO lectureDAO;
 	
-	@Resource(name="coverFileUtils")
-	private CoverFileUtils coverFileUtils;
 	
 	@Override
 	public List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception{
 		return lectureDAO.lectureList(map);
 	}
 
-	@Override
+	/*@Override
 	public void insertLecture(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		lectureDAO.insertLectureP1(map);
 		
@@ -55,7 +53,7 @@ public class LectureServiceImpl implements LectureService{
 			}
 		}
 	}
-
+*/
 	@Override
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception {
 		

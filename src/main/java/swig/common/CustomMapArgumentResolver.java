@@ -1,5 +1,6 @@
 package swig.common;
 
+//jsp 단에서 값을 받으면 사실상 값을 못받는데 그걸 도와주는 역할
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,17 +11,17 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import swig.common.CommandMap;
+public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver {
 
-public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
 		return CommandMap.class.isAssignableFrom(parameter.getParameterType());
 	}
 
-	// 전송된 request 가져다가 넣고 사용하기 위해 resolveArgument 사용
 	@Override
-	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
+			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+		
 		CommandMap commandMap = new CommandMap();
 		
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
@@ -36,6 +37,9 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 			}
 		}
 		return commandMap;
+		
 	}
 
+	
+	
 }

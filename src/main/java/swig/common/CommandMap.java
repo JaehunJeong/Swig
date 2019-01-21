@@ -1,14 +1,15 @@
 package swig.common;
 
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class CommandMap {
+public class CommandMap {//1
 
-	Map<String,Object> map = new HashMap<String, Object>();
-	
+	Map<String, Object> map = new HashMap<String, Object>();//3
+	//yeh
 	public Object get(String key) {
 		return map.get(key);
 	}
@@ -43,10 +44,9 @@ public class CommandMap {
 	
 	public boolean isEmpty() {
 		return map.isEmpty();
-		
 	}
 	
-	public void putAll(Map<? extends String, ?extends Object>m) {
+	public void putAll(Map<? extends String, ?extends Object> m) {
 		map.putAll(m);
 	}
 	
@@ -54,4 +54,8 @@ public class CommandMap {
 		return map;
 	}
 	
+	public int getCurrentPageNo(){
+		return map.get("currentPageNo") == null ? 1:Integer.parseInt(map.get("currentPageNo").toString());
+	}
+
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
 
+
 <!-- 상단에 이미지 삽입 -->
 <div class="class_img">
 	<iframe width="840" height="540" src="/Tutor/~~" frameborder="0"></iframe>	
@@ -27,121 +28,140 @@
 
 	<div class="class_detail detail_sec_bor" id="tutorinfo">
 		<div class="section01" id="tutor">
-			<th>튜터정보</th>
+			<h1>튜터정보</h1>
 		</div>
 		<div class=d_info04>
-			<td>${map.L_DESCRIBE_T}</td>
+			<td>${L_OPEN.L_DESCRIBE_T}</td>
 		</div>
 	</div>
 	
 	<div class="class_detail detail_sec_bor" id="Introduction">
 		<div class="section01">
-			<th>수업소개</th>
+			<h1>수업소개</h1>
 			<div class="d_info04">
-			<td>${map.L_DESCIRBE_L}</td>
+			<td>${L_OPEN.L_DESCIRBE_L}</td>
+			</div>
+		</div>
+	</div>
+	
+	<div class="class_detail detail_sec_bor">
+		<div class="section01">
+			<h1 class="mt50">수업대상</h1>
+			<ul class="d_info03">
+			<td>${L_OPEN.L_DESCRIBE_TARGET}</td>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="class_detail detail_sec_bor">
+		<div class="section01">
+			<h1>커리큘럼</h1>
+			<div class="curriculum_cont">
+				<h2>강의계획</h2>
+			<dl class="step_cont">
+			<td>${L_OPEN.L_CURRI_TEXT}</td>
+			</dl>
 			</div>
 		</div>
 	</div>
 	
 	<div class="class_detail detail_sec_bor" id="review">
 		<div class="section01">
-			<th>리뷰</th>
-			<div class="d_info04">
-			<th>${map.LR_NO}</th>
+			<h1>리뷰</h1>
+			<a class="btn_st" id="btn-write-review">리뷰쓰기</a>
+			<img src="/resources/images/">
 			</div>
-		</div>
-	</div>
-
-</body>
-
-<%--
-<script>
-	window.fbAsyncInit = function(){
-		FB.init({
-			appId: '1488135204822133',
-			xfbml : true,
-			version: 'v2.6'
-		});
-	};
-	
-	(function (d, s, id){
-		var js, fjs = d.getElementsByTagName(s)[0];	// 특정 태그를 가진 모든 요소를 선택 
-		if (d.getElementById(id)) {return;}
-		js = d.createElements(s); js.id = id;
-		js.src = "//connect.facebook.net/ko_KR/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	
-	$(document).mouseup(function (e){			// 마우스 이벤트 처리
-		if($(e.target).attr('datasearch') != 'yes'){
-			$('.weekly_best').hide();
-			$('.inner_area','.weekly_best').hide();
-			$('div','.weekly_best').removeClass("inner_area");
-		}
-	});
-</script>
-<body>
-<div class="header_new">
-	<div class="hcont">
-				<div class="logo">
-				<a href="https://taling.me"><img src="/Content/Images/taling_logo_85_34.png" style="margin-top:20px;"></a>
-			</div>
-			<div class="search">        		
-				<form class="flyout-search" action="/Home/Search/" name="search">
-					<div class="lcont">
-						<div class="inputlmg"><img src="/Content/Images/main/search.png" onclick="search.submit();"></div>						
-						<!--원써니 작업 -->
-						<input type="text" name="query" id="searchcss" autocomplete="off"  placeholder="배우고 싶은 수업 또는 튜터를 검색해보세요!" onclick="weekly()" value="">	
-						<div class="weekly_best" style="display:none" datasearch="yes">
-							<div class="inner_area"style="display:none" datasearch="yes">
-								<h3 datasearch="yes">주간 인기 검색어</h3>
-								<ul class="list" datasearch="yes">
-									<li datasearch="yes"><a href="/Home/Search/?query=메이크업" >메이크업</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=포토샵" >포토샵</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=영상편집" >영상편집</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=보컬" >보컬</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=댄스" >댄스</a></li>
-								</ul>
-							</div>
-							<div style="display:none" datasearch="yes">
-								<h3 datasearch="yes">주간 인기 검색어</h3>
-								<ul class="list" datasearch="yes">
-									<li datasearch="yes"><a href="/Home/Search/?query=코딩" >코딩</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=영어회화" >영어회화</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=마케팅" >마케팅</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=주식" >주식</a></li>
-									<li datasearch="yes"><a href="/Home/Search/?query=엑셀" >엑셀</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-
-			<div class="rcont">
+			
+			<div class="review_count01">
 				<ul>
-										
-					<li class="padding28" data-show="popup-login">로그인&nbsp;&nbsp;</li>
-					<li class="padding28" data-show="popup-join">회원 가입</li>
-					<li class="padding28"><a href="/Tutor/Register/Manual">튜터 등록</a></li>
-					<li class="padding28"><a href="/Support/Intro">서비스소개</a></li>					
-									</ul>
+					<li>커리큘럼
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+					</li>
+					<li>전달력
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+					</li>
+					<li>준비성
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+					</li>
+					<li>친절도
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+					</li>
+					<li>시간준수
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+						<img src="/resources/images/">
+					</li>
+				</ul>
 			</div>
-			<div class="search_back">
+			
+			<c:forEach var="reviewlist" items="${list}" varStatus="status">
+			<fmt:parseNumber var="blank" type="number" value="${LECTURE_REVIEW.LR_NO}"/>
+			<div class="review">
+				<c:out value="${LECTURE_REVIEW.M_NO}"/> <c:out value="${LECTURE_REVIEW.LR_REGDATE}"/>
+				<c:if test="${session_m_no == LECTURE_REVIEW.M_NO}">
+					<a href="#" onclick="fn_deleteReview('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">삭제</a>
+					<a href="#" onclick="fn_reviewUpdate('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">수정</a>
+				</c:if>
+				<br/>
+				<div id="review<c:out value="${LECTURE_REVIEW.LR_NO}"/>">
+					<c:out value="${LECTURE_REVIEW.LR_COMMENT}"/>
+				</div>
 			</div>
+			</c:forEach>
+
 		</div>
 	</div>
-<!-- //HEADER -->
-		
-<script>
-fbq('track', 'ViewContent', {
-content_type: 'product',
-content_ids: ['8350'],
-content_category: '파이썬'
-});
-</script>
-</body>
-</html> 
 
-다 쓰레기다..
---%>
+	<div class="class_detail detail_sec_bor" id="qna">
+		<div class="section01">
+			<h1>실시간 톡</h1>
+			
+		</div>
+	</div>
+	
+	
+	
+	
+	
+<script>
+
+$('#btn-write-review').click(function () {			
+	M_NO = document.getElementById('M_NO').value;
+	R_REQUEST= document.getElementById('R_REQUEST').value;
+	
+	if (M_NO == '') {
+		alert('로그인이 필요합니다');
+		$('#login-popup').show();
+	}
+	else {
+		$.post('/insertReview', {}, function (R_REQUEST) {
+			if (res=='Y') {
+				$('#popup-write-review').show();
+			} else {				
+				alert('수업을 수강한 아이디만 리뷰를 작성할 수 있습니다. 아이디를 확인해주세요!');
+			}
+		});		
+	}
+});		
+
+</script>
+	
+</body>

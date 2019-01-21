@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import swig.common.AbstractDAO;
 
-@Repository("ReviewDAO")
+@Repository("reviewDAO")
 public class ReviewDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")	// 컴파일러 오류 없애기 위해
 	public List<Map<String, Object>> checkReview(Map<String, Object> map) {

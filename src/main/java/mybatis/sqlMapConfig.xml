@@ -15,12 +15,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
               <setting name="defaultStatementTimeout"   value="25000"/>  
          </settings>
    
-   <!-- typeAliases를 넣어야 할 경우 즉 모델 가져오는것.-->
-      <typeAliases>
-            <typeAlias alias="LendplaceModel" type="yogi.lendplace.LendplaceModel"/>
-            <typeAlias alias="MembersModel" type="yogi.members.MembersModel"/>
-            <typeAlias alias="groupModel" type="yogi.group.GroupModel" />
-      </typeAliases>
+
    <!-- SQL 정의한 xml문서 Mapping -->
    <mappers>
       <mapper resource="mybatis/LectureSQL.xml" />

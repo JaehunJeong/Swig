@@ -7,7 +7,7 @@
 		SELECT
 			LR_NO,
 			L_NO,
-			M_NO,
+			R.M_NO,
 			LR_COMMENT,
 			LR_SCORE1,
 			LR_SCORE2,
@@ -17,12 +17,13 @@
 			LR_TOTALSCORE,
 			LR_REGDATE
 		FROM MEMBER M, LECTURE_REVIEW R
-		WHERE M.M_NO=R.M_NO AND R.L_NO=#{L_NO}
-		ORDER BY R.R_ORDER ASC
+		WHERE M.M_NO=R.M_NO AND R.L_NO=#{R.L_NO}
+		ORDER BY R.LR_NO ASC
 			
 	]]>
 </select>
 <select id="insertReview" parameterType="hashmap" >
+	<![CDATA[
 	INSERT INTO LECTURE_REVIEW (
 		LR_NO,
 		L_NO,
@@ -37,20 +38,19 @@
 		LR_REGDATE
 		)
 	VALUES (
+		LR_NO_SEQ.NEXTVAL,
 		#{L_NO},
-		(SELECT NVL(MAX(LR_NO),0)+1 from LECTURE_REVIEW),
 		#{M_NO},
-	<![CDATA[
 		#{LR_COMMENT},
-	]]>
 		#{LR_SCORE1},
 		#{LR_SCORE2},
 		#{LR_SCORE3},
 		#{LR_SCORE4},
 		#{LR_SCORE5},
 		#{LR_TOTALSCORE},
-		sysdate
+		#{LR_REGDATE}
 	)
+		]]>
 </select>
 
 <update id="avgScore" parameterType="hashmap">
@@ -64,8 +64,8 @@
 <update id="updateReview" parameterType="hashmap">
 	<![CDATA[
 		UPDATE LECTURE_REVIEW
-			SET LR_COMMENT={LR_COMMENT}
-		WHERE LR_NO={LR_NO}
+			SET LR_COMMENT=#{LR_COMMENT}
+		WHERE LR_NO=#{LR_NO}
 	]]>
 </update>
 
