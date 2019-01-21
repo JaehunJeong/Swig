@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lectureReview">
+
+<select id="selectReview" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			LR_NO,
+			L_NO,
+			M_NO,
+			LR_COMMENT,
+			LR_SCORE1,
+			LR_SCORE2,
+			LR_SCORE3,
+			LR_SCORE4,
+			LR_SCORE5,
+			LR_TOTALSCORE,
+			LR_REGDATE
+		FROM MEMBER M, LECTURE_REVIEW R
+		WHERE M.M_NO=R.M_NO AND R.L_NO=#{L_NO}
+		ORDER BY R.R_ORDER ASC
+			
+	]]>
+</select>
+<select id="insertReview" parameterType="hashmap" >
+	INSERT INTO LECTURE_REVIEW (
+		LR_NO,
+		L_NO,
+		M_NO,
+		LR_COMMENT,
+		LR_SCORE1,
+		LR_SCORE2,
+		LR_SCORE3,
+		LR_SCORE4,
+		LR_SCORE5,
+		LR_TOTALSCORE,
+		LR_REGDATE
+		)
+	VALUES (
+		#{L_NO},
+		(SELECT NVL(MAX(LR_NO),0)+1 from LECTURE_REVIEW),
+		#{M_NO},
+	<![CDATA[
+		#{LR_COMMENT},
+	]]>
+		#{LR_SCORE1},
+		#{LR_SCORE2},
+		#{LR_SCORE3},
+		#{LR_SCORE4},
+		#{LR_SCORE5},
+		#{LR_TOTALSCORE},
+		sysdate
+	)
+</select>
+
+<update id="avgScore" parameterType="hashmap">
+	<![CDATA[
+	UPDATE LECTURE_REVIEW SET LR_TOTALSCORE =
+		(#{LR_SCORE1} + #{LR_SCORE2} + #{LR_SCORE3} + #{LR_SCORE4} + #{LR_SCORE5}) / 5
+		WHERE LR_NO=#{LR_NO}
+	]]>
+</update>
+
+<update id="updateReview" parameterType="hashmap">
+	<![CDATA[
+		UPDATE LECTURE_REVIEW
+			SET LR_COMMENT={LR_COMMENT}
+		WHERE LR_NO={LR_NO}
+	]]>
+</update>
+
+<delete id="deleteReview" parameterType="hashmap">
+	<![CDATA[
+		DELETE
+		FROM LECTURE_REVIEW
+		WHERE LR_NO = #{LR_NO}
+	]]>
+</delete>
+
+</mapper>
