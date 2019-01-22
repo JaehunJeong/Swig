@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import swig.common.CommandMap;
-import swig.lecture.review.ReviewService;
 import swig.lecture.LectureService;
+import swig.lecture.review.ReviewService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -76,7 +76,8 @@ public class LectureController {
 	public ModelAndView selectLectureDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView("/lecture/LectureDetail");
-			
+		
+		/*	
 		Map<String,Object> map = lectureService.selectLectureDetail(commandMap.getMap());
 		
 		commandMap.put("M_NO", session.getAttribute("session_member_no"));
@@ -88,24 +89,30 @@ public class LectureController {
 		mav.addObject("map", map);
 		
 		List<Map<String, Object>> list = reviewService.selectReview(commandMap.getMap());
-		mav.addObject("list", list);
+		mav.addObject("list", list);*/
 		return mav;
 	}
 	
 	// 점수 넣고 후기 작성 & 후기 수정
-	@RequestMapping(value="/insertReview")
-	public ModelAndView insertReview(CommandMap commandMap) throws Exception{
+	@RequestMapping(value="/LectureDetail/insertReview")
+	public ModelAndView insertReview(CommandMap commandMap/*, HttpServletRequest request*/) throws Exception{
+		/*HttpSession session = request.getSession();
+		
+		commandMap.put("M_NO", session.getAttribute("session_member_no"));*/
 		ModelAndView mav = new ModelAndView("redirect:/lecture/LectureDetail?LR_NO" + commandMap.getMap().get("LR_NO"));
 	
-		 commandMap.put("LR_SCORE1", commandMap.get("LR_SCORE1-input"));
-		 commandMap.put("LR_SCORE2", commandMap.get("LR_SCORE2-input"));
-		 commandMap.put("LR_SCORE3", commandMap.get("LR_SCORE3-input"));
-		 commandMap.put("LR_SCORE4", commandMap.get("LR_SCORE4-input"));
-		 commandMap.put("LR_SCORE5", commandMap.get("LR_SCORE5-input"));
+		 commandMap.put("LR_SCORE1", commandMap.get("LR_SCORE1"));
+		 commandMap.put("LR_SCORE2", commandMap.get("LR_SCORE2"));
+		 commandMap.put("LR_SCORE3", commandMap.get("LR_SCORE3"));
+		 commandMap.put("LR_SCORE4", commandMap.get("LR_SCORE4"));
+		 commandMap.put("LR_SCORE5", commandMap.get("LR_SCORE5"));
 		
 		 reviewService.avgScore(commandMap.getMap());		// 총첨 넣기
 		
-		if(commandMap.get("LR_NO") == null || "".equals(commandMap.get("LR_NO"))) {
+		 commandMap.put("LR_TOTALSCORE", commandMap.get("LR_TOTALSCORE"));
+		 
+		if(commandMap.get("LR"
+				+ "_NO") == null || "".equals(commandMap.get("LR_NO"))) {
 			reviewService.insertReview(commandMap.getMap());
 		} else {
 			reviewService.updateReview(commandMap.getMap());

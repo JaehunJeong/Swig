@@ -10,7 +10,7 @@ public interface LectureService {
 		List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception;
 		
 		Map<String,Object> selectLectureDetail(Map<String, Object> map) throws Exception;
-	/*	
+	/*
 		public void insertLecture(Map<String, Object>map, HttpServletRequest request) throws Exception;
 	*/	
 		public void updateLecture(Map<String, Object> map, HttpServletRequest request) throws Exception;

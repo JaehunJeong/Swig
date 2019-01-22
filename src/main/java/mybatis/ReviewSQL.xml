@@ -6,7 +6,7 @@
 	<![CDATA[
 		SELECT
 			LR_NO,
-			L_NO,
+			R.L_NO,
 			R.M_NO,
 			LR_COMMENT,
 			LR_SCORE1,

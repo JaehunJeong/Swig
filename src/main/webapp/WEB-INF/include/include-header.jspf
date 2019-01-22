@@ -8,27 +8,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%-- <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %> --%>
 
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
 
-<link type="text/css" rel="stylesheet" href="/Content/publy2.css" />
-<link type="text/css" rel="stylesheet" href="/Content/main1.css" />
-<link type="text/css" rel="stylesheet" href="/Content/style_sub17.css" />
-
-<link rel="shortcut icon" href="/Content/Images/favicon.ico" />
-<link rel="apple-touch-icon" href="/Content/Images/mobicon.png"/>
 
 
 <!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-<script src="/Scripts/prototype.js"></script>
-<script src="/Scripts/topbar.js"></script>
-<script src="/Scripts/common4.js"></script>
-<script src="/Scripts/func12.js"></script>
-<script src="/Scripts/controll.js"></script>
-<script src="/Scripts/motion.js"></script>
-
-<script src="/Scripts/popper.js"></script>
-<script src="/Scripts/mainbootstrap.js"></script>
+<script src="http://code.jquery.com/jquery-1.6.4.js"></script>
+<script src="<c:url value='./resources/js/common.js'/>" charset="utf-8"></script>
 
 
