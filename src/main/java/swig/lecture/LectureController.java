@@ -75,8 +75,8 @@ public class LectureController {
 	@RequestMapping(value="/LectureDetail")
 	public ModelAndView selectLectureDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
+		/*ModelAndView mav = new ModelAndView("/lecture/LectureDetail?LR_NO" + commandMap.getMap().get("LR_NO"));*/
 		ModelAndView mav = new ModelAndView("/lecture/LectureDetail");
-		
 		/*	
 		Map<String,Object> map = lectureService.selectLectureDetail(commandMap.getMap());
 		
@@ -93,6 +93,16 @@ public class LectureController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/LectureDetail/selectReviewList")
+	public ModelAndView reviewList(Map<String, Object> commanMap) throws Exception{
+		ModelAndView mav = new ModelAndView("/LectureDetail/ReviewList");
+		
+		List<Map<String, Object>> list = reviewService.reviewList(commanMap);
+		mav.addObject("list", list);
+		
+		return mav;
+		
+	}
 	// 점수 넣고 후기 작성 & 후기 수정
 	@RequestMapping(value="/LectureDetail/insertReview")
 	public ModelAndView insertReview(CommandMap commandMap/*, HttpServletRequest request*/) throws Exception{
@@ -131,7 +141,7 @@ public class LectureController {
 		@RequestMapping(value = "/lectureApplyForm")	// 수강 신청
 		public ModelAndView lectureApplyForm(CommandMap commandMap) throws Exception {
 			
-			ModelAndView mav = new ModelAndView("/lecture/lectureApplyForm");
+			ModelAndView mav = new ModelAndView("/lecture/lectureApplyForm?M_NO=" + commandMap.getMap().get("M_NO"));
 		
 			return mav;	
 		}	

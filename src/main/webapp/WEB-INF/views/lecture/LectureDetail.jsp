@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/LectureDetail.css'/>"/>
 <title>Insert title here</title>
 </head>
 <body>
 
-
 <div id="container_detail">
-
-<input type="hidden" id="M_NO" value="">
+<input type="hidden" id="MEMBER.M_NO" value="">
+<input type="hidden" id="TUTOR.M_NO" value="">
 <input type="hidden" id="R_RESULT" value="">
 
 <div class="class_d_wrap">
@@ -33,7 +34,7 @@
 			<h1>튜터정보</h1>
 		</div>
 		<div class=d_info04>
-			<td>${L_OPEN.L_DESCRIBE_T}</td>
+			<c:out value="${L_OPEN.L_DESCRIBE_T}"/>
 		</div>
 	</div>
 	
@@ -41,7 +42,7 @@
 		<div class="section01">
 			<h1>수업소개</h1>
 			<div class="d_info04">
-			<td>${L_OPEN.L_DESCIRBE_L}</td>
+			<c:out value="${L_OPEN.L_DESCIRBE_L}"/>
 			</div>
 		</div>
 	</div>
@@ -50,7 +51,7 @@
 		<div class="section01">
 			<h1 class="mt50">수업대상</h1>
 			<ul class="d_info03">
-			<td>${L_OPEN.L_DESCRIBE_TARGET}</td>
+			<c:out value="${L_OPEN.L_DESCRIBE_TARGET}"/>
 			</ul>
 		</div>
 	</div>
@@ -61,7 +62,7 @@
 			<div class="curriculum_cont">
 				<h2>강의계획</h2>
 			<dl class="step_cont">
-			<td>${L_OPEN.L_CURRI_TEXT}</td>
+			<c:out value="${L_OPEN.L_CURRI_TEXT}"/>
 			</dl>
 			</div>
 		</div>
@@ -70,10 +71,10 @@
 	<div class="class_detail detail_sec_bor" id="review">
 		<div class="section01">
 			<h1>리뷰</h1>
-			<a class="btn_st" id="btn-write-review">리뷰쓰기</a>
-			평점 : <img src="resources/images/star.png">
-			</div>
-			
+			<c:choose>
+				<c:when test="${LECTURE_REVIEW.LR_TOTALSCORE == ''}">
+				 <td>평점 : ${LECTURE_REVIEW.LR_TOTALSCORE} 점</td><img src="resources/images/star.png">
+				
 			<div class="review_count01">
 				<ul>
 					<li>커리큘럼
@@ -113,30 +114,17 @@
 					</li>
 				</ul>
 			</div>
-			
-			<c:forEach var="reviewlist" items="${list}" varStatus="status">
-			<fmt:parseNumber var="blank" type="number" value="${LECTURE_REVIEW.LR_NO}"/>
-			<div class="review">
-				<c:out value="${LECTURE_REVIEW.M_NO}"/> <c:out value="${LECTURE_REVIEW.LR_REGDATE}"/>
-				<c:if test="${session_m_no == LECTURE_REVIEW.M_NO}">
-					<a href="#" onclick="fn_deleteReview('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">삭제</a>
-					<a href="#" onclick="fn_reviewUpdate('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">수정</a>
-				</c:if>
-				<br/>
-				<div id="review<c:out value="${LECTURE_REVIEW.LR_NO}"/>">
-					<c:out value="${LECTURE_REVIEW.LR_COMMENT}"/>
-				</div>
+				 </c:when>
+				 <c:otherwise>
+				 	리뷰가 준비중입니다!
+				 </c:otherwise>
+				</c:choose>
 			</div>
-			</c:forEach>
-
 		</div>
-	</div>
-
-	<div class="class_detail detail_sec_bor" id="qna">
-		<div class="section01">
-			<h1>실시간 톡</h1>
 			
-		</div>
+					
+	<div class="btn_st" id="btn-write-review">
+		<a class="addbtn" onclick="addReview()">리뷰쓰기</a>
 	</div>
 	
 	<div id="popup-write-review" class="popup popup-write-review" data-hide="popup-write-review">
@@ -203,16 +191,52 @@
 		</div>
 		<div class="REVIEW_COMMENT">
 			<textarea name="LR_COMMENT" id="LR_COMMENT"></textarea>
-			<a href="#" onclick="fn_insertReview()">리뷰 올리기</a>
+			<a href="" onclick="fn_insertReview()">리뷰 올리기</a>
 		</div>
-	</form>
-</div>
+		
+		<c:choose>
+					<c:when test="${fn:length(list) > 0}">
+						<c:forEach items="${list }" var="row">
+							<tr>
+								<td>${row.LR_NO}</td>
+								<td>${row.LR_COMMENT}</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+				
+		<%-- <c:forEach var="reviewlist" items="${list}" varStatus="status">
+			<fmt:parseNumber var="blank" type="number" value="${LECTURE_REVIEW.LR_NO}"/>
+			<div class="review">
+				<c:out value="${LECTURE_REVIEW.M_NO}"/> <c:out value="${LECTURE_REVIEW.LR_REGDATE}"/>
+				<c:if test="${session_member_no == LECTURE_REVIEW.M_NO}">
+					<a href="" onclick="fn_deleteReview('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">삭제</a>
+					<a href="" onclick="fn_reviewUpdate('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">수정</a>
+				</c:if>
+				<br/>
+				<div id="review<c:out value="${LECTURE_REVIEW.LR_NO}"/>">
+					<c:out value="${LECTURE_REVIEW.LR_COMMENT}"/>
+				</div>
+			</div>
+			</c:forEach> --%>
+		</form>
+		</div>
+	</div>
+	</div>
+		<div class="class_detail detail_sec_bor" id="qna">
+		<div class="section01">
+			<h1>실시간 톡</h1>
+		</div>
+	</div>
 	
-<script>
-
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
+<script type="text/javascript">
+$(document).ready(function(){
+	fn.selectReview(1);
+});
 
 $('#btn-write-review').click(function () {			
-	M_NO = document.getElementById('M_NO').value;
+	M_NO = document.getElementById('MEMBER.M_NO').value;
 	R_RESULT= document.getElementById('R_RESULT').value;
 	
 	if (M_NO == '') {
@@ -229,8 +253,6 @@ $('#btn-write-review').click(function () {
 		});		
 	}
 });		
-
-
 
 $('#popup-write-review .stars i').click(function () {
 	var val = Number($(this).data('value'));
@@ -264,6 +286,21 @@ $('#frm-write-review').submit(function () {
 
 	return true;
 });
+
+function fn_selectReviewList(pageNo)
+{
+	var comAjax = new ComAjax();
+	comAjax.setUrl("<c:url value='/lecture'")
+}
+
+function addReview()
+{						
+	M_NO = document.getElementById('MEMBER.M_NO').value;
+	if(M_NO!=''){
+	document.getElementById('popup-write-review').style.display = "block";
+	document.getElementById('addReview').style.display = "none";
+	}
+}
 
 function fn_insertReview() {
 	if ($.trim($("#LR_COMMENT").val()) == "") {
@@ -316,3 +353,5 @@ function fn_reviewUpdateCancel(){
 </script>
 </body>
 </html>
+
+<!-- 부트스트랩을 사용해야 별점체크가 가능하다 -->
