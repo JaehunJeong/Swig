@@ -2,7 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lectureReview">
 
-<select id="selectReview" parameterType="hashmap" resultType="hashmap">
+
+<select id="selectReviewList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.paingPre"/>
+	<![CDATA[
+		SELECT
+			LR_NO,
+			LR_COMMENT,
+			LR_REGDATE
+		FROM LECTURE_REVIEW
+		WHERE LR_NO=#{LR_NO} AND L_NO=#{L_NO}
+		ORDER BY LR_REGDATE ASC
+	]]>
+	<include refid="common.paingPost"/>
+</select>
+
+<select id="selectOneReview" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
 			LR_NO,

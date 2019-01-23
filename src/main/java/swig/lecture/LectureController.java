@@ -50,41 +50,20 @@ public class LectureController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/selectLectureList")
-	public ModelAndView selectLectureList(CommandMap commandMap) throws Exception {
-
-		// ajax 등의 요청을 했을 때, json형식으로 return 받기 위해서 사용
-		ModelAndView mav = new ModelAndView("jsonView");
-		
-		
-		List<Map<String,Object>> list = lectureService.lectureList(commandMap.getMap());
-		mav.addObject("list", list);
-		
-		
-		/*if(list.size() > 0){
-    		mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
-    	}
-    	else{
-    		mv.addObject("TOTAL", 0);
-    	}
-		페이징 시 필요 */
-		
-		return mav;
-	}
 		
 	@RequestMapping(value="/LectureDetail")
 	public ModelAndView selectLectureDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
+		/*ModelAndView mav = new ModelAndView("/lecture/LectureDetail?LR_NO" + commandMap.getMap().get("LR_NO"));*/
 		ModelAndView mav = new ModelAndView("/lecture/LectureDetail");
-		
 		/*	
 		Map<String,Object> map = lectureService.selectLectureDetail(commandMap.getMap());
 		
 		commandMap.put("M_NO", session.getAttribute("session_member_no"));
-		// M_NO 를 끌어와야 수강신청을 눌렀을 때 제대로 넘길 수 있다. 그러니 필수 
+		// M_NO 瑜� �걣�뼱���빞 �닔媛뺤떊泥��쓣 �닃���쓣 �븣 �젣��濡� �꽆湲� �닔 �엳�떎. 洹몃윭�땲 �븘�닔 
 		
 		commandMap.put("L_NO", session.getAttribute("session_lecture_no"));
-		// L_NO 을 끌어오면 장소/시간을 끌어올 수 있다.. 재량으로..
+		// L_NO �쓣 �걣�뼱�삤硫� �옣�냼/�떆媛꾩쓣 �걣�뼱�삱 �닔 �엳�떎.. �옱�웾�쑝濡�..
 		
 		mav.addObject("map", map);
 		
@@ -93,7 +72,24 @@ public class LectureController {
 		return mav;
 	}
 	
-	// 점수 넣고 후기 작성 & 후기 수정
+	@RequestMapping(value="/LectureDetail/selectReviewList")
+	public ModelAndView reviewList(CommandMap commanMap) throws Exception{
+		ModelAndView mav = new ModelAndView("/LectureDetail/ReviewList");
+		
+		List<Map<String, Object>> list = reviewService.reviewList(commanMap.getMap());
+		mav.addObject("list", list);
+		
+		if(list.size() > 0){
+    		mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+    	}
+    	else{
+    		mav.addObject("TOTAL", 0);
+    	}
+		
+		return mav;
+		
+	}
+	// �젏�닔 �꽔怨� �썑湲� �옉�꽦 & �썑湲� �닔�젙
 	@RequestMapping(value="/LectureDetail/insertReview")
 	public ModelAndView insertReview(CommandMap commandMap/*, HttpServletRequest request*/) throws Exception{
 		/*HttpSession session = request.getSession();
@@ -107,7 +103,7 @@ public class LectureController {
 		 commandMap.put("LR_SCORE4", commandMap.get("LR_SCORE4"));
 		 commandMap.put("LR_SCORE5", commandMap.get("LR_SCORE5"));
 		
-		 reviewService.avgScore(commandMap.getMap());		// 총첨 넣기
+		 reviewService.avgScore(commandMap.getMap());		// 珥앹꺼 �꽔湲�
 		
 		 commandMap.put("LR_TOTALSCORE", commandMap.get("LR_TOTALSCORE"));
 		 
@@ -128,10 +124,10 @@ public class LectureController {
 		return mav;
 	}
 	
-		@RequestMapping(value = "/lectureApplyForm")	// 수강 신청
+		@RequestMapping(value = "/lectureApplyForm")	// �닔媛� �떊泥�
 		public ModelAndView lectureApplyForm(CommandMap commandMap) throws Exception {
 			
-			ModelAndView mav = new ModelAndView("/lecture/lectureApplyForm");
+			ModelAndView mav = new ModelAndView("/lecture/lectureApplyForm?M_NO=" + commandMap.getMap().get("M_NO"));
 		
 			return mav;	
 		}	
@@ -155,4 +151,4 @@ public class LectureController {
 
 
 
-// 장소, 시간 선택, 리뷰 작성, 리뷰 삭제, 리뷰 수정, 수업신청, 찜하기, 실시간 톡
+// �옣�냼, �떆媛� �꽑�깮, 由щ럭 �옉�꽦, 由щ럭 �궘�젣, 由щ럭 �닔�젙, �닔�뾽�떊泥�, 李쒗븯湲�, �떎�떆媛� �넚
