@@ -4,6 +4,7 @@
 
 
 <select id="selectReviewList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.paingPre"/>
 	<![CDATA[
 		SELECT
 			LR_NO,
@@ -13,6 +14,7 @@
 		WHERE LR_NO=#{LR_NO} AND L_NO=#{L_NO}
 		ORDER BY LR_REGDATE ASC
 	]]>
+	<include refid="common.paingPost"/>
 </select>
 
 <select id="selectOneReview" parameterType="hashmap" resultType="hashmap">

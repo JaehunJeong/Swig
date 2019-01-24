@@ -1,5 +1,2 @@
 @charset "UTF-8";
-
-.popup-write-review{
-	display: none;
-}
+#popup-write-review{display : none;}

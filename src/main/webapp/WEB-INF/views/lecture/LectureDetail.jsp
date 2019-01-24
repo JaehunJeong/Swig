@@ -13,9 +13,13 @@
 
 <div id="container_detail">
 <input type="hidden" id="MEMBER.M_NO" value="">
+<input type="hidden" id="tutorImage">
 <input type="hidden" id="TUTOR.M_NO" value="">
 <input type="hidden" id="R_RESULT" value="">
 
+<%-- <div class="class_img">
+	<iframe width="840" height="540" src="/lecture/LectureDetail/?L_no='${L_OPEN.L_NO}'" frameborder="0"></iframe>
+</div> 생각해야함...--%>
 <div class="class_d_wrap">
 
 <!-- 튜터정보,수업소개,리뷰,실시간톡 에 대한 상단 네비 -->
@@ -46,7 +50,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="class_detail detail_sec_bor">
 		<div class="section01">
 			<h1 class="mt50">수업대상</h1>
@@ -55,7 +59,7 @@
 			</ul>
 		</div>
 	</div>
-	
+
 	<div class="class_detail detail_sec_bor">
 		<div class="section01">
 			<h1>커리큘럼</h1>
@@ -128,7 +132,7 @@
 	</div>
 	
 	<div id="popup-write-review" class="popup popup-write-review" data-hide="popup-write-review">
-	<form name="review_form" id="review_form" action="./LectureDetail/insertReview" method="POST" class="popup-content" id="frm-write-review">
+	<form name="review_form" id="review_form" action="/insertReview" method="POST" class="popup-content" id="frm-write-review">
 		<h1>
 			튜터의 수업은 어떠셨나요?
 		</h1>
@@ -193,18 +197,28 @@
 			<textarea name="LR_COMMENT" id="LR_COMMENT"></textarea>
 			<a href="" onclick="fn_insertReview()">리뷰 올리기</a>
 		</div>
-		
+		<table>
+			<tbody>
 		<c:choose>
 					<c:when test="${fn:length(list) > 0}">
-						<c:forEach items="${list }" var="row">
+						<c:forEach items="${list }" var="row" varStatus="status">
 							<tr>
-								<td>${row.LR_NO}</td>
+								<td>${row.M_NAME}</td>
 								<td>${row.LR_COMMENT}</td>
+								<td>${row.LR_REGDATE}</td>
 							</tr>
+							<c:if test="${session_member_no == LECTURE_REVIEW.M_NO}">
+								<a href="" onclick="fn_deleteReview('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">삭제</a>
+								<a href="" onclick="fn_reviewUpdate('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">수정</a>
+						</c:if>
 						</c:forEach>
 					</c:when>
 				</c:choose>
-				
+			</tbody>
+		</table>
+		<div id="PAGE_NAVI"></div>
+		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
+		
 		<%-- <c:forEach var="reviewlist" items="${list}" varStatus="status">
 			<fmt:parseNumber var="blank" type="number" value="${LECTURE_REVIEW.LR_NO}"/>
 			<div class="review">
@@ -244,7 +258,7 @@ $('#btn-write-review').click(function () {
 		$('#login-popup').show();
 	}
 	else {
-		$.post('./LectureDetail/insertReview', {}, function (R_RESULT) {
+		$.post('./insertReview', {}, function (R_RESULT) {
 			if (R_RESULT=='Y') {
 				$('#popup-write-review').show();
 			} else {				
@@ -290,7 +304,39 @@ $('#frm-write-review').submit(function () {
 function fn_selectReviewList(pageNo)
 {
 	var comAjax = new ComAjax();
-	comAjax.setUrl("<c:url value='/lecture'")
+	comAjax.setUrl("<c:url value='/selectReviewList'/>")
+	comAjax.setCallback("fn_selectReviewListCallback");
+	comAjax.addParam("PAGE_INDEX",pageNo);
+	comAjax.addParam("PAGE_ROW",15);
+	comAjax.ajax();
+}
+
+function fn_selectReviewListCallback(data){
+	var total = data.TOTAL;
+	var body = $("table>tbody");
+	body.empty();
+	if(total == 0) {
+		var str = "";
+		body.append(str);
+	} else{
+		var params = {
+				divId : "PAGE_NAVI",
+				pageIndex : "PAGE_INDEX",
+				totalCount : total,
+				eventName : "fn_selectReviewList"
+		};
+		gfn_renderPaging(params);
+		
+		var str = "";
+		$.each(data.list, function(key, value){
+			str += "<tr>" + "<td>" + value.M_NAME + "</td>" + 
+			        		"<td>" + value.LR_COMMENT + "</td>" +
+			        		"<td>" + value.LR_REGDATE + "</td>" +
+			       "</tr>";
+		});
+		body.append(str);
+		
+	}
 }
 
 function addReview()
@@ -307,7 +353,7 @@ function fn_insertReview() {
         alert("내용을 입력해주세요.");
         $("#LR_COMMENT").focus();
         return;
-    }
+    } 
     $("#review_form").submit();  
 }
 
