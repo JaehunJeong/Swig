@@ -141,7 +141,8 @@
 				<a href="#this" class="btn" id="delete" name="delete_">삭제</a></p>
 		</div>
 		<br/><br/>
-		<label>강의사진 등록</label>
+		<label>강의사진 등록</label><br/>
+		<label style="font-size:10pt;">사진 등록을 누르시면 강의 사진이 등록이 됩니다.<br/> 강의 사진 등록은 최대 6개까지 입니다.</label>
 		<br/><br/>
 		
 		<div id="slfiles_body">
@@ -157,10 +158,17 @@
 		</div>
 		
 		<div id="list-videos">
-		<input type="text" id="L_URL" name="L_URL" placeholder="유튜브 링크를 적어주세요" class="input-video" value="" />
-		<input type="text" id="L_URL" name="L_URL" placeholder="유튜브 링크를 적어주세요" class="input-video" />
+		<p>
+		<input type="text" id="L_URL1" name="L_URL1" placeholder="유튜브 링크를 적어주세요" class="input-video" value="" />
+		</p>
+		<p>
+		<input type="text" id="L_URL2" name="L_URL2" placeholder="유튜브 링크를 적어주세요" class="input-video" />
+		</p>
 		</div>
-	
+		<label>다음으로 버튼을 누르시면 자동 임시 저장이 됩니다.</label>
+		<br/><br/>
+		<input type="submit" value="다음으로" />
+		
 	</form>
 	<script>
 	var files_count = 1;
@@ -218,6 +226,7 @@
 	function deleteFile(obj){
 		obj.parent().remove();
 	}
+	
 	</script>
 </body>
 </html>

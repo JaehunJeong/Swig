@@ -54,4 +54,9 @@ public class CategoryDAO extends AbstractDAO{
 	public List<Map<String, Object>> selectWorkout() throws Exception{
 		return (List<Map<String, Object>>)selectList("category.selectWorkout");
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectCA_IDX(Map<String, Object> map) throws Exception{
+		return(Map<String, Object>)selectOne("category.selectCA_IDX");
+	}
 }

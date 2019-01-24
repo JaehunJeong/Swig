@@ -226,9 +226,9 @@ public class LectureController {
     	  return mav;
       }
       
-    /*  @RequestMapping(value="/lectureInsert1")
-      public ModelAndView LectureInsert1(@RequestParam(value="clFile") MultipartFile[] clFiles, 
-    		  						     @RequestParam(value="slFile") MultipartFile[] slFiles, CommandMap commandMap) throws Exception {
+    @RequestMapping(value="/lectureInsert1")
+      public ModelAndView LectureInsert1(@RequestParam(value="clfile") MultipartFile[] clFiles, 
+    		  						     @RequestParam(value="file") MultipartFile[] slFiles, CommandMap commandMap) throws Exception {
     	  ModelAndView mav=new ModelAndView("redirect:/lectureWrite2");
     	  
     	  lectureService.insertLecture1(commandMap.getMap(), clFiles, slFiles);
@@ -264,7 +264,7 @@ public class LectureController {
     	  lectureService.insertLecture4(commandMap.getMap());
     	  
     	  return mav;
-      }*/
+      }
       
 }
 

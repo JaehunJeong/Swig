@@ -16,6 +16,7 @@
 			
 			<input id="L_PRICEPH" name="L_PRICEPH" type="text" onkeyup="updateCalculation()"/>
 			<span class="inputstxt">원</span>
+			<br/><br/>
 	</li>
 	<li>
 		<label>기본수업시간</label>					
@@ -29,6 +30,7 @@
 			<option value="6" >6시간</option>
 		</select>
 		<span class="inputstxt">/ 1회</span>
+		<br/><br/>
 	</li>
 
 	<li>
@@ -36,6 +38,7 @@
 		<input id="L_COUNTPM" name="L_COUNTPM" type="text" onkeyup="updateCalculation()"/>
 					
 		<span class="inputstxt">회</span>
+		<br/><br/>
 	</li>
 
 	<li>
@@ -43,7 +46,9 @@
 			<div class="cl_total">
 				<dl>
 					<dt><font id="calc-unit-price">0</font>원 X <font id="calc-time">0</font>시간 X <font id="calc-total-times">0</font>회</dt>
+					<br/>
 					<dd>총 <font id="calc-result">0</font>원</dd>
+					<br/>
 					<dd>연결수수료 <font id="calc-fee">0</font>원</dd>
 				</dl>
 			</div>

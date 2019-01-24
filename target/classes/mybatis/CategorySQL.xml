@@ -138,4 +138,11 @@
 		]]>
 	</select>
 	
+	<select id="selectCA_IDX" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_IDX
+			FROM CATEGORY
+			WHERE CA_SSECTION=${CA_SSECTION}
+		]]>
+	</select>
 </mapper>

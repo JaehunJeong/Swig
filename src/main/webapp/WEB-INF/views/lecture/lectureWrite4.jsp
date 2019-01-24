@@ -131,7 +131,7 @@ function selectCA(){
 	</select>
 	
 	<div style="display:none;" id="locationdetail1">
-		<input id="regionDetail" maxlength="50" name="Region1Location" placeholder="직접 입력(10글자 내)" type="text" value="" class="input_txt03" />
+		<input id="LL_DETAIL" maxlength="50" name="LL_DETAIL" placeholder="직접 입력(10글자 내)" type="text" value="" class="input_txt03" />
 	</div>
 	</li>
 </ul>

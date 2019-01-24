@@ -18,17 +18,18 @@
 				<label>튜터소개</label>	
 					<textarea placeholder="튜터님을 간단히 소개해주세요." rows="7" cols="40" title="튜터소개" id="T_CONTENTS" name="T_CONTENTS"></textarea>
 			</li>
-			<br /><br />
+			<br/><br/>
 			<li>
 				<label>수업소개</label>
 					<textarea placeholder="튜터님을  수업을 간단히 소개해주세요." rows="7" cols="40" title="수업소개" id="L_CONTENTS" name="L_CONTENTS"></textarea>
 			</li>
-			<br /><br />
+			<br/><br/>
 			<li>
 				<label>수업대상</label>
 					<textarea placeholder="튜터님을  수업대상을 간단히 소개해주세요." rows="7" cols="40" title="수업대상" id="LT_CONTENTS" name="LT_CONTENTS"></textarea>
 			</li>
 		</ul>
+		<br/><br/>
 		<ul>
 				<li>
 					<label>커리큘럼등록</label>
@@ -47,7 +48,7 @@
 						</p>
 						<br>
 						<p>
-							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum" name="Curriculum">테스트입니다.</textarea>
+							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum" name="curriText1">테스트입니다.</textarea>
 						</p>
 					</div>
 					<br>
@@ -66,7 +67,7 @@
 						</p>
 						<br>
 						<p>
-							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum2" name="Curriculum2">테스트입니다.</textarea>
+							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum2" name="curriText2">테스트입니다.</textarea>
 						</p>
 					</div>
 					<br>
@@ -85,7 +86,7 @@
 						</p>
 						<br>
 						<p>
-							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum3" name="Curriculum3">테스트입니다.</textarea>
+							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum3" name="curriText3">테스트입니다.</textarea>
 						</p>
 					</div>
 					<br>
@@ -104,7 +105,7 @@
 						</p>
 						<br>
 						<p>
-							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum4" name="Curriculum4">테스트입니다.</textarea>
+							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum4" name="curriText4">테스트입니다.</textarea>
 						</p>
 					</div>
 					<br>
@@ -123,7 +124,7 @@
 						</p>
 						<br>
 						<p>
-							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum5" name="Curriculum5"></textarea>
+							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum5" name="curriText5"></textarea>
 						</p>
 						<div id="delCurri5"><a class="btn_del" onclick="minusCurri()">삭제하기</a></div>
 					</div>
@@ -143,7 +144,7 @@
 						</p>						
 						<br>
 						<p>
-							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum6" name="Curriculum6"></textarea>
+							<textarea placeholder="튜터님 수업을 간단히 설명해 주세요." class="input_txt05" rows="7" cols="40" id="Curriculum6" name="curriText6"></textarea>
 						</p>
 						<div id="delCurri6"><a class="btn_del" onclick="minusCurri2()">삭제하기</a></div>
 					</div>
