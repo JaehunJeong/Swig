@@ -47,7 +47,7 @@ public class LectureServiceImpl implements LectureService{
 		
 		if(!list.isEmpty()) {
 			for(int i=0; i<list.size(); i++) {
-				if(i== list.size()) {
+				if(i== list.size()-1) {
 					url+=list.get(i);
 				}else {
 					url+=list.get(i)+",";
@@ -94,6 +94,7 @@ public class LectureServiceImpl implements LectureService{
 	
 	@Override
 	public void insertLecture2(Map<String, Object> map, MultipartFile[] currifile) throws Exception {
+		
 		lectureDAO.insertLectureP2(map);
 		
 		List<Map<String, Object>> currilist=fileUtils.parseInsertCoverPro(map, currifile);
