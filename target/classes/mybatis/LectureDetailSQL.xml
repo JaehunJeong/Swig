@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lectureDetail">
+	
+	<!-- SELECT SQL -->
+	<!-- 강의 상세보기에서 강의장소를 보여주는 SQL문 -->
+	<select id="lectureLocation" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				LL_NO,
+				LL_LOCATION,
+				LL_DEATIL,
+				LL_ADDCOST,
+				LL_LO_COMMENT
+			FROM L_LOCATION
+			WHERE L_NO=#{L_NO}
+		]]>
+	</select>
+	
+	<!-- 강의 상세보기에서 강의 장소를 선택했을 때 실행되는 SQL문  장소에 따른 다른 가능 날짜를 보여줌.-->
+	<select id="lectureDate" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				LD_NO,
+				LD_DATE,
+			FROM LECTURE_DATE
+			WHERE LL_NO=#{LL_NO}
+		]]>
+	</select>
+	
+	<!-- 강의 상세보기에서 강의 장소를 선택했을 때 실행되는 SQL문  날짜에에 따른 다른 가능 시간을 보여줌.-->
+	<select id="lectureTime" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				LT_NO,
+				LT_TIME,
+				LT_TIME2,
+			FROM
+				LECTURE_TIME
+			WHERE
+				LD_NO=#{LD_NO}
+		]]>
+	</select>
+	
+	<!-- LECTURE 장소를 검색했을 때 실행하는 SQL문 -->
+	<select id="lectureLocationFind"><!-- LECTURE LOCATION으로 LECTURE를 검색할 때 -->
+		<![CDATA[
+			SELECT
+				L_NO
+			FROM 
+				L_OPEN L
+			WHERE
+				L.L_NO=(SELECT L_NO 
+						FROM L_LOCATION 
+						WHERE LL_LOCATION=#{LL_LOCATION})
+		]]>
+	</select>
+	
+	<!-- LECTURE 날짜를 검색했을 때 실행되는 SQL문 -->
+	<select id="lecureDateFind" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT L_NO
+			FROM L_OPEN L
+			WHERE L.L_NO=(SELECT L_NO 
+						  FROM L_LOCATION 
+						  WHERE LL_NO=(SELECT LL_NO 
+						  			   FROM LECTURE_DATE 
+						  			   WHERE LD_DATE=#{LD_DATE}))
+		]]>
+	</select>
+	
+	<!-- LECTURE 시간을 검색했을 때 실행되는 SQL문 -->
+	<select id="lecureTimeFind" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT L_NO
+			FROM L_OPEN L
+			WHERE L.L_NO=(SELECT L_NO 
+						  FROM L_LOCATION 
+						  WHERE LL_NO=(SELECT LL_NO 
+						  			   FROM LECTURE_DATE 
+						  			   WHERE LD_NO=(SELECT LD_NO 
+						  			   				FROM LECTURE_TIME 
+						  			   				WHERE LT_TIME=#{LT_TIME} OR LT_TIME2=#{LT_TIME})))
+		]]>
+	</select>
+	
+	<!-- INSERT SQL -->
+	<!-- LECTURE 장소 입력 -->
+	<insert id="insertLectureLocation" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO L_LOCATION
+			(
+				LL_NO,
+				L_NO,
+				LL_LOCATION,
+				LL_DETAIL,
+				LL_ADDCOST,
+				LL_COMMENT
+			)
+			VALUES(
+				LL_NO_SEQ.NEXTVAL,
+				#{L_NO}
+				#{LL_LOCATION},
+				#{LL_DETAIL},
+				#{LL_ADDCOST},
+				#{LL_LO_COMMENT}
+			)
+		]]>
+	</insert>
+	
+	<!-- LECTURE 날짜 입력 -->
+	<insert id="insertLectureDate" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO LECTURE_DATE
+			(
+				LD_NO,
+				LL_NO,
+				LD_DATE
+			)
+			VALUES(
+				LD_NO_SEQ.NEXTVAL,
+				#{L_NO},
+				#{LL_NO},
+				#{LD_DATE}
+			)
+		]]>
+	</insert>
+	
+	<!-- LECTURE 시간 입력 -->
+	<insert id="insertLectureTime" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO LECTURE_TIME
+			(
+				LT_NO,
+				LD_NO,
+				LT_TIME,
+				LT_TIME2
+			)
+			VALUES(
+				LT_NO_SEQ.NEXTVAL,
+				#{LD_NO},
+				#{LT_TIME},
+				#{LT_TIME2}
+			)
+		]]>
+	</insert>
+	
+	<!-- UPDATE SQL -->
+	<!-- LECTURE 장소 업데이트 -->
+	<update id="updateLectureLocation" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_LOCATION
+			SET
+				LL_LOCATION=#{LL_LOCATION},
+				LL_DETAIL=#{LL_DETAIL},
+				LL_ADDCOST=#{LL_ADDCOST},
+				LL_LO_COMMENT=#{LL_LO_COMMENT}
+			WHERE
+				LL_NO=#{LL_NO} AND L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<!-- LECTURE 날짜 업데이트 -->
+	<update id="updateLectureDate" parameterType="hashmap">
+		<![CDATA[
+			UPDATE LECTURE_DATE
+			SET LD_DATE=#{LD_DATE}
+			WHERE LL_NO=#{LL_NO} AND LD_NO=#{LD_NO}
+		]]>
+	</update>
+	
+	<!-- LECTURE 시간 업데이트 -->
+	<update id="updateLectureTime" parameterType="hashmap">
+		<![CDATA[
+			UPDATE LECTURE_TIME
+			SET LT_TIME=#{LT_TIME}
+			WHERE LT_NO=#{LT_NO} AND LD_NO=#{LD_NO}
+		]]>
+	</update>
+	
+	<!-- DELETE SQL -->
+	<!-- LECTURE 장소 삭제 -->
+	<update id="deleteLectureLocation" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_LOCATION
+			SET LL_LOCATION='DEL'
+				LL_DETAIL='DEL'
+				LL_ADDCOST='DEL'
+				LL_LO_COMMENT='DEL'
+			WHERE LL_NO=#{LL_NO} AND L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<!-- LECTURE 날짜 삭제 -->
+	<update id="deleteLectureDate" parameterType="hashmap">
+		<![CDATA[
+			UPDATE LECTURE_DATE
+			SET LD_DATE='DEL'
+			WHERE LD_NO=#{LD_NO} AND LL_NO=#{LL_NO}
+		]]>
+	</update>
+	
+	<!-- LECTURE 시간 삭제 -->
+	<update id="deleteLectureTime" parameterType="hashmap">
+		<![CDATA[
+			UPDATE LECTURE_TIME
+			SET LT_TIME='DEL'
+				LT_TIME2='DEL'
+			WHERE LT_NO=#{LT_NO} AND LD_NO=#{LD_NO}
+		]]>
+	</update>
+	
+</mapper>

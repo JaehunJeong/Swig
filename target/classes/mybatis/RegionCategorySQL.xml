@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="regioncategory">
+	<select id="selectRegiongroup" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT REGIONL
+			FROM REGIONCATEGORY 
+			ORDER BY REGIONL ASC
+		]]>
+	</select>
+	
+	<select id="selectSeoul" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL='서울'
+		]]>
+	</select>
+
+	<select id="selectGyeong" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL='경기'
+		]]>
+	</select>
+	
+	<select id="selectIncheon" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL='인천'
+		]]>
+	</select>
+	
+	<select id="selectBusan" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL='부산'
+		]]>
+	</select>
+	
+	
+	<select id="selectJeju" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL LIKE '경상%'
+		]]>
+	</select>
+	
+	<select id="selectDaejeon" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL LIKE '대전%'
+		]]>
+	</select>
+	
+	<select id="selectGangwon" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL='강원'
+		]]>
+	</select>
+	
+	<select id="selectGwangju" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL LIKE '광주%'
+		]]>
+	</select>
+	
+	<select id="selectOnline" resultType="hashmap">
+		<![CDATA[
+			SELECT REGIONS
+			FROM REGIONCATEGORY
+			WHERE REGIONL = '온라인'
+		]]>
+	</select>
+</mapper>

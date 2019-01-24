@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+	
+	<select id="selectCagroup" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION, CA_GROUP
+			FROM CATEGORY 
+			ORDER BY CA_GROUP ASC
+		]]>
+	</select>
+	
+	<!-- <select id="selectLSection1" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION,CA_GROUP
+			FROM CATEGORY
+			WHERE CA_NO LIKE '1-%'
+		]]>
+	</select>
+	
+	<select id="selectLSection2" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '2-%'
+		]]>
+	</select>
+	
+	<select id="selectLSection3" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '3-%'
+		]]>
+	</select>
+	
+	<select id="selectLSection4" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '4-%'
+		]]>
+	</select>
+	
+	<select id="selectLSection5" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '5-%'
+		]]>
+	</select>
+	
+	<select id="selectLSection6" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '6-%'
+		]]>
+	</select>
+	
+	<select id="selectLSection7" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '7-%'
+		]]>
+	</select>
+	
+	<select id="selectLSection8" resultType="hashmap">
+		<![CDATA[
+			SELECT DISTINCT CA_LSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '8-%'
+		]]>
+	</select> -->
+	
+	<select id="selectProgramming" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '1-%'
+		]]>
+	</select>
+
+	<select id="selectDesignTool" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '2-%'
+		]]>
+	</select>
+	
+	<select id="selectSilmu" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '3-%'
+		]]>
+	</select>
+	
+	<select id="selectBeauty" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '4-%'
+		]]>
+	</select>
+	
+	<select id="selectFLanguage" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '5-%'
+		]]>
+	</select>
+	
+	<select id="selectMusic" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '6-%'
+		]]>
+	</select>
+	
+	<select id="selectLifestyle" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '7-%'
+		]]>
+	</select>
+	
+	<select id="selectWorkout" resultType="hashmap">
+		<![CDATA[
+			SELECT CA_GROUP, CA_SSECTION
+			FROM CATEGORY
+			WHERE CA_NO LIKE '8-%'
+		]]>
+	</select>
+	
+</mapper>

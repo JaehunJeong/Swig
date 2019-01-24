@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lecture">
+	
+	<!-- select lecturelist -->
+	<select id="lectureList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				L_NO,
+				M_NO,
+				L_SUBJECT,
+				CA_NO,
+				L_CLASSTYPE,
+				L_DESCRIBE_T,
+				L_DESCRIBE_L,
+				L_DESCRIBE_TARGET,
+				L_CURRI_TEXT,
+				L_CURRI_COUNT,
+				L_PRICEPH,
+				L_TIMEPL,
+				L_COUNTPM,
+				L_TOTALPRICE,
+				L_READHIT,
+				L_REGDATE
+			FROM
+				L_OPEN
+			ORDER BY L_NO DESC
+		]]>
+	</select>
+	
+	<select id="selectLectureDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				L_NO,
+				M_NO,
+				L_SUBJECT,
+				CA_NO,
+				L_CLASSTYPE,
+				L_DESCRIBE_T,
+				L_DESCRIBE_L,
+				L_DESCRIBE_TARGET,
+				L_CURRI_TEXT,
+				L_CURRI_COUNT,
+				L_PRICEPH,
+				L_TIMEPL,
+				L_COUNTPM,
+				L_TOTALPRICE,
+				L_READHIT,
+				L_REGDATE
+			FROM
+				L_OPEN
+			WHERE
+				L_NO=#{L_NO} 
+		]]>
+		
+	</select>
+	
+	<insert id="insertLectureP1" parameterType="hashmap" useGeneratedKeys="true" keyProperty="L_NO">
+		<selectKey keyProperty="L_NO" resultType="string" order="BEFORE">
+			SELECT L_NO_SEQ.IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			INSERT INTO L_OPEN
+			(
+				L_NO,
+				M_NO,
+				L_SUBJECT,
+				CA_NO,
+				L_CLASSTYPE,
+				L_URL
+			)
+			VALUES
+			(
+				#{L_NO},
+				#{M_NO},
+				#{L_SUBJECT},
+				#{CA_NO},
+				#{L_CLASSTYPE},
+				#{L_URL}
+			)
+				 
+		]]>
+	</insert>
+	
+	<update id="insertLectureP2" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN
+			SET
+				L_DESCRIBE_T=#{L_DESCRIBE_T},
+				L_DESCRIBE_L=#{L_DESCRIBE_L},
+				L_DESCRIBE_TARGET=#{L_DESCRIBE_TARGET},
+				L_CURRI_TEXT=#{L_CURRI_TEXT},
+				L_CURRI_COUNT=#{L_CURRI_COUNT},
+			WHERE
+				L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<update id="insertLectureP3" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN
+			SET
+				L_PRICEPH=#{L_PRICEPH},
+				L_TIMEPL=#{L_TIMEPL},
+				L_COUNTPM=#{L_COUNTPM},
+				L_TOTLAPRICE=#{L_TOTALPRICE}
+			WHERE
+				L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<update id="updatelectureHitCnt" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN
+			SET
+				L_READHIT = NVL(L_READHIT,0)+1
+			WHERE
+				L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<update id="updateLecture" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN
+			SET
+				L_SUBJECT=#{L_SUBJECT},
+				CA_NO=#{CA_NO},
+				L_URL=#{L_URL},
+				L_DESCRIBE_T=#{L_DESCRIBE_T},
+				L_DESCRIBE_L=#{L_DESCRIBE_L},
+				L_DESCRIBE_TARGET=#{L_DESCRIBE_TARGET},
+				L_CURRI_TEXT=#{L_CURRI_TEXT},
+				L_CURRI_COUNT=#{L_CURRI_COUNT},
+				L_PRICEPH=#{L_PRICEPH},
+				L_TIMEPL=#{L_TIMEPL},
+				L_COUNTPM=#{L_COUNTPM},
+				L_TOTLAPRICE=#{L_TOTALPRICE}
+			WHERE
+				L_NO=#{L_NO}
+		]]>
+	</update>
+	
+	<update id="deleteLecture" parameterType="hashmap">
+		<![CDATA[
+			UPDATE L_OPEN
+			SET
+				L_SUBJECT='DEL'
+			WHERE
+				L_NO=#{L_NO}
+		]]>
+	</update>
+	
+</mapper> 
