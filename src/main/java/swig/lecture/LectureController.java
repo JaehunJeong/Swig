@@ -52,8 +52,9 @@ public class LectureController {
 	@Resource(name="regionCategoryService")
 	private RegionCategoryService regionCategoryService;
 	
-	@RequestMapping(value="/CategoryList")
+	/*@RequestMapping(value="/CategoryList")
 	public ModelAndView CategoryList(CommandMap commandMap) throws Exception{
+	  
 	  ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO" + commandMap.getMap().get("CA_NO"));
 		
 	  List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());	// 대분류 가져옴
@@ -104,15 +105,23 @@ public class LectureController {
 	  mav.addObject("relist8", relist8);
 	  mav.addObject("relist9", relist9);
 	  
-	  
+
 	  List<Map<String, Object>> lectureList = new ArrayList<Map<String,Object>>(lectureService.lectureList());
-	  
+	 
 	  return mav;
-	  
+	
 	  
 	}
+	*/
 	
-		
+	@RequestMapping(value="/LectureList")
+	public ModelAndView RegionSerchLecture (CommandMap commandMap) throws Exception{
+		ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO=" + commandMap.getMap().get("CA_NO") +"&?location=" + commandMap.getMap().get("ll_location"));
+		List<Map<String,Object>> list = lectureService.selectRegionSerchLecture(commandMap.getMap());
+		mav.addObject("list", list);
+		return mav;
+	}
+	
 	@RequestMapping(value="/LectureDetail")
 	public ModelAndView selectLectureDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();

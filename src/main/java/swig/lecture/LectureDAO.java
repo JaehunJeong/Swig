@@ -18,11 +18,16 @@ public class LectureDAO extends AbstractDAO{
 				selectOne("lectureDetail.LectureLocation", map);
 	}
 	
-	// 강의 리스트 출력
+	/* 강의 리스트 출력
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception{
 		return (List<Map<String, Object>>)
 				selectList("lecture.lectureBoardList", map);
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectRegionSerchLecture(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>) selectList("lecture.selectRegionSerchLecture", map);
 	}
 	
 	// 상세보기
