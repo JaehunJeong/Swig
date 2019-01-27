@@ -3,6 +3,32 @@
 
 <mapper namespace="lecture">
 	
+	<!-- 뭐가 맞는걸까  카테고리별 검색 
+	<select id="selectLectureCategory" parameterType="hashmap" resultType="hashMap">
+	<![CDATA[
+	SELECT 
+   		DISTINCT S.CA_NO,R.REGIONL, R.REGIONS , R.REGIONS, S.CA_LSECTION, S.CA_SSECTION, S.CA_DEL, S.CA_IDX
+	FROM 
+    	CATEGORY S, (SELECT DISTINCT REGIONL, REGIONS FROM REGIONCATEGORY) R ORDER BY S.CA_NO
+	]]>
+	</select>
+	
+	카테고리별 검색
+	<select id="selectLectureCategory" parameterType="hashmap" resultType="hashMap">
+	<![CDATA[
+	select 
+		S.CA_NO, REGIONL, REGIONS , S.CA_LSECTION, S.CA_SSECTION, S.CA_DEL, S.CA_IDX, L.CA_IDX from l_open L,
+	(SELECT 
+  		DISTINCT CA_NO, REGIONL, REGIONS , CA_LSECTION, CA_SSECTION, CA_DEL, CA_IDX
+	FROM 
+   		(select  * from CATEGORY), (SELECT DISTINCT REGIONL, REGIONS FROM REGIONCATEGORY) ORDER BY CA_NO
+	) S
+	WHERE L.CA_IDX = S.CA_IDX
+	]]>
+	</select> -->
+	
+	
+	
 	<!-- select lecturelist -->
 	<select id="lectureList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
