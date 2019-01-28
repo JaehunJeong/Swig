@@ -55,8 +55,8 @@ public class LectureServiceImpl implements LectureService{
 	}
 */
 	@Override
-	public List<Map<String, Object>> RegionNotChoiceLecture(Map<String,Object> map) throws Exception{
-		return lectureDAO.RegionNotChoiceLecture(map);
+	public List<Map<String, Object>> selectLectureList(Map<String,Object> map) throws Exception{
+		return lectureDAO.selectLectureList(map);
 	}
 	@Override
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception {

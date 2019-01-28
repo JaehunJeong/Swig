@@ -10,7 +10,7 @@ public interface LectureService {
 		List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception;
 	*/
 	
-		List<Map<String, Object>> RegionNotChoiceLecture(Map<String, Object> map) throws Exception;
+		List<Map<String, Object>> selectLectureList(Map<String, Object> map) throws Exception;
 	
 		Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception;
 	/*

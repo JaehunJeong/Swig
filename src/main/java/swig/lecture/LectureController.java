@@ -122,14 +122,20 @@ public class LectureController {
 	 * }
 	 */
 	
-
-	
-	@RequestMapping(value="/RegionNotChoiceLectureList")
-	public ModelAndView RegionNotChoiceLecture (CommandMap commandMap) throws Exception{
-		//ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO=" + commandMap.getMap().get("CA_NO"));
+	@RequestMapping(value="/openLectureList")
+	public ModelAndView openLectureList(CommandMap commandMap) throws Exception{
 		ModelAndView mav = new ModelAndView("/lecture/LectureList");
 		
-		List<Map<String,Object>> list = lectureService.RegionNotChoiceLecture(commandMap.getMap());
+		return mav;
+	}
+	
+	@RequestMapping(value="/selectLectureList")
+	public ModelAndView selectLectureList (CommandMap commandMap) throws Exception{
+		//ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO=" + commandMap.getMap().get("CA_NO"));
+		//ModelAndView mav = new ModelAndView("/lecture/LectureList");
+		ModelAndView mav = new ModelAndView("jsonView");
+		
+		List<Map<String,Object>> list = lectureService.selectLectureList(commandMap.getMap());
 		mav.addObject("list", list);
 		
 		 if(list.size() > 0){
@@ -144,22 +150,22 @@ public class LectureController {
 	
 	
 	@RequestMapping(value="/LectureDetail")
-	public ModelAndView selectLectureDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		//ModelAndView mav = new ModelAndView("/lecture/LectureDetail?LR_NO" + commandMap.getMap().get("LR_NO"));
+	public ModelAndView selectLectureDetail(CommandMap commandMap/*, HttpServletRequest request*/) throws Exception {
+		//HttpSession session = request.getSession();
+		//ModelAndView mav = new ModelAndView("/lecture/LectureDetail?L_NO=" + commandMap.getMap().get("L_NO"));
 		ModelAndView mav = new ModelAndView("/lecture/LectureDetail");
-		/*	
+		
 		Map<String,Object> map = lectureService.selectLectureDetail(commandMap.getMap());
 		
-		commandMap.put("M_NO", session.getAttribute("session_member_no"));
+		/*commandMap.put("M_NO", session.getAttribute("session_member_no"));
 		// M_NO 瑜� �걣�뼱���빞 �닔媛뺤떊泥��쓣 �닃���쓣 �븣 �젣��濡� �꽆湲� �닔 �엳�떎. 洹몃윭�땲 �븘�닔 
 		
 		commandMap.put("L_NO", session.getAttribute("session_lecture_no"));
 		// L_NO �쓣 �걣�뼱�삤硫� �옣�냼/�떆媛꾩쓣 �걣�뼱�삱 �닔 �엳�떎.. �옱�웾�쑝濡�..
-		
+		*/
 		mav.addObject("map", map);
 		
-		List<Map<String, Object>> list = reviewService.selectReview(commandMap.getMap());
+		/*List<Map<String, Object>> list = reviewService.reviewList(commandMap.getMap());
 		mav.addObject("list", list);*/
 		return mav;
 	}

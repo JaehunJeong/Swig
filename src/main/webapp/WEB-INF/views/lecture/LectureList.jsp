@@ -9,18 +9,17 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/LectureDetail.css'/>"/>
 <title>Insert title here</title>
 </head>
+
 <body>
 <div class="list">
 	<table>
 	<c:choose>
 		<c:when test="${fn:length(list) > 0}">
 			<c:forEach items="${list}" var="row">
-				<tr>
-					<td class="subject">
-					<a href=""> name="title">${row.L_SUBJECT}</td>
-					<input type="hidden" idx="L_NO" value="${row.L_NO}">
-					<td>${row.T_NICK}</td>
-				</tr>
+				<thead>
+				</thead>
+				<tbody>
+				</tbody>
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
@@ -29,8 +28,7 @@
 			</tr>
 		</c:otherwise>
 	</c:choose>
-			
-		
+	
 	</table>	
 	
 	<div id="PAGE_NAVI"></div>
@@ -40,27 +38,25 @@
 
 </div>
 
-
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script type="text/javascript">
 $(document).ready(function(){
-	fn_selectLectureList(1);
+	window.onload=function(){fn_selectLectureList(1);};
 	
-	$("a[name='subject']").on("click", function(e){
-		e.preventDefault();
-		fn_openBoardDetail($(this));
-	});
+	
 });
 
-function fn_openBoardDetail(obj){
+function fn_openLectureDetail(obj){
 	var comSubmit = new ComSubmit();
 	 comSubmit.setUrl("<c:url value='/LectureDetail' />");
      comSubmit.addParam("L_NO", obj.parent().find("#L_NO").val());
+     
      comSubmit.submit();
 }
 
 function fn_selectLectureList(pageNo){
 	 var comAjax = new ComAjax();
-     comAjax.setUrl("<c:url value='/RegionNotChoiceLectureList' />");
+     comAjax.setUrl("<c:url value='/selectLectureList' />");
      comAjax.setCallback("fn_selectLectureListCallback");
      comAjax.addParam("PAGE_INDEX",pageNo);
      comAjax.addParam("PAGE_ROW", 15);
@@ -90,17 +86,16 @@ function fn_selectLectureListCallback(data){
         $.each(data.list, function(key, value){
             str += "<tr>" +
                         "<td class='subject'>" +
-                            "<a href='' name='subject'>" + value.subject + "</a>" +
-                            "<input type='hidden' name='L_NO' value=" + value.L_NO + ">" +
+                            "<a href='#this' name='name'>" + value.L_SUBJECT + "</a>" +
+                            "<input type='hidden' id='L_NO' value=" + value.L_NO + ">" +
                         "</td>" +
-                        "<td>" + value.T_NICK + "</td>" +
                     "</tr>";
         });
         body.append(str);
          
-        $("a[name='subject']").on("click", function(e){ //제목
+        $("a[name='name']").on("click", function(e){ //제목
             e.preventDefault();
-            fn_openBoardDetail($(this));
+            fn_openLectureDetail($(this));
         });
     }
 }

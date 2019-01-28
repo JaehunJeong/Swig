@@ -12,8 +12,8 @@
 <body>
 
 <div id="container_detail">
-<input type="hidden" id="MEMBER.M_NO" value="">
-<input type="hidden" id="tutorImage">
+<input type="hidden" id="M_NO" value="MEMBER.M_NO">
+<input type="hidden" id="tutorImage" value="">
 <input type="hidden" id="TUTOR.M_NO" value="">
 <input type="hidden" id="R_RESULT" value="">
 
@@ -301,17 +301,17 @@ $('#frm-write-review').submit(function () {
 	return true;
 });
 
-function fn_selectReviewList(pageNo)
+function fn_selectList(pageNo)
 {
 	var comAjax = new ComAjax();
 	comAjax.setUrl("<c:url value='/selectReviewList'/>")
-	comAjax.setCallback("fn_selectReviewListCallback");
-	comAjax.addParam("PAGE_REVIEW_INDEX",pageNo);
+	comAjax.setCallback("fn_selectListCallback");
+	comAjax.addParam("PAGE_INDEX",pageNo);
 	comAjax.addParam("PAGE_ROW",15);
 	comAjax.ajax();
 }
 
-function fn_selectReviewListCallback(data){
+function fn_selectListCallback(data){
 	var total = data.TOTAL;
 	var body = $("table>tbody");
 	body.empty();
@@ -320,8 +320,8 @@ function fn_selectReviewListCallback(data){
 		body.append(str);
 	} else{
 		var params = {
-				divId : "PAGE_REVIEW_NAVI",
-				pageIndex : "PAGE_REVIEW_INDEX",
+				divId : "PAGE_NAVI",
+				pageIndex : "PAGE_INDEX",
 				totalCount : total,
 				eventName : "fn_selectReviewList"
 		};

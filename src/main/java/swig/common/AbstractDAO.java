@@ -80,5 +80,27 @@ public class AbstractDAO {
 	     
 	    return sqlSession.selectList(queryId, map);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Object selectReviewPagingList(String queryId, Object params){
+	    printQueryId(queryId);
+	    Map<String,Object> map = (Map<String,Object>)params;
+	     
+	    String strPagereviewIndex = (String)map.get("PAGE_review_INDEX");
+	    String strPagereviewRow = (String)map.get("PAGE_review_ROW");
+	    int nPagereviewIndex = 0;
+	    int nPagereviewRow = 20;
+	     
+	    if(StringUtils.isEmpty(strPagereviewIndex) == false){
+	        nPagereviewIndex = Integer.parseInt(strPagereviewIndex)-1;
+	    }
+	    if(StringUtils.isEmpty(strPagereviewRow) == false){
+	        nPagereviewRow = Integer.parseInt(strPagereviewRow);
+	    }
+	    map.put("START", (nPagereviewIndex * nPagereviewRow) + 1);
+	    map.put("END", (nPagereviewIndex * nPagereviewRow) + nPagereviewRow);
+	     
+	    return sqlSession.selectList(queryId, map);
+	}
 
 }
