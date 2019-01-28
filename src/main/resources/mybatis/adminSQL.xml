@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
-	
+	<!-- 멤버 관련  -->
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
 	<include refid="common.pagingPre"/>
 	<![CDATA[	
@@ -54,9 +54,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			M_NO = #{M_NO}
 	]]>
-	
 	</update>
+	
+	<!-- 튜터 신청 관련 -->
 	<select id="selectApplyList" parameterType="hashmap" resultType="hashmap"	>
+	<include refid="common.pagingPre"/>
+	
 	<![CDATA[
 		SELECT
 			T.T_NO,
@@ -79,7 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			T.T_NO = F.T_NO
 	]]>
-	
+	<include refid="common.pagingPost"/>
 	</select>
 	<update id="permitRequest" parameterType="hashmap">
 	<![CDATA[
@@ -99,7 +102,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			T_NO = #{T_NO}
 	]]>
 	</update>
+	<!-- 인증된 튜터 관련  -->
 	<select id="selectTutorList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
 	<![CDATA[
 		SELECT
 			T.T_NO,
@@ -119,6 +124,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			T.T_PASS = 'Y'
 			
 	]]>
+	<include refid="common.pagingPost"/>
 	</select>
 	<update id="deleteTutor" parameterType="hashmap">
 	<![CDATA[
@@ -130,46 +136,200 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
 	</update>
 	
+	<!-- 글 카테고리 관련 -->
 	<select id="selectCategoryList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
 			CA_NO,
 			CA_LSECTION,
-			CA_SSECTION
+			CA_SSECTION,
+			CA_IDX
 		FROM
 			CATEGORY
+		WHERE
+			CA_DEL = 'N' ORDER BY CA_NO ASC
 		
 	]]>
+	</select>
+	<!-- 카테고리 입력시 가져오는 가증 큰 번호들 -->
+	<select id="selectOneMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'1-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	<select id="selectTwoMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'2-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	<select id="selectThreeMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'3-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	<select id="selectFourMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'4-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	<select id="selectFiveMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'5-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	<select id="selectSixMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'6-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	<select id="selectSevenMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'7-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	<select id="selectEightMaxValue" resultType="string">
+		<![CDATA[
+			SELECT
+				CA_NO
+			FROM 
+    			(SELECT CA_NO
+      			 FROM CATEGORY
+      			 WHERE CA_NO LIKE'8-%' ORDER BY CA_NO desc )
+			WHERE ROWNUM = 1
+		]]>
 	</select>
 	<insert id="insertCategory" parameterType="hashmap" >
 	<![CDATA[
 		INSERT INTO CATEGORY
 		(
+			CA_IDX,
 			CA_NO,
 			CA_LSECTION,
-			CA_SSECTION
+			CA_SSECTION,
+			CA_DEL
 		)
 		VALUES
 		(
+			CA_NO_SEQ.NEXTVAL,
 			#{CA_NO},
 			#{CA_LSECTION},
-			#{CA_SSECTION}
+			#{CA_SSECTION},
+			'N'
 		)
 	]]>
 	</insert>
-	<select id="selectLectureList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectCategoryDetail" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
-			*
+			CA_LSECTION, CA_SSECTION, CA_IDX
+		FROM
+			CATEGORY
+		WHERE
+			CA_IDX = #{CA_IDX,jdbcType=INTEGER}
+	]]>
+	</select>
+	<update id="deleteCategory" parameterType="hashmap">
+	<![CDATA[
+		UPDATE CATEGORY
+			SET CA_DEL = 'Y'
+			WHERE CA_IDX = #{CA_IDX}
+	
+	]]>
+	</update>
+	<update id="updateLectureChk" parameterType="hashmap">
+	<![CDATA[
+		SELECT CA_IDX
+		FROM L_OPEN
+		
+		UPDATE L_OPEN
+			SET L_CHK = 'Y'
+			WHERE CA_IDX = #{CA_IDX}
+		
+	]]>
+	
+	</update>
+	<update id="modifyCategory" parameterType="hashmap">
+	<![CDATA[
+		UPDATE CATEGORY
+			SET CA_NO = #{CA_NO},
+			CA_SSECTION = #{CA_SSECTION},
+			CA_LSECTION = #{CA_LSECTION}
+				
+		WHERE CA_IDX = #{CA_IDX}
+	]]>
+	</update>
+
+	<!-- 강의 관련 -->
+	<select id="selectLectureList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[	
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY L_NO DESC) RNUM,
+			L_NO,
+			M_NO,
+			L_SUBJECT,
+			L_PRICEPH,
+			L_TIMEPL,
+			L_COUNTPM
 		FROM
 			L_OPEN
 		WHERE
-			L_NO = #{L_NO}
-			
-			
+			L_CHK='N'
 	]]>
+	<include refid="common.pagingPost"/>
 	</select>
 	
+	<update id="updateLecture" parameterType="hashmap">
+	<![CDATA[
+		UPDATE CATEGORY
+			SET CA_DEL = 'Y'
+			WHERE CA_NO = #{CA_NO}
+	
+	]]>
+	</update>
+	<!-- 파일 관련 손을 더 봐야한다. -->
 	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -183,12 +343,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				LF_NO = #{LF_NO}
 		]]>
 	</select>
-	<update id="updateLecture" parameterType="hashmap">
-	<![CDATA[
-		UPDATE L_OPEN
-	
-	]]>
-	</update>
 	<insert id="insertFile" parameterType="hashmap">
 	<![CDATA[
 		INSERT INTO L_OPEN_FILE

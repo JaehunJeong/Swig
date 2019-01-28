@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import swig.common.CommandMap;
 
@@ -111,7 +112,7 @@ public class AdminController {
 	{
 		ModelAndView mav = new ModelAndView("/admin/tutorScert");
 		
-		Map<String, Object> map = adminService.selectTutorDetail(commandMap.getMap());
+		Map<String, Object> map = adminService.selectTutorScert(commandMap.getMap());
 		mav.addObject("map",map.get("map"));
 		/*mav.addObject("list",map.get("list"));*/
 		return mav;
@@ -121,7 +122,7 @@ public class AdminController {
 	{
 		ModelAndView mav = new ModelAndView("/admin/tutorCerti");
 		
-		Map<String, Object> map = adminService.selectTutorDetail(commandMap.getMap());
+		Map<String, Object> map = adminService.selectTutorCerti(commandMap.getMap());
 		mav.addObject("map",map.get("map"));
 		/*mav.addObject("list",map.get("list"));*/
 		return mav;
@@ -129,7 +130,7 @@ public class AdminController {
 	@RequestMapping(value="adminTutorDelete")
 	public ModelAndView adminTutorDelete(CommandMap commandMap) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("redirect:/admin/tutorList");
+		ModelAndView mav = new ModelAndView("redirect:openTutorList");
 		adminService.deleteTutor(commandMap.getMap());
 		
 		return mav;
@@ -138,13 +139,13 @@ public class AdminController {
 	///////////////////////////TutorApply////////////////////////////////
 	@RequestMapping(value="openTutorApplyList")
 	public ModelAndView openTutorApplyList(CommandMap commandMap)throws Exception{
-		ModelAndView mav = new ModelAndView("/admin/adminForm");
+		ModelAndView mav = new ModelAndView("/admin/applyList");
 		return mav;
 	}
 	@RequestMapping(value="tutorApplyList")
 	public ModelAndView tutorApplyList(CommandMap commandMap)throws Exception
 	{
-		ModelAndView mav = new ModelAndView("/admin/applyList");
+		ModelAndView mav = new ModelAndView("jsonView");
 		List<Map<String, Object>> applyList = adminService.selectApplyList(commandMap.getMap());
 		mav.addObject("applyList", applyList);
 		
@@ -156,20 +157,39 @@ public class AdminController {
 		}
 		return mav;
 	}
+	@RequestMapping(value="tutorApplyScert")
+	public ModelAndView tutorApplyScert(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/tutorScert");
+		
+		Map<String, Object> map = adminService.selectTutorScert(commandMap.getMap());
+		mav.addObject("map",map.get("map"));
+		/*mav.addObject("list",map.get("list"));*/
+		return mav;
+	}
+	@RequestMapping(value="tutorApplyCerti")
+	public ModelAndView tutorApplyCerti(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/tutorCerti");
+		
+		Map<String, Object> map = adminService.selectTutorCerti(commandMap.getMap());
+		mav.addObject("map",map.get("map"));
+		/*mav.addObject("list",map.get("list"));*/
+		return mav;
+	}
 	@RequestMapping(value="tutorApplyPermit")
 	public ModelAndView tutorApplyPermit(CommandMap commandMap) throws Exception{
 	
-		ModelAndView mav = new ModelAndView("redirect:/admin/applyList");
+		ModelAndView mav = new ModelAndView("redirect:openTutorApplyList");
 		adminService.permitRequest(commandMap.getMap());
 		
 		return mav;
 		
-		
 	}
-	@RequestMapping(value="tutorApplyCancel")
+	@RequestMapping(value="tutorApplyDeny")
 	public ModelAndView tutorApplyCancel(CommandMap commandMap) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("redirec:/admin/applyList");
+		ModelAndView mav = new ModelAndView("redirec:openTutorApplyList");
 		adminService.cancelRequest(commandMap.getMap());
 		
 		return mav;
@@ -177,13 +197,13 @@ public class AdminController {
 	/////////////////////////category//////////////////////////////
 	@RequestMapping(value="openCategoryList")
 	public ModelAndView openCategoryList(CommandMap commandMap)throws Exception{
-		ModelAndView mav = new ModelAndView("/admin/adminForm");
+		ModelAndView mav = new ModelAndView("/admin/categoryList");
 		return mav;
 	}
 	@RequestMapping(value="categoryList")
 	public ModelAndView categoryList(CommandMap commandMap) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("/admin/categoryList");
+		ModelAndView mav = new ModelAndView("jsonView");
 		List<Map<String, Object>> categoryList = adminService.selectCategoryList(commandMap.getMap());
 		mav.addObject("categoryList", categoryList);
 		
@@ -195,21 +215,80 @@ public class AdminController {
 		}
 		return mav;
 	}
+	@RequestMapping(value="openAddCategory")
+	public ModelAndView openOneAddCategory(CommandMap commandMap) throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/insert");
+		
+		Map<String, Object> map = adminService.selectMaxValue();
+		mav.addObject("map1",map.get("map1"));
+		mav.addObject("map2",map.get("map2"));
+		mav.addObject("map3",map.get("map3"));
+		mav.addObject("map4",map.get("map4"));
+		mav.addObject("map5",map.get("map5"));
+		mav.addObject("map6",map.get("map6"));
+		mav.addObject("map7",map.get("map7"));
+		mav.addObject("map8",map.get("map8"));
+		
+		
+		System.out.println(map.get("map1"));
+		System.out.println(map.get("map2"));
+		System.out.println(map.get("map3"));
+		System.out.println(map.get("map4"));
+		System.out.println(map.get("map5"));
+		System.out.println(map.get("map6"));
+		System.out.println(map.get("map7"));
+		System.out.println(map.get("map8"));
+		return mav;
+	}
+	
 	@RequestMapping(value="addCategory")
 	public ModelAndView addCategory(CommandMap commandMap)throws Exception
 	{
-		ModelAndView mav = new ModelAndView("redirect:/admin/categoryList");
+		ModelAndView mav = new ModelAndView("redirect:openCategoryList");
 		
 		adminService.insertCategory(commandMap.getMap());
+		
 		return mav;
 	}
-
+	@RequestMapping(value="openModifyCategory",method= RequestMethod.GET)
+	public ModelAndView openModifyCategory(CommandMap commandMap) throws Exception{
+		ModelAndView mav = new ModelAndView("/admin/Modify");
+		
+		Map<String, Object> map = adminService.selectMaxValue();
+		mav.addObject("map1",map.get("map1"));
+		mav.addObject("map2",map.get("map2"));
+		mav.addObject("map3",map.get("map3"));
+		mav.addObject("map4",map.get("map4"));
+		mav.addObject("map5",map.get("map5"));
+		mav.addObject("map6",map.get("map6"));
+		mav.addObject("map7",map.get("map7"));
+		mav.addObject("map8",map.get("map8"));
+		
+		
+		System.out.println(map.get("map1"));
+		System.out.println(map.get("map2"));
+		System.out.println(map.get("map3"));
+		System.out.println(map.get("map4"));
+		System.out.println(map.get("map5"));
+		System.out.println(map.get("map6"));
+		System.out.println(map.get("map7"));
+		System.out.println(map.get("map8"));
+		
+		Map<String, Object> map1 = adminService.selectCategoryDetail(commandMap.getMap());
+		mav.addObject("map9",map1.get("map"));
+		System.out.println(map.get("map9"));
+		
+		
+		return mav;
+	}
 	@RequestMapping(value="modifyCategory")
 	public ModelAndView modifyCategory(CommandMap commandMap) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("/admin/modifyCategory");//폼 옮길건지 그자리에 서 바로 수정할건지
+		ModelAndView mav = new ModelAndView("redirect:openCategoryList");//폼 옮길건지 그자리에 서 바로 수정할건지
 		
 		adminService.modifyCategory(commandMap.getMap());
+		//mav.addObject("CA_IDX",commandMap.get("CA_IDX"));
+		//mav.addObject("CA_NO", commandMap.get("CA_NO"));
 		
 		return mav;
 		
@@ -217,15 +296,16 @@ public class AdminController {
 	@RequestMapping(value="deleteCategory")
 	public ModelAndView deleteCategory(CommandMap commandMap) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("redirect:/admin/categoryList");
+		ModelAndView mav = new ModelAndView("redirect:openCategoryList");
 		adminService.deleteCategory(commandMap.getMap());
 		
+		mav.addObject("CA_IDX", commandMap.get("CA_IDX"));
 		return mav;
 	}
 	//////////////////////////////////lecture/////////////////////////////////////
 	@RequestMapping(value="openLectureList")
 	public ModelAndView openLectureList(CommandMap commandMap)throws Exception{
-		ModelAndView mav = new ModelAndView("/admin/adminForm");
+		ModelAndView mav = new ModelAndView("/admin/adminLecture");
 		return mav;
 	}
 	@RequestMapping(value="lectureList")
@@ -269,7 +349,7 @@ public class AdminController {
 	@RequestMapping(value="lectureModify")
 	public ModelAndView lectureModify(CommandMap commandMap, HttpServletRequest request) throws Exception
 	{
-		ModelAndView mav = new ModelAndView("redirect:/admin/lectureDetail");
+		ModelAndView mav = new ModelAndView("redirect:/admin/adminLecture");
 		
 		adminService.modifyLecture(commandMap.getMap(), request);
 		

@@ -19,6 +19,7 @@
 			<th>재학상태</th>
 			<th>재학증명서</th>
 			<th>자격증 이름</th>
+			<th>대기상태(Pending or Denied)</th>
 		</tr>
 	<thead>
 	<tbody>
@@ -31,11 +32,6 @@
 <script type="text/javascript">
 		$(document).ready(function(){
 			window.onload=function(){fn_selectTutorList(1);};
-		      
-		    /* $("a[name='name']").on("click", function(e){ //제목
-		        e.preventDefault();
-		        fn_openMemberDetail($(this));
-		    });  */
 		});
 		 
 		function fn_openTutorDetail(obj){
@@ -50,17 +46,17 @@
 		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
 		    comSubmit.submit();
 		}
-		function fn_openTutorDetail(obj){
+		function fn_openTutorPermit(obj){
 		    var comSubmit = new ComSubmit();
-		    comSubmit.setUrl("<c:url value='adminTutorCerti' />");
-		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
+		    comSubmit.setUrl("<c:url value='tutorApplyPermit' />");
+		    comSubmit.addParam("T_NO",$("#T_NO").val());
 		    comSubmit.submit();
 		}
 		
-		function fn_openTutorDelete()
+		function fn_openTutorDeny()
 		{
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='adminTutorDelete'/>");
+			comSubmit.setUrl("<c:url value='tutorApplyDeny'/>");
 			comSubmit.addParam("T_NO",$("#T_NO").val());
 			comSubmit.submit();
 		}
@@ -110,17 +106,19 @@
                                 "<td>" + value.T_QUALIFICATION + "</td>" +
                                 "<td class='title'>" +
                                 	"<a href='#this' name='scert'>" + value.T_SCERT + "</a>" +
-                                	"<input type='text' id='M_NO' value=" + value.M_NO + ">" +
+                                	"<input type='text' id='T_NO' value=" + value.T_NO + ">" +
                             	"</td>" +
                             	"<td class='title'>" +
                                 	"<a href='#this' name='c_name'>" + value.T_C_NAME + "</a>" +
-                                	"<input type='text' id='M_NO' value=" + value.M_NO + ">" +
+                                	"<input type='text' id='T_NO' value=" + value.T_NO + ">" +
                             	"</td>" +
-                            	"<td>" "</td>"+
-                            	"<td>" "</td>"+
+                                "<td>" + value.T_PASS + "</td>" +
                                 "<td>"+
-                                	"<a href='#this' class='btn' name='tutorDelete' id='tutorDelete'>삭제하기</a>"+
+                                	"<a href='#this' class='btn' name='tutorPermit' id='tutorPermit'>신청 수락</a>"+
                                 "</td>"+
+                                "<td>"+
+                            		"<a href='#this' class='btn' name='tutorDeny' id='tutorDeny'>신청 거절</a>"+
+                            	"</td>"+
                             "</tr>";
                 });
                 body.append(str);
@@ -133,13 +131,13 @@
                     e.preventDefault();
                     fn_openTutorDetail($(this));
                 });
-                $("a[name='c_name']").on("click", function(e){ //제목
+                $("a[name='tutorPermit']").on("click", function(e){ //제목
                     e.preventDefault();
-                    fn_openTutorDetail($(this));
+                    fn_openTutorPermit($(this));
                 });
-                $("a[name='tutorDelete']").on("click", function(e){ //제목
+                $("a[name='tutorDeny']").on("click", function(e){ //제목
                     e.preventDefault();
-                    fn_openTutorDelete($(this));
+                    fn_openTutorDeny($(this));
                 });
             }
         }

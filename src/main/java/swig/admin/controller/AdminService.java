@@ -25,7 +25,9 @@ public interface AdminService {
 	
 	List<Map<String, Object>> selectTutorList(Map<String,Object> map) throws Exception;
 	
-	Map<String,Object> selectTutorDetail(Map<String,Object> map)throws Exception;
+	Map<String,Object> selectTutorScert(Map<String,Object> map)throws Exception;
+	
+	Map<String,Object> selectTutorCerti(Map<String,Object> map)throws Exception;
 	
 	void deleteTutor (Map<String, Object> map) throws Exception;
 	///////////////////////////////////////////////////////
@@ -34,9 +36,14 @@ public interface AdminService {
 	
 	void insertCategory(Map<String,Object> map) throws Exception;
 	
+	Map<String,Object> selectMaxValue()throws Exception;
+	
+	Map<String,Object> selectCategoryDetail(Map<String,Object> map)throws Exception;
+	
 	void modifyCategory(Map<String,Object>map) throws Exception;
 	
 	void deleteCategory(Map<String,Object>map) throws Exception;
+	///////////////////////////////////////////////////////////
 	
 	List<Map<String, Object>> selectLectureList(Map<String,Object>map)throws Exception;
 	

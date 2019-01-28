@@ -8,6 +8,7 @@ import swig.common.AbstractDAO;
 @Repository("adminDAO")
 public class AdminDAO extends AbstractDAO{
 	
+	///////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectMemberList(Map<String,Object> map) throws Exception{
 		return (List<Map<String,Object>>)selectPagingList("admin.selectMemberList",map);
@@ -27,6 +28,7 @@ public class AdminDAO extends AbstractDAO{
 	public void deleteMember(Map<String,Object> map) throws Exception{
 		update("admin.deleteMember", map);
 	}
+	////////////////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectApplyList(Map<String,Object> map)	throws Exception{
 		return (List<Map<String,Object>>)selectPagingList("admin.selectApplyList",map);
@@ -39,6 +41,7 @@ public class AdminDAO extends AbstractDAO{
 	public void cancelRequest(Map<String,Object> map) throws Exception{
 		update("admin.cancelRequest", map);
 	}
+	////////////////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectTutorList(Map<String,Object> map) throws Exception{
 		return (List<Map<String,Object>>) selectPagingList("admin.selectTutorList",map);
@@ -47,9 +50,44 @@ public class AdminDAO extends AbstractDAO{
 		update("admin.deleteTutor", map);
 	}
 	@SuppressWarnings("unchecked")
+	public Map<String,Object> selectTutorScert(Map<String,Object> map) throws Exception{
+		return (Map<String,Object>) selectOne("admin.selectTutorDetail",map);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> selectTutorCerti(Map<String,Object> map) throws Exception{
+		return (Map<String,Object>) selectOne("admin.selectTutorDetail",map);
+	}
+	////////////////////////////////////////////////////////////////////////////////////////
+	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectCategoryList(Map<String, Object>map )throws Exception{
 		return (List<Map<String, Object>>) selectPagingList("admin.selectCategoryList",map);
 	}
+	
+	public String selectOneMaxValue() {
+		return (String) selectOne("admin.selectOneMaxValue");
+	}
+	public String selectTwoMaxValue() {
+		return (String) selectOne("admin.selectTwoMaxValue");
+	}
+	public String selectThreeMaxValue() {
+		return (String) selectOne("admin.selectThreeMaxValue");
+	}
+	public String selectFourMaxValue() {
+		return (String) selectOne("admin.selectFourMaxValue");
+	}
+	public String selectFiveMaxValue() {
+		return (String) selectOne("admin.selectFiveMaxValue");
+	}
+	public String selectSixMaxValue() {
+		return (String) selectOne("admin.selectSixMaxValue");
+	}
+	public String selectSevenMaxValue() {
+		return (String) selectOne("admin.selectSevenMaxValue");
+	}
+	public String selectEightMaxValue() {
+		return (String) selectOne("admin.selectEightMaxValue");
+	}
+	
 	public void insertCategory(Map<String,Object>map) throws Exception{
 		insert("admin.insertCategory", map);
 	}
@@ -57,9 +95,17 @@ public class AdminDAO extends AbstractDAO{
 		update("admin.modifyCategory",map);
 		
 	}
-	public void deleteCategory(Map<String, Object>map) throws Exception{
-		delete("admin.deleteCategory",map);
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> selectCategoryDetail(Map<String, Object> map) throws Exception{
+		return (Map<String,Object>) selectOne("admin.selectCategoryDetail",map);
 	}
+	public void deleteCategory(Map<String, Object>map) throws Exception{
+		update("admin.deleteCategory",map);
+	}
+	public void updateLectureChk(Map<String,Object>map) throws Exception{
+		update("admin.updateLectureChk",map);
+	}
+	//////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectLectureList(Map<String,Object>map) throws Exception{
 		return (List<Map<String,Object>>) selectPagingList("admin.selectLectureList",map);
@@ -74,11 +120,12 @@ public class AdminDAO extends AbstractDAO{
 	}
 	
 	public void modifyLecture(Map<String,Object> map) throws Exception{
-		update("admin.modifyLecture" , map);
+		update("admin.modifyCategory" , map);
 	}
 	public void deleteLecture(Map<String,Object> map) throws Exception{
-		update("admin.deleteLecture",map);
+		update("admin.deleteCategory",map);
 	}
+	//////////////////////////////////////////////////////////////////////
 	public void deleteFileList(Map<String,Object> map) throws Exception{
 		update("admin.deleteFileList", map);
 	}
@@ -88,8 +135,5 @@ public class AdminDAO extends AbstractDAO{
 	public void insertFile(Map<String,Object> map) throws Exception{
 		insert("admin.insertFile", map);
 	}
-	@SuppressWarnings("unchecked")
-	public Map<String,Object> selectTutorDetail(Map<String,Object> map) throws Exception{
-		return (Map<String,Object>) selectOne("admin.selectTutorDetail",map);
-	}
+	
 }
