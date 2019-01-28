@@ -26,11 +26,11 @@ public class LectureServiceImpl implements LectureService{
 	private LectureDAO lectureDAO;
 	
 	
-	@Override
+	/*@Override
 	public List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception{
 		return lectureDAO.lectureList(map);
 	}
-
+*/
 	/*@Override
 	public void insertLecture(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		lectureDAO.insertLectureP1(map);
@@ -54,6 +54,10 @@ public class LectureServiceImpl implements LectureService{
 		}
 	}
 */
+	@Override
+	public List<Map<String, Object>> RegionNotChoiceLecture(Map<String,Object> map) throws Exception{
+		return lectureDAO.RegionNotChoiceLecture(map);
+	}
 	@Override
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception {
 		

@@ -21,8 +21,8 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
       <mapper resource="mybatis/LectureSQL.xml" />
       <mapper resource="mybatis/ReviewSQL.xml" />
       <mapper resource="mybatis/LectureDetailSQL.xml"/>
-<!--       <mapper resource="mybatis/.xml"/>
-      <mapper resource="mybatis/.xml"/>
+	  <mapper resource="mybatis/CategorySQL.xml"/>
+<!--  <mapper resource="mybatis/.xml"/>
       <mapper resource="mybatis/.xml"/>
       <mapper resource="mybatis/.xml"/> -->
    </mappers>

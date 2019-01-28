@@ -52,8 +52,9 @@ public class LectureController {
 	@Resource(name="regionCategoryService")
 	private RegionCategoryService regionCategoryService;
 	
-	@RequestMapping(value="/CategoryList")
+	/*@RequestMapping(value="/CategoryList")
 	public ModelAndView CategoryList(CommandMap commandMap) throws Exception{
+	  
 	  ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO" + commandMap.getMap().get("CA_NO"));
 		
 	  List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());	// 대분류 가져옴
@@ -104,18 +105,44 @@ public class LectureController {
 	  mav.addObject("relist8", relist8);
 	  mav.addObject("relist9", relist9);
 	  
+<<<<<<< HEAD
 	  
 		/*
 		 * List<Map<String, Object>> lectureList = new
 		 * ArrayList<Map<String,Object>>(lectureService.lectureList());
 		 */
 	  
-	  return mav;
-	  
-	  
+
+	/*
+	 * List<Map<String, Object>> lectureList = new
+	 * ArrayList<Map<String,Object>>(lectureService.lectureList());
+	 * 
+	 * return mav;
+	 * 
+	 * }
+	 */
+	
+
+	
+	@RequestMapping(value="/RegionNotChoiceLectureList")
+	public ModelAndView RegionNotChoiceLecture (CommandMap commandMap) throws Exception{
+		//ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO=" + commandMap.getMap().get("CA_NO"));
+		ModelAndView mav = new ModelAndView("/lecture/LectureList");
+		
+		List<Map<String,Object>> list = lectureService.RegionNotChoiceLecture(commandMap.getMap());
+		mav.addObject("list", list);
+		
+		 if(list.size() > 0){
+		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		    }
+		    else{
+		        mav.addObject("TOTAL", 0);
+		    }
+
+		return mav;
 	}
 	
-		
+	
 	@RequestMapping(value="/LectureDetail")
 	public ModelAndView selectLectureDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();

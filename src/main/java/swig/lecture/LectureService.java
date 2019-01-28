@@ -6,10 +6,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public interface LectureService {
-	
+	/*
 		List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception;
-		
-		Map<String,Object> selectLectureDetail(Map<String, Object> map) throws Exception;
+	*/
+	
+		List<Map<String, Object>> RegionNotChoiceLecture(Map<String, Object> map) throws Exception;
+	
+		Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception;
 	/*
 		public void insertLecture(Map<String, Object>map, HttpServletRequest request) throws Exception;
 	*/	

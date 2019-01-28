@@ -11,27 +11,32 @@ import swig.lecture.model.LectureModel;
 @Repository("lectureDAO")
 public class LectureDAO extends AbstractDAO{
 	
-	// 상세보기에서 강의 위치 보여줌
-	@SuppressWarnings("unchecked") //컴파일 경고 사용 x
+	// �긽�꽭蹂닿린�뿉�꽌 媛뺤쓽 �쐞移� 蹂댁뿬以�
+	@SuppressWarnings("unchecked") //而댄뙆�씪 寃쎄퀬 �궗�슜 x
 	public Map<String, Object> lectureLocation(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>)
 				selectOne("lectureDetail.LectureLocation", map);
 	}
 	
-	// 강의 리스트 출력
+	/* 媛뺤쓽 由ъ뒪�듃 異쒕젰
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception{
 		return (List<Map<String, Object>>)
 				selectList("lecture.lectureBoardList", map);
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> RegionNotChoiceLecture(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>) selectList("lecture.selectRegionNotChoiceLecture", map);
 	}
 	
-	// 상세보기
+	// �긽�꽭蹂닿린
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>) selectOne("lecture.selectLectureDetail", map);
 	}
 	
-	// 강의 등록시 페이지 넘어갈 때 그 값들 저장하기 위함
+	// 媛뺤쓽 �벑濡앹떆 �럹�씠吏� �꽆�뼱媛� �븣 洹� 媛믩뱾 ���옣�븯湲� �쐞�븿
 	 public void insertLectureP1(Map<String, Object> map) throws Exception{
 	      insert("lecture.insertLecture", map);
 	   }
@@ -118,7 +123,7 @@ public class LectureDAO extends AbstractDAO{
 	      delete("lectureDetail.deleteLectureTime", map);
 	   }
 	   
-	   @SuppressWarnings("unchecked") //컴파일 경고 사용 x
+	   @SuppressWarnings("unchecked") //而댄뙆�씪 寃쎄퀬 �궗�슜 x
 	   public Map<String, Object> lectureFile(Map<String, Object> map) throws Exception{
 	      return (Map<String, Object>)
 	            selectOne("lectureFile.lectureFile", map);

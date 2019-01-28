@@ -216,8 +216,8 @@
 				</c:choose>
 			</tbody>
 		</table>
-		<div id="PAGE_NAVI"></div>
-		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
+		<div id="PAGE_REVIEW_NAVI"></div>
+		<input type="hidden" id="PAGE_REVIEW_INDEX" name="PAGE_REVIEW_INDEX"/>
 		
 		<%-- <c:forEach var="reviewlist" items="${list}" varStatus="status">
 			<fmt:parseNumber var="blank" type="number" value="${LECTURE_REVIEW.LR_NO}"/>
@@ -306,7 +306,7 @@ function fn_selectReviewList(pageNo)
 	var comAjax = new ComAjax();
 	comAjax.setUrl("<c:url value='/selectReviewList'/>")
 	comAjax.setCallback("fn_selectReviewListCallback");
-	comAjax.addParam("PAGE_INDEX",pageNo);
+	comAjax.addParam("PAGE_REVIEW_INDEX",pageNo);
 	comAjax.addParam("PAGE_ROW",15);
 	comAjax.ajax();
 }
@@ -320,8 +320,8 @@ function fn_selectReviewListCallback(data){
 		body.append(str);
 	} else{
 		var params = {
-				divId : "PAGE_NAVI",
-				pageIndex : "PAGE_INDEX",
+				divId : "PAGE_REVIEW_NAVI",
+				pageIndex : "PAGE_REVIEW_INDEX",
 				totalCount : total,
 				eventName : "fn_selectReviewList"
 		};
