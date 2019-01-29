@@ -12,8 +12,8 @@
 <body>
 
 <div id="container_detail">
-<input type="hidden" id="MEMBER.M_NO" value="">
-<input type="hidden" id="tutorImage">
+<input type="hidden" id="M_NO" value="MEMBER.M_NO">
+<input type="hidden" id="tutorImage" value="">
 <input type="hidden" id="TUTOR.M_NO" value="">
 <input type="hidden" id="R_RESULT" value="">
 
@@ -38,7 +38,9 @@
 			<h1>튜터정보</h1>
 		</div>
 		<div class=d_info04>
-			<c:out value="${L_OPEN.L_DESCRIBE_T}"/>
+			<c:forEach items="${map}" var="row">
+				<c:out value="${row.L_DESCRIBE_T}"/>
+			</c:forEach>
 		</div>
 	</div>
 	
@@ -197,24 +199,27 @@
 			<textarea name="LR_COMMENT" id="LR_COMMENT"></textarea>
 			<a href="" onclick="fn_insertReview()">리뷰 올리기</a>
 		</div>
-		<table>
-			<tbody>
+		<table>	
 		<c:choose>
+			
 					<c:when test="${fn:length(list) > 0}">
-						<c:forEach items="${list }" var="row" varStatus="status">
-							<tr>
+						<c:forEach items="${list}" var="row" varStatus="status">
+						<tbody>
+							<%-- <tr>
 								<td>${row.M_NAME}</td>
 								<td>${row.LR_COMMENT}</td>
 								<td>${row.LR_REGDATE}</td>
-							</tr>
+							</tr> --%>
+						</tbody>
 							<c:if test="${session_member_no == LECTURE_REVIEW.M_NO}">
-								<a href="" onclick="fn_deleteReview('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">삭제</a>
-								<a href="" onclick="fn_reviewUpdate('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">수정</a>
+								<a href="#this" onclick="fn_deleteReview('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">삭제</a>
+								<a href="#this" onclick="fn_reviewUpdate('<c:out value="${LECTURE_REVIEW.LR.NO}"/>')">수정</a>
 						</c:if>
 						</c:forEach>
 					</c:when>
+					
 				</c:choose>
-			</tbody>
+			
 		</table>
 		<div id="PAGE_REVIEW_NAVI"></div>
 		<input type="hidden" id="PAGE_REVIEW_INDEX" name="PAGE_REVIEW_INDEX"/>
@@ -306,7 +311,7 @@ function fn_selectReviewList(pageNo)
 	var comAjax = new ComAjax();
 	comAjax.setUrl("<c:url value='/selectReviewList'/>")
 	comAjax.setCallback("fn_selectReviewListCallback");
-	comAjax.addParam("PAGE_REVIEW_INDEX",pageNo);
+	comAjax.addParam("PAGE_INDEX",pageNo);
 	comAjax.addParam("PAGE_ROW",15);
 	comAjax.ajax();
 }
@@ -320,8 +325,8 @@ function fn_selectReviewListCallback(data){
 		body.append(str);
 	} else{
 		var params = {
-				divId : "PAGE_REVIEW_NAVI",
-				pageIndex : "PAGE_REVIEW_INDEX",
+				divId : "PAGE_NAVI",
+				pageIndex : "PAGE_INDEX",
 				totalCount : total,
 				eventName : "fn_selectReviewList"
 		};

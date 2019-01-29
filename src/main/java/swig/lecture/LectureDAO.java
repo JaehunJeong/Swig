@@ -26,8 +26,8 @@ public class LectureDAO extends AbstractDAO{
 	}*/
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> RegionNotChoiceLecture(Map<String, Object> map) throws Exception{
-		return (List<Map<String, Object>>) selectList("lecture.selectRegionNotChoiceLecture", map);
+	public List<Map<String, Object>> selectLectureList(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>) selectPagingList("lecture.lectureList", map);
 	}
 	
 	// �긽�꽭蹂닿린

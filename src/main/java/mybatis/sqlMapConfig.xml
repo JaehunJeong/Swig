@@ -18,6 +18,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 
    <!-- SQL 정의한 xml문서 Mapping -->
    <mappers>
+   	  <mapper resource="mybatis/CommonSQL.xml" />
       <mapper resource="mybatis/LectureSQL.xml" />
       <mapper resource="mybatis/ReviewSQL.xml" />
       <mapper resource="mybatis/LectureDetailSQL.xml"/>
