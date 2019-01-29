@@ -138,6 +138,9 @@ public class LectureController {
 		List<Map<String,Object>> list = lectureService.selectLectureList(commandMap.getMap());
 		mav.addObject("list", list);
 		
+		List<Map<String,Object>> list1 = lectureService.selectCA_IDXLectureList(commandMap.getMap());
+		mav.addObject("list1", list1);
+		
 		 if(list.size() > 0){
 		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
 		    }
@@ -145,6 +148,12 @@ public class LectureController {
 		        mav.addObject("TOTAL", 0);
 		    }
 
+		 if(list1.size() > 0){
+		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		    }
+		    else{
+		        mav.addObject("TOTAL", 0);
+		    }
 		return mav;
 	}
 	
@@ -164,7 +173,7 @@ public class LectureController {
 		// L_NO �쓣 �걣�뼱�삤硫� �옣�냼/�떆媛꾩쓣 �걣�뼱�삱 �닔 �엳�떎.. �옱�웾�쑝濡�..
 		*/
 		mav.addObject("map", map);
-		
+		System.out.println(map);
 		/*List<Map<String, Object>> list = reviewService.reviewList(commandMap.getMap());
 		mav.addObject("list", list);*/
 		return mav;

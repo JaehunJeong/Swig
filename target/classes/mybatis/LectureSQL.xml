@@ -75,6 +75,27 @@
    
    <!-- ca_no like '#{no}%' 안되면 GROUP 을 추가해서 #{ca_no} 값 집어넣으면 된다. -->
    
+<select id="lectureList1" parameterType="hashmap" resultType="hashmap">
+  <![CDATA[
+   SELECT
+         ROW_NUMBER() OVER (ORDER BY L.L_NO DESC) RNUM,
+         L.*,
+         a.ll_location
+      FROM
+         L_OPEN L, (select ll_location, l_no
+        from l_location
+        where l_no =(select l_no from l_open
+				 where ca_idx = (select ca_idx 
+                 				 from category 
+               					 where ca_no like '#{no}%' or ca_no=ca_no
+               					 )
+               	)
+        ) a
+      WHERE
+        L_CHK = 'N' and L.L_NO = a.L_NO 
+        ]]>
+</select>
+   
    
    <select id="lectureList" parameterType="hashmap" resultType="hashmap">
    <include refid="common.pagingPre"/>
@@ -106,37 +127,6 @@
    ]]>
    <include refid="common.pagingPost"/>
    </select>
-   
-	<!-- select lecturelist 
-	<select id="lectureList" parameterType="hashmap" resultType="hashmap">
-		<include refid="common.pagingPre"/>
-		<![CDATA[
-			SELECT
-				
-				L_NO,
-				M_NO,
-				L_SUBJECT,
-				L_CLASSTYPE,
-				L_URL,
-				L_DESCRIBE_T,
-				L_DESCRIBE_L,
-				L_DESCRIBE_TARGET,
-				L_CURRI_TEXT,
-				L_CURRI_COUNT,
-				L_PRICEPH,
-				L_TIMEPL,
-				L_COUNTPM,
-				L_TOTALPRICE,
-				L_READHIT,
-				L_REGDATE,
-				L_CHK,
-				CA_IDX
-			FROM
-				L_OPEN
-		]]>
-		
-		<include refid="common.pagingPost"/>
-	</select> -->
 	
 	<select id="selectLectureDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -164,7 +154,7 @@
 			WHERE
 				L_NO=#{L_NO} 
 		]]>
-		
+	
 	</select>
 	<insert id="insertLecture" parameterType="hashmap" useGeneratedKeys="true" keyProperty="L_NO">
 		<selectKey keyProperty="L_NO" resultType="string" order="BEFORE">

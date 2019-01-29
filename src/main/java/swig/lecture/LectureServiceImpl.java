@@ -58,6 +58,12 @@ public class LectureServiceImpl implements LectureService{
 	public List<Map<String, Object>> selectLectureList(Map<String,Object> map) throws Exception{
 		return lectureDAO.selectLectureList(map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectCA_IDXLectureList(Map<String,Object> map) throws Exception{
+		return lectureDAO.selectCA_IDXLectureList(map);
+	}
+	
 	@Override
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception {
 		

@@ -12,6 +12,7 @@
 <body>
 
 <div id="container_detail">
+<input type="hidden" id="tutorinfo" value="${L_OPEN.L_DESCRIBE_T}">
 <input type="hidden" id="M_NO" value="MEMBER.M_NO">
 <input type="hidden" id="tutorImage" value="">
 <input type="hidden" id="TUTOR.M_NO" value="">
@@ -32,15 +33,14 @@
 		</ul>
 	</div>
 
-
+	
 	<div class="class_detail detail_sec_bor" id="tutorinfo">
 		<div class="section01" id="tutor">
 			<h1>튜터정보</h1>
 		</div>
+	
 		<div class=d_info04>
-			<c:forEach items="${map}" var="row">
-				<c:out value="${row.L_DESCRIBE_T}"/>
-			</c:forEach>
+			<h5>${map.L_DESCRIBE_T}</h5>
 		</div>
 	</div>
 	
@@ -48,17 +48,26 @@
 		<div class="section01">
 			<h1>수업소개</h1>
 			<div class="d_info04">
-			<c:out value="${L_OPEN.L_DESCIRBE_L}"/>
-			</div>
+				<h5>${map.L_DESCRIBE_L}</h5>
+				
 		</div>
 	</div>
 
 	<div class="class_detail detail_sec_bor">
 		<div class="section01">
 			<h1 class="mt50">수업대상</h1>
+			<c:choose>
+			<c:when test="${map.L_DESCRIBE_TARGET == '%<br/>'}">
 			<ul class="d_info03">
-			<c:out value="${L_OPEN.L_DESCRIBE_TARGET}"/>
+				<li>
+					<h5>${map.L_DESCRIBE_TARGET}</h5>
+				</li>
 			</ul>
+			</c:when>
+			<c:otherwise>
+				<h5>${map.L_DESCRIBE_TARGET}</h5>
+			</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
@@ -68,7 +77,7 @@
 			<div class="curriculum_cont">
 				<h2>강의계획</h2>
 			<dl class="step_cont">
-			<c:out value="${L_OPEN.L_CURRI_TEXT}"/>
+			<h5>${map.L_CURRI_TEXT}</h5>
 			</dl>
 			</div>
 		</div>
@@ -78,7 +87,7 @@
 		<div class="section01">
 			<h1>리뷰</h1>
 			<c:choose>
-				<c:when test="${LECTURE_REVIEW.LR_TOTALSCORE == ''}">
+				<c:when test="${list.LR_TOTALSCORE == ''}">
 				 <td>평점 : ${LECTURE_REVIEW.LR_TOTALSCORE} 점</td><img src="resources/images/star.png">
 				
 			<div class="review_count01">
@@ -197,7 +206,7 @@
 		</div>
 		<div class="REVIEW_COMMENT">
 			<textarea name="LR_COMMENT" id="LR_COMMENT"></textarea>
-			<a href="" onclick="fn_insertReview()">리뷰 올리기</a>
+			<a href="#this" onclick="fn_insertReview()">리뷰 올리기</a>
 		</div>
 		<table>	
 		<c:choose>
@@ -251,7 +260,9 @@
 <%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script type="text/javascript">
 $(document).ready(function(){
-	fn.selectReview(1);
+	window.onload=function(){
+		fn_selectReviewList(1);
+	};
 });
 
 $('#btn-write-review').click(function () {			
@@ -305,6 +316,7 @@ $('#frm-write-review').submit(function () {
 
 	return true;
 });
+
 
 function fn_selectReviewList(pageNo)
 {

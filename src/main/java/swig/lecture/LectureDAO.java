@@ -30,6 +30,12 @@ public class LectureDAO extends AbstractDAO{
 		return (List<Map<String, Object>>) selectPagingList("lecture.lectureList", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectCA_IDXLectureList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectPagingList("lecture.lectureList1", map);
+	}
+
+	
 	// �긽�꽭蹂닿린
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception{
@@ -156,6 +162,5 @@ public class LectureDAO extends AbstractDAO{
 	   public void deleteLectureFile(Map<String, Object> map) throws Exception{
 	      delete("lectureFile.deleteLectureFile", map);
 	   }
-
 	   
 }
