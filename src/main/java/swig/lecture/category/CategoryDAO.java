@@ -54,4 +54,10 @@ public class CategoryDAO extends AbstractDAO{
 	public List<Map<String, Object>> selectWorkout() throws Exception{
 		return (List<Map<String, Object>>)selectList("category.selectWorkout");
 	}
+	
+	
+	public String selectCA_IDX(Map<String, Object> map) throws Exception{
+		System.out.println();
+		return (String)selectOne("category.selectCA_IDX", map);
+	}
 }

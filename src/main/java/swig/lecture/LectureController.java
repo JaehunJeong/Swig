@@ -122,24 +122,82 @@ public class LectureController {
 	 * }
 	 */
 	
+
+	/*public ModelAndView lectureWriteForm1() throws Exception {
+         
+         List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());
+         List<List<Map<String,Object>>> caList = new ArrayList<List<Map<String,Object>>>(categoryService.listOfCategory());
+         
+         List<Map<String,Object>> list1=caList.get(0);
+         List<Map<String,Object>> list2=caList.get(1);
+         List<Map<String,Object>> list3=caList.get(2);
+         List<Map<String,Object>> list4=caList.get(3);
+         List<Map<String,Object>> list5=caList.get(4);
+         List<Map<String,Object>> list6=caList.get(5);
+         List<Map<String,Object>> list7=caList.get(6);
+         List<Map<String,Object>> list8=caList.get(7);
+         
+         
+         ModelAndView mav= new ModelAndView("/lecture/LectureList");
+         
+         mav.addObject("caGroup", caGroup);
+         
+         mav.addObject("list1", list1);
+         mav.addObject("list2", list2);
+         mav.addObject("list3", list3);
+         mav.addObject("list4", list4);
+         mav.addObject("list5", list5);
+         mav.addObject("list6", list6);
+         mav.addObject("list7", list7);
+         mav.addObject("list8", list8);
+         
+         return mav;
+      }
+	
 	@RequestMapping(value="/openLectureList")
 	public ModelAndView openLectureList(CommandMap commandMap) throws Exception{
-		ModelAndView mav = new ModelAndView("/lecture/LectureList");
-		
+	    List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());
+        List<List<Map<String,Object>>> caList = new ArrayList<List<Map<String,Object>>>(categoryService.listOfCategory());
+        
+        List<Map<String,Object>> list1=caList.get(0);
+        List<Map<String,Object>> list2=caList.get(1);
+        List<Map<String,Object>> list3=caList.get(2);
+        List<Map<String,Object>> list4=caList.get(3);
+        List<Map<String,Object>> list5=caList.get(4);
+        List<Map<String,Object>> list6=caList.get(5);
+        List<Map<String,Object>> list7=caList.get(6);
+        List<Map<String,Object>> list8=caList.get(7);
+        
+        ModelAndView mav= new ModelAndView("/lecture/LectureList");
+        
+        mav.addObject("caGroup", caGroup);
+        
+        mav.addObject("list1", list1);
+        mav.addObject("list2", list2);
+        mav.addObject("list3", list3);
+        mav.addObject("list4", list4);
+        mav.addObject("list5", list5);
+        mav.addObject("list6", list6);
+        mav.addObject("list7", list7);
+        mav.addObject("list8", list8);
+
+        System.out.println(caGroup);
+        
 		return mav;
+	}*/
+	
+	@RequestMapping(value="/openLectureList")
+	public ModelAndView openLectureList(CommandMap commandMap) throws Exception{
+		 ModelAndView mav= new ModelAndView("/lecture/LectureList");
+		 return mav;
 	}
 	
 	@RequestMapping(value="/selectLectureList")
 	public ModelAndView selectLectureList (CommandMap commandMap) throws Exception{
-		//ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO=" + commandMap.getMap().get("CA_NO"));
-		//ModelAndView mav = new ModelAndView("/lecture/LectureList");
 		ModelAndView mav = new ModelAndView("jsonView");
 		
 		List<Map<String,Object>> list = lectureService.selectLectureList(commandMap.getMap());
 		mav.addObject("list", list);
-		
-		List<Map<String,Object>> list1 = lectureService.selectCA_IDXLectureList(commandMap.getMap());
-		mav.addObject("list1", list1);
 		
 		 if(list.size() > 0){
 		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
@@ -147,16 +205,8 @@ public class LectureController {
 		    else{
 		        mav.addObject("TOTAL", 0);
 		    }
-
-		 if(list1.size() > 0){
-		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
-		    }
-		    else{
-		        mav.addObject("TOTAL", 0);
-		    }
 		return mav;
 	}
-	
 	
 	@RequestMapping(value="/LectureDetail")
 	public ModelAndView selectLectureDetail(CommandMap commandMap/*, HttpServletRequest request*/) throws Exception {

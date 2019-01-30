@@ -11,71 +11,7 @@
 			FROM CATEGORY 
 		]]>
 	</select>
-	
-	<!-- <select id="selectLSection1" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION,CA_GROUP
-			FROM CATEGORY
-			WHERE CA_NO LIKE '1-%'
-		]]>
-	</select>
-	
-	<select id="selectLSection2" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '2-%'
-		]]>
-	</select>
-	
-	<select id="selectLSection3" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '3-%'
-		]]>
-	</select>
-	
-	<select id="selectLSection4" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '4-%'
-		]]>
-	</select>
-	
-	<select id="selectLSection5" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '5-%'
-		]]>
-	</select>
-	
-	<select id="selectLSection6" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '6-%'
-		]]>
-	</select>
-	
-	<select id="selectLSection7" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '7-%'
-		]]>
-	</select>
-	
-	<select id="selectLSection8" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT CA_LSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '8-%'
-		]]>
-	</select> -->
-	
+
 	<select id="selectProgramming" resultType="hashmap">
 		<![CDATA[
 			SELECT  CA_SSECTION
