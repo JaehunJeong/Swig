@@ -3,16 +3,14 @@
 
 <mapper namespace="category">
 	
-	<!-- DISTINCT 는 중복된 데이터를 하나만 보여줌 -->
-	
 	<select id="selectCagroup" resultType="hashmap">
 		<![CDATA[
 			SELECT DISTINCT CA_LSECTION
 			FROM CATEGORY 
 		]]>
 	</select>
-
-	<select id="selectProgramming" resultType="hashmap">
+	
+	<select id="selectComputer" resultType="hashmap">
 		<![CDATA[
 			SELECT  CA_SSECTION
 			FROM CATEGORY
@@ -20,7 +18,7 @@
 		]]>
 	</select>
 
-	<select id="selectDesignTool" resultType="hashmap">
+	<select id="selectFLanguage" resultType="hashmap">
 		<![CDATA[
 			SELECT CA_SSECTION
 			FROM CATEGORY
@@ -28,15 +26,16 @@
 		]]>
 	</select>
 	
-	<select id="selectSilmu" resultType="hashmap">
+	<select id="selectLifeStyle" resultType="hashmap">
 		<![CDATA[
+		
 			SELECT CA_SSECTION
 			FROM CATEGORY
 			WHERE CA_NO LIKE '3-%'
 		]]>
 	</select>
 	
-	<select id="selectBeauty" resultType="hashmap">
+	<select id="selectEtc" resultType="hashmap">
 		<![CDATA[
 			SELECT CA_SSECTION
 			FROM CATEGORY
@@ -44,36 +43,64 @@
 		]]>
 	</select>
 	
-	<select id="selectFLanguage" resultType="hashmap">
+	<select id="selectCA_IDX" parameterType="hashmap" resultType="string">
 		<![CDATA[
-			SELECT CA_SSECTION
+			SELECT CA_IDX
 			FROM CATEGORY
-			WHERE CA_NO LIKE '5-%'
+			WHERE CA_SSECTION=#{CA_SSECTION}
 		]]>
 	</select>
 	
-	<select id="selectMusic" resultType="hashmap">
+	<select id="selectcate1" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT CA_SSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '6-%'
-		]]>
+		select l_no, l_subject from l_open
+					 where ca_idx in (select ca_idx 
+            	     				 from category 
+            	   					 where ca_no like '1-%'
+           	    					 )
+           	    	
+        ]]>
 	</select>
 	
-	<select id="selectLifestyle" resultType="hashmap">
+	<select id="selectcate2" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT CA_SSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '7-%'
-		]]>
+		select ll_location, l_no
+		from l_location
+		where l_no = (select l_no from l_open
+					 where ca_idx in (select ca_idx 
+            	     				 from category 
+            	   					 where ca_no like '2-%'
+           	    					 )
+           	    	 )
+        ]]>
 	</select>
 	
-	<select id="selectWorkout" resultType="hashmap">
+	<select id="selectcate3" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT CA_SSECTION
-			FROM CATEGORY
-			WHERE CA_NO LIKE '8-%'
-		]]>
+		select ll_location, l_no
+		from l_location
+		where l_no = (select l_no from l_open
+					 where ca_idx in (select ca_idx 
+            	     				 from category 
+            	   					 where ca_no like '3-%'
+           	    					 )
+           	    	 )
+        ]]>
 	</select>
+	
+	<select id="selectcate4" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		select ll_location, l_no
+		from l_location
+		where l_no = (select l_no from l_open
+					  where ca_idx in (select ca_idx 
+            	     				 from category 
+            	   					 where ca_no like '4-%'
+           	    					 )
+           	    	 )
+        ]]>
+	</select>
+	
+	
 	
 </mapper>

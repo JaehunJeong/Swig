@@ -29,16 +29,32 @@ public class CategoryServiceImpl implements CategoryService{
 	public List<List<Map<String, Object>>> listOfCategory() throws Exception{
 		List<List<Map<String, Object>>> mOfcategory = new ArrayList<List<Map<String, Object>>>();
 		
-		mOfcategory.add(categoryDAO.selectProgramming());
-		mOfcategory.add(categoryDAO.selectDesignTool());
-		mOfcategory.add(categoryDAO.selectSilmu());
-		mOfcategory.add(categoryDAO.selectBeauty());
-		mOfcategory.add(categoryDAO.selectFLanguage());
-		mOfcategory.add(categoryDAO.selectMusic());
-		mOfcategory.add(categoryDAO.selectLifestyle());
-		mOfcategory.add(categoryDAO.selectWorkout());
+		mOfcategory.add(categoryDAO.selectComputer());
+		mOfcategory.add(categoryDAO.selectFlanguage());
+		mOfcategory.add(categoryDAO.selectLifeStyle());
+		mOfcategory.add(categoryDAO.selectEtc());
 		
 		return mOfcategory;
 	}
-
+	
+	
+	@Override
+	public List<Map<String, Object>> selectcate1() throws Exception {
+		return categoryDAO.selectcate1();
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectcate2() throws Exception {
+		return categoryDAO.selectcate2();
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectcate3() throws Exception {
+		return categoryDAO.selectcate3();
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectcate4() throws Exception {
+		return categoryDAO.selectcate4();
+	}
 }

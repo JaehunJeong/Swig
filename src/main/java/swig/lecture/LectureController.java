@@ -123,68 +123,64 @@ public class LectureController {
 	 */
 	
 
-	/*public ModelAndView lectureWriteForm1() throws Exception {
-         
-         List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());
-         List<List<Map<String,Object>>> caList = new ArrayList<List<Map<String,Object>>>(categoryService.listOfCategory());
-         
-         List<Map<String,Object>> list1=caList.get(0);
-         List<Map<String,Object>> list2=caList.get(1);
-         List<Map<String,Object>> list3=caList.get(2);
-         List<Map<String,Object>> list4=caList.get(3);
-         List<Map<String,Object>> list5=caList.get(4);
-         List<Map<String,Object>> list6=caList.get(5);
-         List<Map<String,Object>> list7=caList.get(6);
-         List<Map<String,Object>> list8=caList.get(7);
-         
-         
-         ModelAndView mav= new ModelAndView("/lecture/LectureList");
-         
-         mav.addObject("caGroup", caGroup);
-         
-         mav.addObject("list1", list1);
-         mav.addObject("list2", list2);
-         mav.addObject("list3", list3);
-         mav.addObject("list4", list4);
-         mav.addObject("list5", list5);
-         mav.addObject("list6", list6);
-         mav.addObject("list7", list7);
-         mav.addObject("list8", list8);
-         
-         return mav;
-      }
-	
-	@RequestMapping(value="/openLectureList")
-	public ModelAndView openLectureList(CommandMap commandMap) throws Exception{
-	    List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());
+	 @RequestMapping(value="/lectureWrite1")
+     public ModelAndView lectureWriteForm1() throws Exception {
+        
+        List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());
         List<List<Map<String,Object>>> caList = new ArrayList<List<Map<String,Object>>>(categoryService.listOfCategory());
         
         List<Map<String,Object>> list1=caList.get(0);
         List<Map<String,Object>> list2=caList.get(1);
         List<Map<String,Object>> list3=caList.get(2);
-        List<Map<String,Object>> list4=caList.get(3);
-        List<Map<String,Object>> list5=caList.get(4);
-        List<Map<String,Object>> list6=caList.get(5);
-        List<Map<String,Object>> list7=caList.get(6);
-        List<Map<String,Object>> list8=caList.get(7);
         
-        ModelAndView mav= new ModelAndView("/lecture/LectureList");
+        ModelAndView mav= new ModelAndView("/lecture/lectureWrite1");
         
         mav.addObject("caGroup", caGroup);
         
         mav.addObject("list1", list1);
         mav.addObject("list2", list2);
         mav.addObject("list3", list3);
-        mav.addObject("list4", list4);
-        mav.addObject("list5", list5);
-        mav.addObject("list6", list6);
-        mav.addObject("list7", list7);
-        mav.addObject("list8", list8);
-
-        System.out.println(caGroup);
         
-		return mav;
-	}*/
+        return mav;
+     }
+
+		@RequestMapping(value="/cate1")
+		public ModelAndView cate1(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> lseclist1 = categoryService.selectcate1();
+			mav.addObject("lseclist1", lseclist1);
+			System.out.println(lseclist1);
+			return mav;
+		}
+		
+		@RequestMapping(value="/cate2")
+		public ModelAndView cate2(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> list2 = categoryService.selectcate2();
+			mav.addObject("list2", list2);
+			
+			return mav;
+		}
+		@RequestMapping(value="/cate3")
+		public ModelAndView cate3(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> list3 = categoryService.selectcate3();
+			mav.addObject("list3", list3);
+			
+			return mav;
+		}
+		@RequestMapping(value="/cate4")
+		public ModelAndView cate4(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> list4 = categoryService.selectcate4();
+			mav.addObject("list4", list4);
+			
+			return mav;
+		}
 	
 	@RequestMapping(value="/openLectureList")
 	public ModelAndView openLectureList(CommandMap commandMap) throws Exception{

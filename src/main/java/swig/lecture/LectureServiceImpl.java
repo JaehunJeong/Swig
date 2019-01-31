@@ -94,7 +94,6 @@ public class LectureServiceImpl implements LectureService{
 	@Override
 	public void deleteLecture(Map<String, Object> map) throws Exception {
 		lectureDAO.deleteLecture(map);
-		
 	}
 
 }

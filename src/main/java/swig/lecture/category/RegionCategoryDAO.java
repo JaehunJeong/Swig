@@ -54,8 +54,8 @@ public class RegionCategoryDAO extends AbstractDAO{
 		return (List<Map<String, Object>>)selectList("regioncategory.selectGwangju");
 	}
 	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectOnline() throws Exception{
 		return (List<Map<String, Object>>)selectList("regioncategory.selectOnline");
-	}
+	}*/
 }

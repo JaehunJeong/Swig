@@ -16,48 +16,47 @@ public class CategoryDAO extends AbstractDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectProgramming() throws Exception{
+	public List<Map<String, Object>> selectComputer() throws Exception{
 		return (List<Map<String, Object>>)selectList("category.selectProgramming");
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectDesignTool() throws Exception{
+	public List<Map<String, Object>> selectFlanguage() throws Exception{
 		return (List<Map<String, Object>>)selectList("category.selectDesignTool");
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectSilmu() throws Exception{
+	public List<Map<String, Object>> selectLifeStyle() throws Exception{
 		return (List<Map<String, Object>>)selectList("category.selectSilmu");
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectBeauty() throws Exception{
+	public List<Map<String, Object>> selectEtc() throws Exception{
 		return (List<Map<String, Object>>)selectList("category.selectBeauty");
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectFLanguage() throws Exception{
-		return (List<Map<String, Object>>)selectList("category.selectFLanguage");
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectMusic() throws Exception{
-		return (List<Map<String, Object>>)selectList("category.selectMusic");
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectLifestyle() throws Exception{
-		return (List<Map<String, Object>>)selectList("category.selectLifestyle");
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectWorkout() throws Exception{
-		return (List<Map<String, Object>>)selectList("category.selectWorkout");
-	}
-	
 	
 	public String selectCA_IDX(Map<String, Object> map) throws Exception{
 		System.out.println();
 		return (String)selectOne("category.selectCA_IDX", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectcate1() throws Exception{
+		return (List<Map<String, Object>>)selectList("category.selectcate1");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectcate2() throws Exception {
+		return (List<Map<String, Object>>)selectList("category.selectcate2");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectcate3() throws Exception {
+		return (List<Map<String, Object>>)selectList("category.selectcate3");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectcate4() throws Exception {
+		return (List<Map<String, Object>>)selectList("category.selectcate4");
 	}
 }

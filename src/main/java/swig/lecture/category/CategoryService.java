@@ -11,5 +11,11 @@ public interface CategoryService {
 
 	List<List<Map<String, Object>>> listOfCategory() throws Exception;
 	
-	
+	List<Map<String, Object>> selectcate1() throws Exception;
+
+	List<Map<String, Object>> selectcate2() throws Exception;
+
+	List<Map<String, Object>> selectcate3() throws Exception;
+
+	List<Map<String, Object>> selectcate4() throws Exception;
 }
