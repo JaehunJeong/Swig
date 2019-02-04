@@ -135,5 +135,8 @@ public class AdminDAO extends AbstractDAO{
 	public void insertFile(Map<String,Object> map) throws Exception{
 		insert("admin.insertFile", map);
 	}
-	
+	//////////////////////////////////////////////
+	public void paySuccess(Map<String, Object> map) throws Exception{
+		update("admin.paySuccess",map);
+	}
 }

@@ -46,6 +46,7 @@
             comSubmit.addParam("M_NO", obj.parent().find("#M_NO").val());
             comSubmit.submit();
         }
+       
          
         function fn_selectMemberList(pageNo){
             var comAjax = new ComAjax();
@@ -81,6 +82,7 @@
                 $.each(data.list, function(key, value){
                     str += "<tr>" +
                                 "<td>" + value.L_NO + "</td>" +
+                                
                                 "<td class='title'>" +
                                     "<a href='#this' name='name'>" + value.T_NICK + "</a>" +
                                     "<input type='text' id='T_NO' value=" + value.T_NO + ">" +
@@ -98,6 +100,7 @@
                     e.preventDefault();
                     fn_openMemberDetail($(this));
                 });
+                
             }
         }
     </script>

@@ -285,4 +285,10 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDAO.deleteLecture(map);
 	}
+	//////////////////////////////////////////////////////////////////////////
+	@Override
+	public void paySuccess(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.paySuccess(map);
+	}
 }

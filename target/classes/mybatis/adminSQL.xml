@@ -377,4 +377,75 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			LF_NO = #{LF_NO}
 	]]>
 	</update>
+	<select id="selectOneReserve" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from L_OPEN
+			WHERE L_NO = '46'
+		]]>
+	</select>
+	<select id="selectRequestName" resultType="String">
+		<![CDATA[
+			SELECT NAME
+			FROM L_OPEN 	
+			WHERE
+				L_NO = (
+						SELECT L_NO
+						FROM REQUEST
+						WHERE R_NO=#{R_NO}
+					    )
+				
+		]]>
+	</select>
+	
+	<insert id="insertPayInfo" parameterType="hashmap" >
+	<selectKey keyProperty="O_IDX" resultType="string" order="BEFORE">
+      SELECT KO_NO_SEQ.NEXTVAL FROM DUAL
+   </selectKey>
+	<![CDATA[
+		INSERT INTO KAKAOORDER
+		(
+			O_IDX,
+ 			O_TID,
+			O_CID,
+			O_STATUS,
+			O_PARTNER_ID,
+			O_PARTNER_USER_ID,
+			O_PAYMENT_METHOD_TYPE,
+			O_ITEM_NAME,
+			O_QUANTITY,
+			O_AMOUNT_TOTAL,
+			O_AMOUNT_VAT,
+			O_CANCELAVAILABLE_TOTAL,
+			O_CANCELAVAILABLE_VAT,
+			O_CREATED_AT,
+			O_CARD_BIN,
+			O_CARD_CORP_NAME,
+			O_INSTALL_MONTH,
+			L_NO,
+			O_PG_TOKEN
+		)
+		VALUES
+		(
+			#{O_IDX},
+ 			#{O_TID},
+			#{O_CID},
+			#{O_STATUS},
+			#{O_PARTNER_ID},
+			#{O_PARTNER_USER_ID},
+			#{O_PAYMENT_METHOD_TYPE},
+			#{O_ITEM_NAME},
+			#{O_QUANTITY},
+			#{O_AMOUNT_TOTAL},
+			#{O_AMOUNT_VAT},
+			#{O_CANCELAVAILABLE_TOTAL},
+			#{O_CANCELAVAILABLE_VAT},
+			#{O_CREATED_AT},
+			#{O_CARD_BIN},
+			#{O_CARD_CORP_NAME},
+			#{O_INSTALL_MONTH},
+			#{L_NO},
+			#{O_PG_TOKEN}
+		)
+	]]>
+	</insert>
 </mapper>

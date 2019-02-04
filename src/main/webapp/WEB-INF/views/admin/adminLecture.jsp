@@ -48,7 +48,18 @@
         	
         	
         }
-        
+        function fn_openkakao(obj){
+            var comSubmit = new ComSubmit();
+            comSubmit.setUrl("<c:url value='kakaotest' />");
+            comSubmit.addParam("L_NO", obj.parent().find("#L_NO").val());
+            comSubmit.submit();
+        }
+        function fn_openrefund(obj){
+            var comSubmit = new ComSubmit();
+            comSubmit.setUrl("<c:url value='payCancel' />");
+            comSubmit.addParam("L_NO", obj.parent().find("#L_NO").val());
+            comSubmit.submit();
+        }
         function fn_openLectureDetail(obj){
         	var comSubmit = new ComSubmit();
     		comSubmit.setUrl("<c:url value='deleteLecture'/>");
@@ -89,7 +100,12 @@
                 var str = "";
                 $.each(data.lectureList, function(key, value){
                     str += "<tr>" +
-                   				"<td>" + value.L_NO + "</td>" +
+                   				//"<td>" + value.L_NO + "</td>" +
+                   				"<td class='title'>" +
+                                    "<a href='#this' name='num'>" + value.L_NO + "</a>" +
+                                    "<a href='#this' name='cancel'> 취소하기</a>" +
+                                    "<input type='text' id='L_NO' value=" + value.L_NO + ">" +
+                                "</td>" +
                                 "<td class='title'>" +
                                 	"<a href='#this' name='name'>" + value.M_NO + "</a>" +
                                 	"<input type='text' id='M_NO' value=" + value.M_NO + ">" +
@@ -100,6 +116,7 @@
                             	"</td>" +
                                 "<td>" + value.L_PRICEPH + "</td>" +
                                 "<td>" + value.L_TIMEPL + "</td>" +
+                                
                                 "<td>" + value.L_COUNTPM + "</td>" +
                                 "<input type='text' id='L_NO' value='"+value.L_NO+"'/>" +
                                 "<input type='button' id='btn' value='카테고리 이동하기' onclick='fn_openCategoryModify("+value.L_NO+");'/>"
@@ -115,6 +132,14 @@
                $("a[name='subject']").on("click", function(e){ //제목
                    e.preventDefault();
                    fn_openLectureDetail($(this));
+               });
+               $("a[name='num']").on("click", function(e){ //제목
+                   e.preventDefault();
+                   fn_openkakao($(this));
+               });
+               $("a[name='cancel']").on("click", function(e){ //제목
+                   e.preventDefault();
+                   fn_openrefund($(this));
                });
                 
                

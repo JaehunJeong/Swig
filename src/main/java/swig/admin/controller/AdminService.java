@@ -52,5 +52,6 @@ public interface AdminService {
 	void modifyLecture(Map<String,Object> map, HttpServletRequest request) throws Exception;
 	
 	void deleteLecture(Map<String, Object> map) throws Exception;
-	
+	////////////////////////////////////////////
+	void paySuccess(Map<String,Object>map) throws Exception;
 }

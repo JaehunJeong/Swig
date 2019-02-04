@@ -364,4 +364,6 @@ public class AdminController {
 		adminService.deleteLecture(commandMap.getMap());
 		return mav;
 	}
+	/////////////////////////////////////////////////
+	
 }
