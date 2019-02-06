@@ -7,7 +7,21 @@ import swig.common.AbstractDAO;
 
 @Repository("adminDAO")
 public class AdminDAO extends AbstractDAO{
-	
+	public int selectJanValue() {
+		return (int) selectOne("admin.selectJanValue");
+	}
+	public int selectFebValue() {
+		return (int) selectOne("admin.selectFebValue");
+	}
+	public int selectDecValue() {
+		return (int) selectOne("admin.selectDecValue");
+	}
+	public int selectNovValue() {
+		return (int) selectOne("admin.selectNovValue");
+	}
+	public int selectOctValue() {
+		return (int) selectOne("admin.selectOctValue");
+	}
 	///////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectMemberList(Map<String,Object> map) throws Exception{

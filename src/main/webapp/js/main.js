@@ -2,7 +2,7 @@
 (function ($) {
   // USE STRICT
   "use strict";
-
+  var map1 = '<%request.getParameter("map1")%>';
   try {
     //WidgetChart 1
     var ctx = document.getElementById("widgetChart1");
@@ -11,10 +11,10 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          labels: ['October', 'November', 'December', 'January', 'February', 'March'],
           type: 'line',
           datasets: [{
-            data: [78, 81, 80, 45, 34, 12, 40],
+            data:[map1, 2, 1, 2, 2,0],
             label: 'Dataset',
             backgroundColor: 'rgba(255,255,255,.1)',
             borderColor: 'rgba(255,255,255,.55)',

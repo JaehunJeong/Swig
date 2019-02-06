@@ -24,6 +24,26 @@ public class AdminServiceImpl implements AdminService {
 	private FileUtils fileUtils;
 	
 	@Override
+	public Map<String, Object> selectDateValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	= new HashMap<String,Object>();
+		
+		str = adminDAO.selectJanValue();
+		map.put("map1", str);
+		str = adminDAO.selectFebValue();
+		map.put("map2", str);
+		str = adminDAO.selectDecValue();
+		map.put("map3", str);
+		str = adminDAO.selectNovValue();
+		map.put("map4", str);
+		str = adminDAO.selectOctValue();
+		map.put("map5", str);
+		
+		return map;
+	}
+	//////////////////////////////////////////
+	@Override
 	public List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.selectMemberList(map);

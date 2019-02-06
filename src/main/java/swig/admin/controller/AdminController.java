@@ -23,6 +23,17 @@ public class AdminController {
 	@RequestMapping(value="adminForm")
 	public ModelAndView openAdminForm(CommandMap commandMap)throws Exception{
 		ModelAndView mav = new ModelAndView("/admin/adminForm");
+		Map<String, Object> map = adminService.selectDateValue();
+		mav.addObject("map1",map.get("map1"));//1
+		mav.addObject("map2",map.get("map2"));//2
+		mav.addObject("map3",map.get("map3"));//12
+		mav.addObject("map4",map.get("map4"));//11
+		mav.addObject("map5",map.get("map5"));//10
+		System.out.println(map.get("map1"));
+		System.out.println(map.get("map2"));
+		System.out.println(map.get("map3"));
+		System.out.println(map.get("map4"));
+		System.out.println(map.get("map5"));
 		return mav;
 	}
 	///////////////////////MEMBER///////////////////////////////////

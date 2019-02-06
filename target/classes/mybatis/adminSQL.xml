@@ -5,7 +5,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
+	<!-- 2019 Jan -->
+	<select id="selectJanValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE TO_CHAR(M_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectFebValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE TO_CHAR(M_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190230'
+	]]>
+	</select>
+	<select id="selectDecValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE TO_CHAR(M_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectNovValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE TO_CHAR(M_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181130'
+	]]>
+	</select>
+	<select id="selectOctValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE TO_CHAR(M_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
 	<!-- 멤버 관련  -->
+	
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
 	<include refid="common.pagingPre"/>
 	<![CDATA[	

@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public interface AdminService {
+	Map<String,Object> selectDateValue()throws Exception;
+	////////////////////////////////////
 	List<Map<String,Object>> selectMemberList(Map<String,Object> map) throws Exception;
 	
 	Map<String,Object> selectMemberDetail(Map<String,Object> map)throws Exception;
