@@ -82,8 +82,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<![CDATA[
 		UPDATE MEMBER
 		SET 
+			M_EMAIL=#{M_EMAIL},
 			M_PASSWD=#{M_PASSWD},
-			M_JOB=#{M_JOB}	
+			M_PHONE=#{M_PHONE},
+			M_JOB=#{M_JOB},
+			M_SEX=#{M_SEX}
+				
 		WHERE
 			M_NO = #{M_NO}
 	]]>
@@ -149,21 +153,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<include refid="common.pagingPre"/>
 	<![CDATA[
 		SELECT
-			T.T_NO,
-			M.M_NO,
-			M.M_NAME,
-			T.T_NICK,
-			T.T_FINALEDU,
-			T.T_COLLEGE,
-			T.T_DEPT,
-			T.T_QUALIFICATION,
-			T.T_SCERT,
-			T.T_C_NAME,
-			T.T_NO
+			ROW_NUMBER() OVER (ORDER BY T_NO DESC) RNUM,
+			T_NO,
+			M_NO,
+			T_NICK,
+			T_FINALEDU,
+			T_COLLEGE,
+			T_DEPT,
+			T_QUALIFICATION,
+			T_CNAME
 		FROM
-			TUTOR T, MEMBER M
+			TUTOR 
 		WHERE
-			T.T_PASS = 'Y'
+			T_PASS = 'N'
 			
 	]]>
 	<include refid="common.pagingPost"/>
