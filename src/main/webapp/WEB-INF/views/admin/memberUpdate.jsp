@@ -8,7 +8,10 @@
 	var gfv_count = '${fn:length(list)+1}';
 
 	$(document).ready(function(){ //목록 버튼
-
+		$("#list").on("click",function(e){
+			e.preventDefault();
+			fn_openMemberList();
+		});
 		
 		$("#update").on("click",function(e){//저장하기
 			e.preventDefault();

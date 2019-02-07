@@ -179,7 +179,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 T_NO = #{T_NO}
 	]]>
 	</update>
-	
+	<select id="selectTutorDetail" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			Q.T_COLLEGE,
+	      	Q.T_CNAME,
+	      	TF.TF_ORIGINPROFILE,
+	      	TF.TF_STOREDPROFILE,
+	      	TF.TF_SCERTORIGIN,
+	      	TF.TF_SCERTSTORED,
+	      	TF.TF_IDORIGINFILE,
+	      	TF.TF_IDSTOREDFILE,
+	      	TF.TF_SCHECK,
+	      	TF.TF_IDCHECK,
+	      	CF.TF_C_ORIGINFILE1,
+	      	CF.TF_C_ORIGINFILE2,
+	      	CF.TF_C_ORIGINFILE3,
+	      	CF.TF_C_ORIGINFILE4,
+	      	CF.TF_C_ORIGINFILE5,
+	      	CF.TF_CCHECK1,
+	      	CF.TF_CCHECK2,
+	      	CF.TF_CCHECK3,
+	      	CF.TF_CCHECK4,
+	      	CF.TF_CCHECK5
+		FROM
+			TUTOR Q, TUTOR_FILE TF , TUTOR_CFILE CF
+		WHERE
+			Q.T_NO = #{T_NO} AND TF.T_NO=#{T_NO} AND CF.T_NO=#{T_NO}
+	]]>
+	</select>
 	<!-- 글 카테고리 관련 -->
 	<select id="selectCategoryList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[

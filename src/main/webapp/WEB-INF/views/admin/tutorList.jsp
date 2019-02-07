@@ -34,6 +34,8 @@
 				e.preventDefault();
 				fn_openLectureList();
 			});
+			
+
 		});
 		function fn_openMemberList(){
 			var comSubmit = new ComSubmit();
@@ -72,8 +74,8 @@
         }
 		function fn_openTutorDetail(obj){
 		    var comSubmit = new ComSubmit();
-		    comSubmit.setUrl("<c:url value='adminMemberDetail' />");
-		    comSubmit.addParam("M_NO", obj.parent().find("#M_NO").val());
+		    comSubmit.setUrl("<c:url value='adminTutorDetail' />");
+		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
 		    comSubmit.submit();
 		}
 		function fn_openTutorScert(obj){
@@ -132,6 +134,7 @@
                     str += "<tr>" +
                                 "<td>" + value.T_NO + "</td>" +
                                 "<td class='title'>" +
+                                	
                                     "<a href='#this' name='mno'>" + value.M_NO + "</a>" +
                                     "<input type='hidden' id='M_NO' value=" + value.M_NO + ">" +
                                 "</td>" +
@@ -140,13 +143,10 @@
                                 "<td>" + value.T_COLLEGE + "</td>" +
                                 "<td>" + value.T_DEPT + "</td>" +
                                 "<td>" + value.T_QUALIFICATION + "</td>" +
-                                "<td class='title'>" +
-                                	"<input type='hidden' id='M_NO' value=" + value.M_NO + ">" +
-                            	"</td>" +
-                            	"<td class='title'>" +
-                                	"<a href='#this' name='c_name'>" + value.T_C_NAME + "</a>" +
-                                	"<input type='hidden' id='M_NO' value=" + value.M_NO + ">" +
-                            	"</td>" +
+                                "<td>"+
+                                	"<button type='button' class='btn btn-link' onClick='fn_openTutorDetail();'>Detail</button>"+
+                                	"<input type='hidden' id='T_NO' value=" + value.T_NO + ">" +
+                           		"</td>"+
                                 "<td>"+
                                 	"<a href='#this' class='btn' name='tutorDelete' id='tutorDelete'>삭제하기</a>"+
                                 "</td>"+
@@ -172,6 +172,13 @@
                 });
             }
         }
+        
+       /*  var model = document.getElementById('largeModal');
+		window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        } */
     </script>
 </head>
 <body>
@@ -219,13 +226,35 @@
                 
             </header>
             <!-- END HEADER DESKTOP-->
-
+			<!-- modal large -->
+								<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-lg" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="largeModalLabel">Images</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p>
+													 <img src="images/icon/logo.png"  /> <!--width ="800" height="800"  -->
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Reject</button>
+												<button type="button" class="btn btn-primary">Confirm</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- end modal large -->
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid"> 
                         <div class="row m-t-30">
-                            <div class="col-md-12">
+                            <div class="col-md-12">   
                                 <!-- DATA TABLE-->
                                 <div class="table-responsive m-b-40">
                                     <table class="table table-borderless table-data3">
@@ -237,9 +266,8 @@
 												<th>인증</th>
 												<th>학교</th>
 												<th>학과</th>
-												<th>재학상태</th>
-												<th>재학증명서</th>
-												<th>자격증</th>
+												<th>상태</th>
+												<th>증명서 조회</th>
 												<th>튜터취소</th>
 											</tr>
                                         </thead>

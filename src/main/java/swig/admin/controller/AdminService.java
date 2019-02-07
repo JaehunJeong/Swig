@@ -27,6 +27,8 @@ public interface AdminService {
 	
 	List<Map<String, Object>> selectTutorList(Map<String,Object> map) throws Exception;
 	
+	Map<String,Object> selectTutorDetail(Map<String,Object> map)throws Exception;
+	
 	Map<String,Object> selectTutorScert(Map<String,Object> map)throws Exception;
 	
 	Map<String,Object> selectTutorCerti(Map<String,Object> map)throws Exception;

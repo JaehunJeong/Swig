@@ -118,6 +118,16 @@ public class AdminController {
 		}
 		return mv;
 	}
+	@RequestMapping(value="adminTutorDetail")
+	public ModelAndView adminTutorDetail(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/tutorDetail");
+		
+		Map<String, Object> map = adminService.selectTutorDetail(commandMap.getMap());
+		mav.addObject("map",map.get("map"));
+		/*mav.addObject("list",map.get("list"));*/
+		return mav;
+	}
 	@RequestMapping(value="adminTutorScert")
 	public ModelAndView adminTutorScert(CommandMap commandMap)throws Exception
 	{

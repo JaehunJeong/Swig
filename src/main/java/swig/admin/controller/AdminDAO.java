@@ -64,6 +64,10 @@ public class AdminDAO extends AbstractDAO{
 		update("admin.deleteTutor", map);
 	}
 	@SuppressWarnings("unchecked")
+	public Map<String,Object> selectTutorDetail(Map<String, Object> map) throws Exception{
+		return (Map<String,Object>) selectOne("admin.selectMemberDetail",map);
+	}
+	@SuppressWarnings("unchecked")
 	public Map<String,Object> selectTutorScert(Map<String,Object> map) throws Exception{
 		return (Map<String,Object>) selectOne("admin.selectTutorDetail",map);
 	}

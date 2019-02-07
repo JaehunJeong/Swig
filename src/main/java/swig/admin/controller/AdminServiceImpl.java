@@ -115,6 +115,17 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminDAO.deleteTutor(map);
 	}
+	@Override
+	public Map<String, Object> selectTutorDetail(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		Map<String,Object> tempMap = adminDAO.selectTutorDetail(map);
+		resultMap.put("map", tempMap);
+		
+		/*List<Map<String,Object>> list = adminDAO.selectMemberFile(map);
+		resultMap.put("list", list);*/
+		return resultMap;
+	}
 	@Override//파일 업로드에대한 변한으로 가게되면 바꿔야됭
 	public Map<String, Object> selectTutorScert(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub

@@ -6,7 +6,10 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		$("#list").on("click",function(e){
+			e.preventDefault();
+			fn_openMemberList();
+		});
 		
 		$("#update").on("click",function(e){
 			e.preventDefault();
