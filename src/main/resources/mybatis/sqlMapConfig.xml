@@ -11,7 +11,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
               <setting name="lazyLoadingEnabled"        value="false"/>  
               <setting name="multipleResultSetsEnabled" value="true"/>  
               <setting name="useColumnLabel"            value="true"/>  
-              <setting name="useGeneratedKeys"          value="false"/>  
+              <setting name="useGeneratedKeys"          value="false"/> 
               <setting name="defaultExecutorType"       value="SIMPLE"/>  
               <setting name="defaultStatementTimeout"   value="25000"/>  
          </settings>

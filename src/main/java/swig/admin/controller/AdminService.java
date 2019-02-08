@@ -34,6 +34,21 @@ public interface AdminService {
 	Map<String,Object> selectTutorCerti(Map<String,Object> map)throws Exception;
 	
 	void deleteTutor (Map<String, Object> map) throws Exception;
+	
+	void permitId(Map<String, Object> map) throws Exception;
+	void rejectId(Map<String, Object> map) throws Exception;
+	void permitCol(Map<String, Object> map) throws Exception;
+	void rejectCol(Map<String, Object> map) throws Exception;
+	void permitCerti1(Map<String, Object> map) throws Exception;
+	void rejectCerti1(Map<String, Object> map) throws Exception;
+	void permitCerti2(Map<String, Object> map) throws Exception;
+	void rejectCerti2(Map<String, Object> map) throws Exception;
+	void permitCerti3(Map<String, Object> map) throws Exception;
+	void rejectCerti3(Map<String, Object> map) throws Exception;
+	void permitCerti4(Map<String, Object> map) throws Exception;
+	void rejectCerti4(Map<String, Object> map) throws Exception;
+	void permitCerti5(Map<String, Object> map) throws Exception;
+	void rejectCerti5(Map<String, Object> map) throws Exception;
 	///////////////////////////////////////////////////////
 	
 	List<Map<String, Object>> selectCategoryList(Map<String,Object>map)throws Exception;

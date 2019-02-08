@@ -65,7 +65,7 @@ public class AdminDAO extends AbstractDAO{
 	}
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> selectTutorDetail(Map<String, Object> map) throws Exception{
-		return (Map<String,Object>) selectOne("admin.selectMemberDetail",map);
+		return (Map<String,Object>) selectOne("admin.selectTutorDetail",map);
 	}
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> selectTutorScert(Map<String,Object> map) throws Exception{
@@ -74,6 +74,48 @@ public class AdminDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> selectTutorCerti(Map<String,Object> map) throws Exception{
 		return (Map<String,Object>) selectOne("admin.selectTutorDetail",map);
+	}
+	public void permitId(Map<String, Object> map) throws Exception{
+		update("admin.permitId", map);
+	}
+	public void rejectId(Map<String, Object> map) throws Exception{
+		update("admin.rejectId", map);
+	}
+	public void permitCol(Map<String, Object> map) throws Exception{
+		update("admin.permitCol", map);
+	}
+	public void rejectCol(Map<String, Object> map) throws Exception{
+		update("admin.rejectCol", map);
+	}
+	public void permitCerti1(Map<String, Object> map) throws Exception{
+		update("admin.permitCerti1", map);
+	}
+	public void rejectCerti1(Map<String, Object> map) throws Exception{
+		update("admin.rejectCerti1", map);
+	}
+	public void permitCerti2(Map<String, Object> map) throws Exception{
+		update("admin.permitCerti2", map);
+	}
+	public void rejectCerti2(Map<String, Object> map) throws Exception{
+		update("admin.rejectCerti2", map);
+	}
+	public void permitCerti3(Map<String, Object> map) throws Exception{
+		update("admin.permitCerti3", map);
+	}
+	public void rejectCerti3(Map<String, Object> map) throws Exception{
+		update("admin.rejectCerti3", map);
+	}
+	public void permitCerti4(Map<String, Object> map) throws Exception{
+		update("admin.permitCerti4", map);
+	}
+	public void rejectCerti4(Map<String, Object> map) throws Exception{
+		update("admin.rejectCerti4", map);
+	}
+	public void permitCerti5(Map<String, Object> map) throws Exception{
+		update("admin.permitCerti5", map);
+	}
+	public void rejectCerti5(Map<String, Object> map) throws Exception{
+		update("admin.rejectCerti5", map);
 	}
 	////////////////////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")

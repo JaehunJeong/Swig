@@ -108,25 +108,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<![CDATA[
 		SELECT
-			T.T_NO,
-			T.M_NO,
-			T.T_NICK,
-			T.T_FINALEDU,
-			T.T_COLLEGE,
-			T.T_DEPT,
-			T.T_QUALIFICATION,
-			T.T_SCERT,
-			T.T_C_NAME,
-			T.T_PASS,
-			F.T_NO,
-			F.TF_NO,
-			F.TF_STOREDPROFILE,
-			F.TF_C_STOREDFILE,
-			F.TF_SCERTSTORED
+			ROW_NUMBER() OVER (ORDER BY T_NO DESC) RNUM,
+			T_NO,
+			M_NO,
+			T_NICK,
+			T_FINALEDU,
+			T_COLLEGE,
+			T_DEPT,
+			T_QUALIFICATION,
+			T_CNAME
 		FROM
-			TUTOR T, TUTOR_FILE F
-		WHERE 
-			T.T_NO = F.T_NO
+			TUTOR 
+		WHERE
+			T_PASS = 'P'
 	]]>
 	<include refid="common.pagingPost"/>
 	</select>
@@ -165,7 +159,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			TUTOR 
 		WHERE
-			T_PASS = 'N'
+			T_PASS = 'Y'
 			
 	]]>
 	<include refid="common.pagingPost"/>
@@ -182,7 +176,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectTutorDetail" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
-			Q.T_COLLEGE,
+			Q.T_NO,
+			Q.T_FINALEDU,
 	      	Q.T_CNAME,
 	      	TF.TF_ORIGINPROFILE,
 	      	TF.TF_STOREDPROFILE,
@@ -203,11 +198,142 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	      	CF.TF_CCHECK4,
 	      	CF.TF_CCHECK5
 		FROM
-			TUTOR Q, TUTOR_FILE TF , TUTOR_CFILE CF
+			TUTOR Q , TUTOR_FILE TF , TUTOR_CFILE CF
 		WHERE
-			Q.T_NO = #{T_NO} AND TF.T_NO=#{T_NO} AND CF.T_NO=#{T_NO}
+			 Q.T_NO=#{T_NO} AND Q.T_NO = TF.T_NO AND Q.T_NO = CF.T_NO 	
 	]]>
 	</select>
+	<!-- TUTOR Q INNER JOIN TUTOR_FILE TF ON Q.T_NO = TF.T_NO
+              		INNER JOIN TUTOR_CFILE CF ON Q.T_NO = CF.T_NO
+     			 	AND Q.T_NO = #{T_NO} -->
+     			 	
+    <update id="permitId" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_FILE
+		SET
+			TF_IDCHECK = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="rejectId" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_FILE
+		SET
+			TF_IDCHECK = 'N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="permitCol" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_FILE
+		SET
+			TF_SCHECK = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="rejectCol" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_FILE
+		SET
+			TF_SCHECK = 'N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="permitCerti1" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK1 = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="rejectCerti1" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK1 = 'N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="permitCerti2" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK2 = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="rejectCerti2" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK2 = 'N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>  
+	<update id="permitCerti3" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK3 = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="rejectCerti3" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK3 = 'N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>  
+	<update id="permitCerti4" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK4 = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="rejectCerti4" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK4 = 'N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>  
+	<update id="permitCerti5" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK5 = 'Y'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>
+	<update id="rejectCerti5" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TUTOR_CFILE
+		SET
+			TF_CCHECK5 = 'N'
+		WHERE
+			T_NO = #{T_NO}
+	]]>
+	</update>  
+	   			 	
 	<!-- 글 카테고리 관련 -->
 	<select id="selectCategoryList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[

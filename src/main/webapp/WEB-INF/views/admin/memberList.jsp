@@ -77,7 +77,7 @@
             comAjax.setCallback("fn_selectMemberListCallback");
             comAjax.addParam("PAGE_INDEX",$("#PAGE_INDEX").val());
 			comAjax.addParam("PAGE_ROW", 15);
-			comAjax.addParam("M_NO_FE", $("#M_NO_FE").val());
+			//comAjax.addParam("M_NO_FE", $("#M_NO_FE").val());
             comAjax.ajax();
         }
         

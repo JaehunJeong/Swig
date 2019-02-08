@@ -6,30 +6,6 @@
 <meta charset="UTF-8">
 <title>회원 리스트</title>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
-
-</head>
-<body>
-<table>
-	<thead>
-		<tr>
-			<th>강의 번호</th>
-			<th>튜터 이름</th>
-			<th>수업 제목</th>
-			<th>카테고리</th>
-			<th>수업 형태</th>
-			<th>총 수업 가격</th>
-			<th>강의 날짜</th>
-			<th>강의 매칭 내역</th>
-			<th>강의 상태</th>
-		</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
-<div id="PAGE_NAVI"></div>
-<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
-<br />
-<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script type="text/javascript">
         $(document).ready(function(){
         	window.onload=function(){fn_selectMemberList(1);};
@@ -104,5 +80,29 @@
             }
         }
     </script>
+</head>
+<body>
+<table>
+	<thead>
+		<tr>
+			<th>강의 번호</th>
+			<th>튜터 이름</th>
+			<th>수업 제목</th>
+			<th>카테고리</th>
+			<th>수업 형태</th>
+			<th>총 수업 가격</th>
+			<th>강의 날짜</th>
+			<th>강의 매칭 내역</th>
+			<th>강의 상태</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<div id="PAGE_NAVI"></div>
+<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
+<br />
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
+
 </body>
 </html>

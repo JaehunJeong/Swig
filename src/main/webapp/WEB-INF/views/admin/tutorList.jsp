@@ -72,11 +72,14 @@
             comSubmit.addParam("M_NO", obj.parent().find("#M_NO").val());
             comSubmit.submit();
         }
-		function fn_openTutorDetail(obj){
-		    var comSubmit = new ComSubmit();
-		    comSubmit.setUrl("<c:url value='adminTutorDetail' />");
-		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
+		function fn_openTutorDetail(val){
+			var url = "adminTutorDetail?T_NO="+val;
+			var comSubmit = new ComSubmit();
+		    comSubmit.setUrl("<c:url value='"+url+"' />");
+		    //comSubmit.addParam("T_NO",$("#T_NO").val());
 		    comSubmit.submit();
+			
+		    //lacation.href="url";
 		}
 		function fn_openTutorScert(obj){
 		    var comSubmit = new ComSubmit();
@@ -84,7 +87,7 @@
 		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
 		    comSubmit.submit();
 		}
-		function fn_openTutorDetail(obj){
+		function fn_openTutorCerti(obj){
 		    var comSubmit = new ComSubmit();
 		    comSubmit.setUrl("<c:url value='adminTutorCerti' />");
 		    comSubmit.addParam("T_NO", obj.parent().find("#T_NO").val());
@@ -116,7 +119,7 @@
             body.empty();
             if(total == 0){
                 var str = "<tr>" +
-                                "<td colspan='4'>조회된 결과가 없습니다.</td>" +
+                                "<td colspan='9' style='text-align:center'>조회된 결과가 없습니다.</td>" +
                             "</tr>";
                 body.append(str);
             }
@@ -144,8 +147,7 @@
                                 "<td>" + value.T_DEPT + "</td>" +
                                 "<td>" + value.T_QUALIFICATION + "</td>" +
                                 "<td>"+
-                                	"<button type='button' class='btn btn-link' onClick='fn_openTutorDetail();'>Detail</button>"+
-                                	"<input type='hidden' id='T_NO' value=" + value.T_NO + ">" +
+                                	"<input type='button' class='btn btn-link' value='DETAIL' onclick='fn_openTutorDetail("+value.T_NO+");'/>"+
                            		"</td>"+
                                 "<td>"+
                                 	"<a href='#this' class='btn' name='tutorDelete' id='tutorDelete'>삭제하기</a>"+
@@ -158,27 +160,27 @@
                     e.preventDefault();
                     fn_openMemberDetail($(this));
                 });
-                $("a[name='scert']").on("click", function(e){ //제목
+                $("a[name='detail']").on("click", function(e){ //제목
                     e.preventDefault();
                     fn_openTutorDetail($(this));
                 });
+                $("a[name='scert']").on("click", function(e){ //제목
+                    e.preventDefault();
+                    fn_openTutorScert($(this));
+                });
                 $("a[name='c_name']").on("click", function(e){ //제목
                     e.preventDefault();
-                    fn_openTutorDetail($(this));
+                    fn_openTutorCerti($(this));
                 });
                 $("a[name='tutorDelete']").on("click", function(e){ //제목
                     e.preventDefault();
                     fn_openTutorDelete($(this));
                 });
+                
+                
             }
         }
         
-       /*  var model = document.getElementById('largeModal');
-		window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        } */
     </script>
 </head>
 <body>
@@ -226,29 +228,7 @@
                 
             </header>
             <!-- END HEADER DESKTOP-->
-			<!-- modal large -->
-								<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-									<div class="modal-dialog modal-lg" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="largeModalLabel">Images</h5>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<p>
-													 <img src="images/icon/logo.png"  /> <!--width ="800" height="800"  -->
-												</p>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">Reject</button>
-												<button type="button" class="btn btn-primary">Confirm</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- end modal large -->
+			
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -299,17 +279,6 @@
 
 </body>
 </html>
-		<%-- <tr>
-			<td>${map.T_NO }</td>
-			<td>${map.M_NO }</td>
-			<td>${map.T_NICK }</td>
-			<td>${map.T_FINALEDU }</td>
-			<td>${map.T_COLLEGE }</td>
-			<td>${map.T_DEPT }</td>
-			<td>${map.T_QUALIFICATION }</td>
-			<td>${map.T_SCERT }</td>
-			<td>${map.T_C_NAME}</td>
-			<td>${map.T_NO }</td>
-		</tr> --%>
+		
 	
 	

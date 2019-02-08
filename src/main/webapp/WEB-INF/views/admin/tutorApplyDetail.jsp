@@ -512,7 +512,7 @@
 	                                            </div>
 	                                    </div>
 	                                    <div class="card-footer">
-	                                        <button type="reset" class="btn btn-info btn-sm" onClick="fn_openTutorList();">
+	                                        <button type="reset" class="btn btn-info btn-sm" onClick="fn_openTutorApplyList();">
 	                                            <i class="fa fa-undo"></i> 목록으로
 	                                        </button>	
 	                                    </div>

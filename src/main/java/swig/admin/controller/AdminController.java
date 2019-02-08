@@ -156,11 +156,136 @@ public class AdminController {
 		
 		return mav;
 	}
+	@RequestMapping(value="permitId")
+	public ModelAndView permitId(CommandMap commandMap) throws Exception{
 	
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail");
+		adminService.permitId(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="rejectId")
+	public ModelAndView rejectId(CommandMap commandMap) throws Exception{
+	
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail");
+		adminService.rejectId(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="permitCol")
+	public ModelAndView permitCol(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.permitCol(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="rejectCol")
+	public ModelAndView rejectCol(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.rejectCol(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="permitCerti1")
+	public ModelAndView permitCerti1(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.permitCerti1(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="rejectCerti1")
+	public ModelAndView rejectCerti1(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.rejectCerti1(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="permitCerti2")
+	public ModelAndView permitCerti2(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.permitCerti2(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="rejectCerti2")
+	public ModelAndView rejectCerti2(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.rejectCerti2(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="permitCerti3")
+	public ModelAndView permitCerti3(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.permitCerti3(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="rejectCerti3")
+	public ModelAndView rejectCerti3(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.rejectCerti3(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="permitCerti4")
+	public ModelAndView permitCerti4(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.permitCerti4(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="rejectCerti4")
+	public ModelAndView rejectCerti4(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.rejectCerti4(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="permitCerti5")
+	public ModelAndView permitCerti5(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.permitCerti5(commandMap.getMap());
+		
+		return mav;
+		
+	}
+	@RequestMapping(value="rejectCerti5")
+	public ModelAndView rejectCerti5(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String T_NO = request.getParameter("T_NO");
+		ModelAndView mav = new ModelAndView("redirect:adminTutorDetail?T_NO="+T_NO+"");
+		adminService.rejectCerti5(commandMap.getMap());
+		
+		return mav;
+		
+	}
 	///////////////////////////TutorApply////////////////////////////////
 	@RequestMapping(value="openTutorApplyList")
 	public ModelAndView openTutorApplyList(CommandMap commandMap)throws Exception{
-		ModelAndView mav = new ModelAndView("/admin/applyList");
+		ModelAndView mav = new ModelAndView("/admin/tutorApplyList");
 		return mav;
 	}
 	@RequestMapping(value="tutorApplyList")
@@ -213,6 +338,16 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("redirec:openTutorApplyList");
 		adminService.cancelRequest(commandMap.getMap());
 		
+		return mav;
+	}
+	@RequestMapping(value="adminTutorApplyDetail")
+	public ModelAndView adminTutorApplyDetail(CommandMap commandMap)throws Exception
+	{
+		ModelAndView mav = new ModelAndView("/admin/tutorApplyDetail");
+		
+		Map<String, Object> map = adminService.selectTutorDetail(commandMap.getMap());
+		mav.addObject("map",map.get("map"));
+		/*mav.addObject("list",map.get("list"));*/
 		return mav;
 	}
 	/////////////////////////category//////////////////////////////

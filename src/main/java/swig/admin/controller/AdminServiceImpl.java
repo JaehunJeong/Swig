@@ -148,6 +148,76 @@ public class AdminServiceImpl implements AdminService {
 		resultMap.put("list", list);*/
 		return resultMap;
 	}
+	@Override
+	public void permitId(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.permitId(map);
+	}
+	@Override
+	public void rejectId(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.rejectId(map);
+	}
+	@Override
+	public void permitCol(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.permitCol(map);
+	}
+	@Override
+	public void rejectCol(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.rejectCol(map);
+	}
+	@Override
+	public void permitCerti1(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.permitCerti1(map);
+	}
+	@Override
+	public void rejectCerti1(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.rejectCerti1(map);
+	}
+	@Override
+	public void permitCerti2(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.permitCerti2(map);
+	}
+	@Override
+	public void rejectCerti2(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.rejectCerti2(map);
+	}
+	@Override
+	public void permitCerti3(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.permitCerti3(map);
+	}
+	@Override
+	public void rejectCerti3(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.rejectCerti3(map);
+	}
+	@Override
+	public void permitCerti4(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.permitCerti4(map);
+	}
+	@Override
+	public void rejectCerti4(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.rejectCerti4(map);
+	}
+	@Override
+	public void permitCerti5(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.permitCerti5(map);
+	}
+	@Override
+	public void rejectCerti5(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		adminDAO.rejectCerti5(map);
+	}
 	///////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<Map<String, Object>> selectCategoryList(Map<String, Object> map) throws Exception {
