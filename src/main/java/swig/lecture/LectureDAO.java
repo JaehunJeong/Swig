@@ -11,13 +11,6 @@ import swig.lecture.model.LectureModel;
 @Repository("lectureDAO")
 public class LectureDAO extends AbstractDAO{
 	
-	// �긽�꽭蹂닿린�뿉�꽌 媛뺤쓽 �쐞移� 蹂댁뿬以�
-	@SuppressWarnings("unchecked") //而댄뙆�씪 寃쎄퀬 �궗�슜 x
-	public Map<String, Object> lectureLocation(Map<String, Object> map) throws Exception{
-		return (Map<String, Object>)
-				selectOne("lectureDetail.LectureLocation", map);
-	}
-	
 	/* 媛뺤쓽 由ъ뒪�듃 異쒕젰
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception{
@@ -67,15 +60,21 @@ public class LectureDAO extends AbstractDAO{
 	      delete("lecture.deleteLecture", map);
 	   }
 	   
+	   // �긽�꽭蹂닿린�뿉�꽌 媛뺤쓽 �쐞移� 蹂댁뿬以�
+		@SuppressWarnings("unchecked") //而댄뙆�씪 寃쎄퀬 �궗�슜 x
+		public Map<String, Object> lectureLocation(Map<String, Object> map1) throws Exception{
+			return (Map<String, Object>)
+					selectOne("lectureDetail.LectureLocation", map1);
+		}
 
 	   @SuppressWarnings("unchecked")
-	   public Map<String, Object> lectureDate(Map<String, Object> map) throws Exception{
-	      return (Map<String, Object>)selectOne("lectureDetail.lectureDate",map);
+	   public Map<String, Object> lectureDate(Map<String, Object> map2) throws Exception{
+	      return (Map<String, Object>)selectOne("lectureDetail.lectureDate",map2);
 	   }
 	   
 	   @SuppressWarnings("unchecked")
-	   public Map<String, Object> lectureTime(Map<String, Object> map) throws Exception{
-	      return (Map<String, Object>)selectOne("lectureDetail.lectureTime",map);
+	   public Map<String, Object> lectureTime(Map<String, Object> map3) throws Exception{
+	      return (Map<String, Object>)selectOne("lectureDetail.lectureTime",map3);
 	   }
 	   
 	   @SuppressWarnings("unchecked")
@@ -162,5 +161,11 @@ public class LectureDAO extends AbstractDAO{
 	   public void deleteLectureFile(Map<String, Object> map) throws Exception{
 	      delete("lectureFile.deleteLectureFile", map);
 	   }
+	   
+	   public void lectureRequestInsert1(Map<String, Object> Apply) {
+		  insert("lectureDetail.lectureRequestInsert1", Apply);
+	   }
+
+	
 	   
 }

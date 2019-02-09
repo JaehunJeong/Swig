@@ -33,6 +33,11 @@
 		</ul>
 	</div>
 
+	<div class="lectureApply">
+		<form name="Apply" id="Apply" method="post">
+		<div class="apply" onclick="selectapply()">수업 신청하기 ▶</div>
+		</form>
+	</div>
 	
 	<div class="class_detail detail_sec_bor" id="tutorinfo">
 		<div class="section01" id="tutor">
@@ -412,6 +417,12 @@ function fn_reviewUpdateCancel(){
     oldReno.innerText = updateLR_COMMENT;
     updateLR_NO = updateLR_COMMENT = null;
 } 
+
+function selectapply(){
+	var form = document.Apply;
+	form.action="<c:url value='LectureApply' />";
+	form.submit(); 
+}
 
 </script>
 </body>

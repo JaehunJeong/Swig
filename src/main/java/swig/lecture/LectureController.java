@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -122,24 +123,78 @@ public class LectureController {
 	 * }
 	 */
 	
+
+	 @RequestMapping(value="/lectureWrite1")
+     public ModelAndView lectureWriteForm1() throws Exception {
+        
+        List<Map<String, Object>> caGroup = new ArrayList<Map<String, Object>>(categoryService.selectCAgroup());
+        List<List<Map<String,Object>>> caList = new ArrayList<List<Map<String,Object>>>(categoryService.listOfCategory());
+        
+        List<Map<String,Object>> list1=caList.get(0);
+        List<Map<String,Object>> list2=caList.get(1);
+        List<Map<String,Object>> list3=caList.get(2);
+        
+        ModelAndView mav= new ModelAndView("/lecture/lectureWrite1");
+        
+        mav.addObject("caGroup", caGroup);
+        
+        mav.addObject("list1", list1);
+        mav.addObject("list2", list2);
+        mav.addObject("list3", list3);
+        
+        return mav;
+     }
+
+		@RequestMapping(value="/cate1")
+		public ModelAndView cate1(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> lseclist1 = categoryService.selectcate1();
+			mav.addObject("lseclist1", lseclist1);
+			System.out.println(lseclist1);
+			return mav;
+		}
+		
+		@RequestMapping(value="/cate2")
+		public ModelAndView cate2(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> list2 = categoryService.selectcate2();
+			mav.addObject("list2", list2);
+			
+			return mav;
+		}
+		@RequestMapping(value="/cate3")
+		public ModelAndView cate3(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> list3 = categoryService.selectcate3();
+			mav.addObject("list3", list3);
+			
+			return mav;
+		}
+		@RequestMapping(value="/cate4")
+		public ModelAndView cate4(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+
+			List<Map<String,Object>> list4 = categoryService.selectcate4();
+			mav.addObject("list4", list4);
+			
+			return mav;
+		}
+	
 	@RequestMapping(value="/openLectureList")
 	public ModelAndView openLectureList(CommandMap commandMap) throws Exception{
-		ModelAndView mav = new ModelAndView("/lecture/LectureList");
-		
-		return mav;
+		 ModelAndView mav= new ModelAndView("/lecture/LectureList");
+		 return mav;
 	}
 	
 	@RequestMapping(value="/selectLectureList")
 	public ModelAndView selectLectureList (CommandMap commandMap) throws Exception{
-		//ModelAndView mav = new ModelAndView("/lecture/LectureList?CA_NO=" + commandMap.getMap().get("CA_NO"));
-		//ModelAndView mav = new ModelAndView("/lecture/LectureList");
 		ModelAndView mav = new ModelAndView("jsonView");
 		
 		List<Map<String,Object>> list = lectureService.selectLectureList(commandMap.getMap());
 		mav.addObject("list", list);
-		
-		List<Map<String,Object>> list1 = lectureService.selectCA_IDXLectureList(commandMap.getMap());
-		mav.addObject("list1", list1);
 		
 		 if(list.size() > 0){
 		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
@@ -147,16 +202,8 @@ public class LectureController {
 		    else{
 		        mav.addObject("TOTAL", 0);
 		    }
-
-		 if(list1.size() > 0){
-		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
-		    }
-		    else{
-		        mav.addObject("TOTAL", 0);
-		    }
 		return mav;
 	}
-	
 	
 	@RequestMapping(value="/LectureDetail")
 	public ModelAndView selectLectureDetail(CommandMap commandMap/*, HttpServletRequest request*/) throws Exception {
@@ -231,13 +278,25 @@ public class LectureController {
 		return mav;
 	}
 	
-		@RequestMapping(value = "/lectureApplyForm")	// �닔媛� �떊泥�
+		@RequestMapping(value = "/LectureApply")	// �닔媛� �떊泥�
 		public ModelAndView lectureApplyForm(CommandMap commandMap) throws Exception {
+			ModelAndView mav = new ModelAndView("/lecture/LectureApply");
 			
-			ModelAndView mav = new ModelAndView("/lecture/LectureApplyForm?M_NO=" + commandMap.getMap().get("M_NO"));
-		
+			Map<String, Object> map1 = lectureService.lectureApply1(commandMap.getMap());
+			Map<String, Object> map2 = lectureService.lectureApply2(commandMap.getMap());
+			Map<String, Object> map3 = lectureService.lectureApply3(commandMap.getMap());
+			
 			return mav;	
-		}	
+		}
+		
+		@RequestMapping(value="/lectureApplyInsert")
+		public ModelAndView LectureApplyInsert(CommandMap commandMap) throws Exception{
+			ModelAndView mav = new ModelAndView("redirect:/LectureApply");
+			
+			 lectureService.lectureRequestInsert1(commandMap.getMap());
+			 
+			return mav;
+		}
 		
 		@RequestMapping(value = "/wish")
 		public ModelAndView wish(CommandMap commandMap) throws Exception {
@@ -248,12 +307,13 @@ public class LectureController {
 		}	
 	
 		@RequestMapping(value = "/talk")
-		public ModelAndView talk(CommandMap commandMap) {
+		public ModelAndView talk(CommandMap commandMap) throws Exception {
 			
 			ModelAndView mav = new ModelAndView("/lecture/LectureDetail/talk");
 		
 			return mav;
 		}
+		
 }
 
 

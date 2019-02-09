@@ -9,10 +9,10 @@
 		<![CDATA[
 			SELECT
 				LL_NO,
+       			L_NO,
 				LL_LOCATION,
-				LL_DEATIL,
-				LL_ADDCOST,
-				LL_LO_COMMENT
+				LL_DETAIL,
+				LL_ADDCOST
 			FROM L_LOCATION
 			WHERE L_NO=#{L_NO}
 		]]>
@@ -210,5 +210,29 @@
 			WHERE LT_NO=#{LT_NO} AND LD_NO=#{LD_NO}
 		]]>
 	</update>
+	
+	<insert id="lectureRequestInsert1" parameterType="hashmap">
+		<![CDATA[
+			INSERT REQUEST
+			(
+				M_NO,
+				L_NO,
+				R_NO,
+				R_REGDATE,
+				R_LOCATION,
+				R_DAY,
+				R_TIME
+			)
+			VALUES(
+				#{M_NO},
+				#{L_NO},
+				R_NO_SEQ.NEXTVAL,
+				#{R_REGDATE},
+				#{R_LOCATION},
+				#{R_DAY},
+				#{R_TIME}
+			)
+		]]>
+	</insert>
 	
 </mapper>

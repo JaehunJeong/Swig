@@ -36,7 +36,7 @@ public class RegionCategoryServiceImpl implements RegionCategoryService{
 		mOfRecategory.add(regionCategoryDAO.selectDaejeon());
 		mOfRecategory.add(regionCategoryDAO.selectGangwon());
 		mOfRecategory.add(regionCategoryDAO.selectGwangju());
-		mOfRecategory.add(regionCategoryDAO.selectOnline());
+		/*mOfRecategory.add(regionCategoryDAO.selectOnline());*/
 		
 		return mOfRecategory;
 	}

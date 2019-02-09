@@ -9,7 +9,6 @@ public interface LectureService {
 	/*
 		List<Map<String, Object>> lectureList(Map<String, Object> map) throws Exception;
 	*/
-	
 		List<Map<String, Object>> selectLectureList(Map<String, Object> map) throws Exception;
 		
 		List<Map<String, Object>> selectCA_IDXLectureList(Map<String, Object> map) throws Exception;
@@ -22,6 +21,13 @@ public interface LectureService {
 		
 		void deleteLecture(Map<String, Object> map) throws Exception;
 
+		// 처음 신청서 작성 시
+		public void lectureRequestInsert1(Map<String, Object>map) throws Exception;
+
+		Map<String, Object> lectureApply1(Map<String, Object> map1) throws Exception;
+
+		Map<String, Object> lectureApply2(Map<String, Object> map2) throws Exception;
 		
-		
+		Map<String, Object> lectureApply3(Map<String, Object> map3) throws Exception;
+
 }
