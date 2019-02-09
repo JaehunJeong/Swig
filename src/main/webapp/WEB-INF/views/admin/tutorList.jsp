@@ -216,7 +216,7 @@
                         </li>
                         <li>
                             <a href="#this" id="lectureList">
-                                <i class="far fa-pencil"></i>Lecture</a>
+                                <i class="fas fa-tags"></i>Lecture</a>
                         </li> 
                     </ul>
                 </nav>

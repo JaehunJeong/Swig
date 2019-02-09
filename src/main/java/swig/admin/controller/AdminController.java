@@ -380,20 +380,20 @@ public class AdminController {
 		mav.addObject("map2",map.get("map2"));
 		mav.addObject("map3",map.get("map3"));
 		mav.addObject("map4",map.get("map4"));
-		mav.addObject("map5",map.get("map5"));
-		mav.addObject("map6",map.get("map6"));
-		mav.addObject("map7",map.get("map7"));
-		mav.addObject("map8",map.get("map8"));
+		/*
+		 * mav.addObject("map5",map.get("map5")); mav.addObject("map6",map.get("map6"));
+		 * mav.addObject("map7",map.get("map7")); mav.addObject("map8",map.get("map8"));
+		 */
 		
 		
 		System.out.println(map.get("map1"));
 		System.out.println(map.get("map2"));
 		System.out.println(map.get("map3"));
 		System.out.println(map.get("map4"));
-		System.out.println(map.get("map5"));
-		System.out.println(map.get("map6"));
-		System.out.println(map.get("map7"));
-		System.out.println(map.get("map8"));
+		/*
+		 * System.out.println(map.get("map5")); System.out.println(map.get("map6"));
+		 * System.out.println(map.get("map7")); System.out.println(map.get("map8"));
+		 */
 		return mav;
 	}
 	
@@ -415,10 +415,10 @@ public class AdminController {
 		mav.addObject("map2",map.get("map2"));
 		mav.addObject("map3",map.get("map3"));
 		mav.addObject("map4",map.get("map4"));
-		mav.addObject("map5",map.get("map5"));
-		mav.addObject("map6",map.get("map6"));
-		mav.addObject("map7",map.get("map7"));
-		mav.addObject("map8",map.get("map8"));
+		/*
+		 * mav.addObject("map5",map.get("map5")); mav.addObject("map6",map.get("map6"));
+		 * mav.addObject("map7",map.get("map7")); mav.addObject("map8",map.get("map8"));
+		 */
 		
 		
 		System.out.println(map.get("map1"));
@@ -452,10 +452,13 @@ public class AdminController {
 	@RequestMapping(value="deleteCategory")
 	public ModelAndView deleteCategory(CommandMap commandMap) throws Exception
 	{
+		//String CA_IDX = request.getParameter("CA_IDX");
+		//commandMap.put("CA_IDX",CA_IDX);
 		ModelAndView mav = new ModelAndView("redirect:openCategoryList");
+		
 		adminService.deleteCategory(commandMap.getMap());
 		
-		mav.addObject("CA_IDX", commandMap.get("CA_IDX"));
+		//mav.addObject("CA_IDX", CA_IDX);
 		return mav;
 	}
 	//////////////////////////////////lecture/////////////////////////////////////

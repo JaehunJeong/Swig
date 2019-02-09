@@ -6,31 +6,6 @@
 <meta charset="UTF-8">
 <title>회원 리스트</title>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
-
-</head>
-<body>
-<table>
-	<thead>
-		<tr>
-			<th>강의번호</th>
-			<th>회원번호</th>
-			<th>강의제목</th>
-			<th>시간당 가격</th>
-			<th>강의당 시간</th>
-			<th>강의 월 별 횟수</th>
-		</tr>
-	</thead>
-	<tbody>
-	
-	
-	</tbody>
-</table>
-<div id ="div_list"></div>
-<a href="#this" class="btn" id="add">추가하기</a>
-<div id="PAGE_NAVI"></div>
-<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
-<br />
-<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script type="text/javascript">
         $(document).ready(function(){
         	window.onload=function(){fn_selectLectureList(1);};
@@ -147,5 +122,97 @@
         }
         
     </script>
+</head>
+<body>
+	<aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="adminForm">
+                    <img src="images/icon/logo.png" width ="120" height="100" alt="SWig" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                    	<li >
+                            <a href="#this" id="list">
+                                <i class="fas fa-users"></i>Member</a>
+                        </li>
+                        <li class="has-sub ">
+                        	<a class="js-arrow" href="openMemberList">
+                        		<i class ="fas fa-male"></i>Tutor
+                        	</a>
+                        	<ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li >
+                                    <a href="#this" id="tutorList">Tutor List</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="tutorApplyList">Apply List</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li >
+                            <a href="#this" id="categoryList">
+                                <i class="fas fa-th-large"></i>Category</a>
+                        </li>
+                        <li class="active">
+                            <a href="#this" id="lectureList">
+                                <i class="fas fa-tags"></i>Lecture</a>
+                        </li> 
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+         <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                
+            </header>
+            <!-- END HEADER DESKTOP-->
+			
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid"> 
+                        <div class="row m-t-30">
+                            <div class="col-md-12">   
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+											<tr>
+												<th>강의번호</th>
+												<th>회원번호</th>
+												<th>강의제목</th>
+												<th>시간당 가격</th>
+												<th>강의당 시간</th>
+												<th>강의 월 별 횟수</th>
+											</tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                    </table>
+                                    <div id ="div_list"></div>
+									<a href="#this" class="btn btn-success" id="add" >추가하기</a>
+                                    <div id="PAGE_NAVI"></div>
+									<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
+									<br />
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
+
 </body>
 </html>

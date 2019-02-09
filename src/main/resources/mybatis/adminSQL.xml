@@ -394,7 +394,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE ROWNUM = 1
 		]]>
 	</select>
-	<select id="selectFiveMaxValue" resultType="string">
+	<!-- <select id="selectFiveMaxValue" resultType="string">
 		<![CDATA[
 			SELECT
 				CA_NO
@@ -437,7 +437,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       			 WHERE CA_NO LIKE'8-%' ORDER BY CA_NO desc )
 			WHERE ROWNUM = 1
 		]]>
-	</select>
+	</select> -->
 	<insert id="insertCategory" parameterType="hashmap" >
 	<![CDATA[
 		INSERT INTO CATEGORY
@@ -478,9 +478,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<update id="updateLectureChk" parameterType="hashmap">
 	<![CDATA[
-		SELECT CA_IDX
-		FROM L_OPEN
-		
 		UPDATE L_OPEN
 			SET L_CHK = 'Y'
 			WHERE CA_IDX = #{CA_IDX}

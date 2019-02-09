@@ -12,10 +12,10 @@
 			document.getElementById('Category2').style.display="none";
 			document.getElementById('Category3').style.display="none";
 			document.getElementById('Category4').style.display="none";
-			document.getElementById('Category5').style.display="none";
+			/* document.getElementById('Category5').style.display="none";
 			document.getElementById('Category6').style.display="none";
 			document.getElementById('Category7').style.display="none";
-			document.getElementById('Category8').style.display="none";	
+			document.getElementById('Category8').style.display="none";	 */
         	//window.onload=function(){fn_selectMemberList(1);};
               
         	$("#add1").on("click",function(e){
@@ -38,7 +38,7 @@
     			fn_TutorInsert4();
     			
     		});
-        	$("#add5").on("click",function(e){
+        	/* $("#add5").on("click",function(e){
     			e.preventDefault();
     			fn_TutorInsert5();
     			
@@ -57,7 +57,7 @@
     			e.preventDefault();
     			fn_TutorInsert8();
     			
-    		});
+    		}); */
         	
         });
         
@@ -118,59 +118,6 @@
     					}
     		});
         } 
-        function fn_TutorInsert5(){
-        	var params = $("#frm5").serialize();
-    		$.ajax(
-    		{
-    			url : "<c:url value='addCategory' />",
-    			data : params,
-    			success : function(data)
-    					{	
-    						window.opener.document.location.reload();
-    						window.close();
-    					}
-    		});
-        } 
-        function fn_TutorInsert6(){
-        	var params = $("#frm6").serialize();
-    		$.ajax(
-    		{
-    			url : "<c:url value='addCategory' />",
-    			data : params,
-    			success : function(data)
-    					{	
-    						window.opener.document.location.reload();
-    						window.close();
-    					}
-    		});
-        } 
-        function fn_TutorInsert7(){
-        	var params = $("#frm7").serialize();
-    		$.ajax(
-    		{
-    			url : "<c:url value='addCategory' />",
-    			data : params,
-    			success : function(data)
-    					{	
-    						window.opener.document.location.reload();
-    						window.close();
-    					}
-    		});
-        } 
-        function fn_TutorInsert8(){
-        	var params = $("#frm8").serialize();
-    		$.ajax(
-    		{
-    			url : "<c:url value='addCategory' />",
-    			data : params,
-    			success : function(data)
-    					{	
-    						window.opener.document.location.reload();
-    						window.close();
-    					}
-    		});
-        } 
-        
         function checkLayer(val){
 	        	if(val == 1)
 	    		{
@@ -178,10 +125,7 @@
 	    			document.getElementById('Category2').style.display="none";
 	    			document.getElementById('Category3').style.display="none";
 	    			document.getElementById('Category4').style.display="none";
-	    			document.getElementById('Category5').style.display="none";
-	    			document.getElementById('Category6').style.display="none";
-	    			document.getElementById('Category7').style.display="none";
-	    			document.getElementById('Category8').style.display="none";		
+	    			
 	    		}
 	    		else if(val==2)
 	    		{
@@ -189,10 +133,6 @@
 	    			document.getElementById('Category2').style.display="block";
 	    			document.getElementById('Category3').style.display="none";
 	    			document.getElementById('Category4').style.display="none";
-	    			document.getElementById('Category5').style.display="none";
-	    			document.getElementById('Category6').style.display="none";
-	    			document.getElementById('Category7').style.display="none";
-	    			document.getElementById('Category8').style.display="none";	
 	    		}
 	    		else if(val==3)
 	    		{
@@ -200,10 +140,6 @@
 	    			document.getElementById('Category2').style.display="none";
 	    			document.getElementById('Category3').style.display="block";
 	    			document.getElementById('Category4').style.display="none";
-	    			document.getElementById('Category5').style.display="none";
-	    			document.getElementById('Category6').style.display="none";
-	    			document.getElementById('Category7').style.display="none";
-	    			document.getElementById('Category8').style.display="none";	
 	    		}
 	    		else if(val==4)
 	    		{
@@ -211,56 +147,7 @@
 	    			document.getElementById('Category2').style.display="none";
 	    			document.getElementById('Category3').style.display="none";
 	    			document.getElementById('Category4').style.display="block";
-	    			document.getElementById('Category5').style.display="none";
-	    			document.getElementById('Category6').style.display="none";
-	    			document.getElementById('Category7').style.display="none";
-	    			document.getElementById('Category8').style.display="none";	
 	    		}
-	    		else if(val==5)
-	    		{
-	    			document.getElementById('Category').style.display="none";
-	    			document.getElementById('Category2').style.display="none";
-	    			document.getElementById('Category3').style.display="none";
-	    			document.getElementById('Category4').style.display="none";
-	    			document.getElementById('Category5').style.display="block";
-	    			document.getElementById('Category6').style.display="none";
-	    			document.getElementById('Category7').style.display="none";
-	    			document.getElementById('Category8').style.display="none";	
-	    		}
-	    		else if(val==6)
-	    		{
-	    			document.getElementById('Category').style.display="none";
-	    			document.getElementById('Category2').style.display="none";
-	    			document.getElementById('Category3').style.display="none";
-	    			document.getElementById('Category4').style.display="none";
-	    			document.getElementById('Category5').style.display="none";
-	    			document.getElementById('Category6').style.display="block";
-	    			document.getElementById('Category7').style.display="none";
-	    			document.getElementById('Category8').style.display="none";	
-	    		}
-	    		else if(val==7)
-	    		{
-	    			document.getElementById('Category').style.display="none";
-	    			document.getElementById('Category2').style.display="none";
-	    			document.getElementById('Category3').style.display="none";
-	    			document.getElementById('Category4').style.display="none";
-	    			document.getElementById('Category5').style.display="none";
-	    			document.getElementById('Category6').style.display="none";
-	    			document.getElementById('Category7').style.display="block";
-	    			document.getElementById('Category8').style.display="none";	
-	    		}
-	    		else if(val==8)
-	    		{
-	    			document.getElementById('Category').style.display="none";
-	    			document.getElementById('Category2').style.display="none";
-	    			document.getElementById('Category3').style.display="none";
-	    			document.getElementById('Category4').style.display="none";
-	    			document.getElementById('Category5').style.display="none";
-	    			document.getElementById('Category6').style.display="none";
-	    			document.getElementById('Category7').style.display="none";
-	    			document.getElementById('Category8').style.display="block";	
-	    		}
-
         	}
         /* $(document).ready(function() {
             $("#insert").on("click", function(e) { //등록
@@ -301,108 +188,129 @@
 
 
 
-					<div id="selectCA_NO">
-						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="1"  onclick="checkLayer(1);"/>프로그래밍
-						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" onclick="checkLayer(2);"/>디자인 툴
-						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" onclick="checkLayer(3);"/>실무 역량
-						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" onclick="checkLayer(4);"/>뷰   티
-						<input id="tmp_tabs_1" name="tmp_tabs_1"type="radio" value="0" onclick="checkLayer(5);"/>외국어
-						<input id="tmp_tabs_1" name="tmp_tabs_1"type="radio" value="0" onclick="checkLayer(6);"/>음악
-						<input id="tmp_tabs_1" name="tmp_tabs_1"type="radio" value="0" onclick="checkLayer(7);"/>라이프스타일
-						<input id="tmp_tabs_1" name="tmp_tabs_1"type="radio" value="0" onclick="checkLayer(8);"/>운   동
+					<div id="selectCA_NO" class="form-check-inline form-check">
+						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="1" class="form-check-input" onclick="checkLayer(1);"/>컴퓨터
+						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" class="form-check-input" onclick="checkLayer(2);"/>외국어
+						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" class="form-check-input" onclick="checkLayer(3);"/>라이프스타일
+						<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" class="form-check-input" onclick="checkLayer(4);"/>기타				
 					</div>
+					<div class="col-lg-6" id="Category">
+                         <div class="card">
+                              <div class="card-header">Move Category</div>
+                              <div class="card-body">
+                                   <div class="card-title">
+                                        <h3 class="text-center title-2">Category</h3>
+                                   </div>
+                                   <hr>
+                                   <form id="frm1">
+                                       <div class="form-group">
+                                          <label for="cc-payment" class="control-label mb-1">Category Number</label>
+                                          <input id="CA_NO" name="CA_NO" type="text" class="form-control" aria-required="true" aria-invalid="false" value="${map1 }">
+                                       </div>
+                                       <div class="form-group has-success">
+                                          <label for="cc-name" class="control-label mb-1">Large Section</label>
+                                          <input id="CA_LSECTION" name="CA_LSECTION" type="text" class="form-control cc-name valid" value="컴퓨터" >
+                                          <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="cc-number" class="control-label mb-1">Small Section</label>
+                                          <input id="CA_SSECION" name="CA_SSECTION" type="tel" class="form-control cc-number identified visa" placeholder="카테고리를 입력해 주세요" value="" >
+                                          <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                          <input type="hidden" name="CA_IDX" value="${map9.CA_IDX }"/>
+                                       </div>
+                                    </form>
+                                    <a href="#this" class="btn btn-success btn-sm" id="add1">추가하기</a>
+                               </div>
+                            </div>
+                      </div>
+					<div class="col-lg-6" id="Category2">
+                         <div class="card">
+                              <div class="card-header">Move Category</div>
+                              <div class="card-body">
+                                   <div class="card-title">
+                                        <h3 class="text-center title-2">Category</h3>
+                                   </div>
+                                   <hr>
+                                   <form id="frm1">
+                                       <div class="form-group">
+                                          <label for="cc-payment" class="control-label mb-1">Category Number</label>
+                                          <input id="CA_NO" name="CA_NO" type="text" class="form-control" aria-required="true" aria-invalid="false" value="${map1 }">
+                                       </div>
+                                       <div class="form-group has-success">
+                                          <label for="cc-name" class="control-label mb-1">Large Section</label>
+                                          <input id="CA_LSECTION" name="CA_LSECTION" type="text" class="form-control cc-name valid" value="외국어" >
+                                          <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="cc-number" class="control-label mb-1">Small Section</label>
+                                          <input id="CA_SSECION" name="CA_SSECTION" type="tel" class="form-control cc-number identified visa" placeholder="카테고리를 입력해 주세요" value="" >
+                                          <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                          <input type="hidden" name="CA_IDX" value="${map9.CA_IDX }"/>
+                                       </div>
+                                    </form>
+                                    <a href="#this" class="btn btn-success btn-sm" id="add2">추가하기</a>
+                               </div>
+                            </div>
+                      </div>
+					<div class="col-lg-6" id="Category3">
+                         <div class="card">
+                              <div class="card-header">Move Category</div>
+                              <div class="card-body">
+                                   <div class="card-title">
+                                        <h3 class="text-center title-2">Category</h3>
+                                   </div>
+                                   <hr>
+                                   <form id="frm1">
+                                       <div class="form-group">
+                                          <label for="cc-payment" class="control-label mb-1">Category Number</label>
+                                          <input id="CA_NO" name="CA_NO" type="text" class="form-control" aria-required="true" aria-invalid="false" value="${map3 }">
+                                       </div>
+                                       <div class="form-group has-success">
+                                          <label for="cc-name" class="control-label mb-1">Large Section</label>
+                                          <input id="CA_LSECTION" name="CA_LSECTION" type="text" class="form-control cc-name valid" value="라이프스타일" >
+                                          <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="cc-number" class="control-label mb-1">Small Section</label>
+                                          <input id="CA_SSECION" name="CA_SSECTION" type="tel" class="form-control cc-number identified visa" placeholder="카테고리를 입력해 주세요" value="" >
+                                          <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                          <input type="hidden" name="CA_IDX" value="${map9.CA_IDX }"/>
+                                       </div>
+                                    </form>
+                                    <a href="#this" class="btn btn-success btn-sm" id="add3">추가하기</a>
+                               </div>
+                            </div>
+                      </div>
+					<div class="col-lg-6" id="Category4">
+                         <div class="card">
+                              <div class="card-header">Move Category</div>
+                              <div class="card-body">
+                                   <div class="card-title">
+                                        <h3 class="text-center title-2">Category</h3>
+                                   </div>
+                                   <hr>
+                                   <form id="frm1">
+                                       <div class="form-group">
+                                          <label for="cc-payment" class="control-label mb-1">Category Number</label>
+                                          <input id="CA_NO" name="CA_NO" type="text" class="form-control" aria-required="true" aria-invalid="false" value="${map4 }">
+                                       </div>
+                                       <div class="form-group has-success">
+                                          <label for="cc-name" class="control-label mb-1">Large Section</label>
+                                          <input id="CA_LSECTION" name="CA_LSECTION" type="text" class="form-control cc-name valid" value="기타" >
+                                          <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                       </div>
+                                       <div class="form-group">
+                                          <label for="cc-number" class="control-label mb-1">Small Section</label>
+                                          <input id="CA_SSECION" name="CA_SSECTION" type="tel" class="form-control cc-number identified visa" placeholder="카테고리를 입력해 주세요" value="" >
+                                          <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                          <input type="hidden" name="CA_IDX" value="${map9.CA_IDX }"/>
+                                       </div>
+                                    </form>
+                                    <a href="#this" class="btn btn-success btn-sm" id="add4">추가하기</a>
+                               </div>
+                            </div>
+                      </div>
 					
-					<div id="Category">
-						<form id="frm1">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map1 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_SSECTION" type="text"  value="프로그래밍" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_LSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add1">추가하기1</a>
-					</div>
-					
-					<div id="Category2">
-						<form id="frm2">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map2 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_LSECTION" type="text"  value="디자인 툴" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_SSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add2">추가하기2</a>
-					</div>
-					<div id="Category3">
-						<form id="frm3">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map3 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_LSECTION" type="text"  value="실무역량" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_SSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add3">추가하기3</a>
-					</div>
-					<div id="Category4">
-						<form id="frm4">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map4 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_LSECTION" type="text"  value="뷰티" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_SSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add4">추가하기4</a>
-					</div>
-					<div id="Category5">
-						<form id="frm5">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map5 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_LSECTION" type="text"  value="외국어" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_SSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add5">추가하기5</a>
-					</div>
-					<div id="Category6">
-						<form id="frm6">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map6 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_LSECTION" type="text"  value="음악" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_SSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add6">추가하기6</a>
-					</div>
-					<div id="Category7">
-						<form id="frm7">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map7 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_LSECTION" type="text"  value="라이프스타일" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_SSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add7">추가하기7</a>
-					</div>
-					<div id="Category8">
-						<form id="frm8">
-						<p>카테고리 번호</p>
-						<p><input id="CA_NO" name="CA_NO" type="text"  value="${map8 }" class="input_txt03 clearbt"/></p>
-						<p>대 분류</p>
-						<p><input id="CA_LSECTION" name="CA_LSECTION" type="text"  value="운동" class="input_txt03"/></p>
-						<p>소 분류</p>
-						<p><input id="CA_SSECTION" name="CA_SSECTION" type="text" placeholder="카테고리를 입력해 주세요" value="" class="input_txt03"/>	</p>
-						</form>
-						<a href="#this" class="btn" id="add8">추가하기8</a>
-					</div>
-
-
 <%@ include file="/WEB-INF/include/include-body.jspf" %>
 </body>
 </html>

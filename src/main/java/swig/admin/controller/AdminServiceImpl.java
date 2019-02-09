@@ -277,41 +277,32 @@ public class AdminServiceImpl implements AdminService {
 		ca_no = array[0] + "-" + str;
 		map.put("map4", ca_no);
 		////
-		str = adminDAO.selectFiveMaxValue();
-		array = ((String) str).split("-");
-		
-		big = Integer.parseInt(array[1]) + 1;
-		
-		str = String.valueOf(big);
-		ca_no = array[0] + "-" + str;
-		map.put("map5", ca_no);
-		///
-		str = adminDAO.selectSixMaxValue();
-		array = ((String) str).split("-");
-		
-		big = Integer.parseInt(array[1]) + 1;
-		
-		str = String.valueOf(big);
-		ca_no = array[0] + "-" + str;
-		map.put("map6", ca_no);
-		////
-		str = adminDAO.selectSevenMaxValue();
-		array = ((String) str).split("-");
-		
-		big = Integer.parseInt(array[1]) + 1;
-		
-		str = String.valueOf(big);
-		ca_no = array[0] + "-" + str;
-		map.put("map7", ca_no);
-		////
-		str = adminDAO.selectEightMaxValue();
-		array = ((String) str).split("-");
-		
-		big = Integer.parseInt(array[1]) + 1;
-		
-		str = String.valueOf(big);
-		ca_no = array[0] + "-" + str;
-		map.put("map8", ca_no);
+		/*
+		 * str = adminDAO.selectFiveMaxValue(); array = ((String) str).split("-");
+		 * 
+		 * big = Integer.parseInt(array[1]) + 1;
+		 * 
+		 * str = String.valueOf(big); ca_no = array[0] + "-" + str; map.put("map5",
+		 * ca_no); /// str = adminDAO.selectSixMaxValue(); array = ((String)
+		 * str).split("-");
+		 * 
+		 * big = Integer.parseInt(array[1]) + 1;
+		 * 
+		 * str = String.valueOf(big); ca_no = array[0] + "-" + str; map.put("map6",
+		 * ca_no); //// str = adminDAO.selectSevenMaxValue(); array = ((String)
+		 * str).split("-");
+		 * 
+		 * big = Integer.parseInt(array[1]) + 1;
+		 * 
+		 * str = String.valueOf(big); ca_no = array[0] + "-" + str; map.put("map7",
+		 * ca_no); //// str = adminDAO.selectEightMaxValue(); array = ((String)
+		 * str).split("-");
+		 * 
+		 * big = Integer.parseInt(array[1]) + 1;
+		 * 
+		 * str = String.valueOf(big); ca_no = array[0] + "-" + str; map.put("map8",
+		 * ca_no);
+		 */
 		//map1.put("map", ca_no);
 		//System.out.println(map1.get("CA_NO"));
 		//return map1;
