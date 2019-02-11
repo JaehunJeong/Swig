@@ -96,26 +96,31 @@ public class LectureServiceImpl implements LectureService{
 	
 	// 튜터의 강의개설 장소 불러옴
 	@Override
-	public Map<String, Object> lectureApply1(Map<String,Object>map1) throws Exception {
+	public List<Map<String, Object>> lectureApply1(Map<String,Object>map1) throws Exception {
 		return lectureDAO.lectureLocation(map1);
 	}
 	
 	// 튜터의 강의개설 요일 불러옴
 	@Override
-	public Map<String, Object> lectureApply2(Map<String,Object>map2) throws Exception {
+	public List<Map<String, Object>>  lectureApply2(Map<String,Object>map2) throws Exception {
 		return lectureDAO.lectureDate(map2);
 	}
 	
 	// 튜터의 강의개설 시간 불러옴
 	@Override
-	public Map<String, Object> lectureApply3(Map<String,Object>map3) throws Exception {
+	public List<Map<String, Object>>  lectureApply3(Map<String,Object>map3) throws Exception {
 		return lectureDAO.lectureTime(map3);
 	}
 	
 	@Override
-	public void lectureRequestInsert1(Map<String, Object> Apply) throws Exception{
-		lectureDAO.lectureRequestInsert1(Apply);
+	public void LectureApplyInsert1(Map<String, Object> map) throws Exception{
+		lectureDAO.lectureRequestInsert1(map);
 	};
+	
+	@Override
+	public void LectureApplyInsert2(Map<String, Object> map) throws Exception{
+		lectureDAO.lectureRequestInsert2(map);
+	}
 	
 	
 }

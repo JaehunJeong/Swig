@@ -62,19 +62,18 @@ public class LectureDAO extends AbstractDAO{
 	   
 	   // �긽�꽭蹂닿린�뿉�꽌 媛뺤쓽 �쐞移� 蹂댁뿬以�
 		@SuppressWarnings("unchecked") //而댄뙆�씪 寃쎄퀬 �궗�슜 x
-		public Map<String, Object> lectureLocation(Map<String, Object> map1) throws Exception{
-			return (Map<String, Object>)
-					selectOne("lectureDetail.LectureLocation", map1);
+		public List<Map<String, Object>> lectureLocation(Map<String, Object> map1) throws Exception{
+		  return (List<Map<String, Object>>) selectList("lectureDetail.LectureLocation", map1);
 		}
 
 	   @SuppressWarnings("unchecked")
-	   public Map<String, Object> lectureDate(Map<String, Object> map2) throws Exception{
-	      return (Map<String, Object>)selectOne("lectureDetail.lectureDate",map2);
+	   public List<Map<String, Object>> lectureDate(Map<String, Object> map2) throws Exception{
+	      return (List<Map<String, Object>>) selectList("lectureDetail.lectureDate",map2);
 	   }
 	   
 	   @SuppressWarnings("unchecked")
-	   public Map<String, Object> lectureTime(Map<String, Object> map3) throws Exception{
-	      return (Map<String, Object>)selectOne("lectureDetail.lectureTime",map3);
+	   public List<Map<String, Object>> lectureTime(Map<String, Object> map3) throws Exception{
+	      return (List<Map<String, Object>>) selectList("lectureDetail.lectureTime",map3);
 	   }
 	   
 	   @SuppressWarnings("unchecked")
@@ -162,10 +161,12 @@ public class LectureDAO extends AbstractDAO{
 	      delete("lectureFile.deleteLectureFile", map);
 	   }
 	   
-	   public void lectureRequestInsert1(Map<String, Object> Apply) {
-		  insert("lectureDetail.lectureRequestInsert1", Apply);
+	   public void lectureRequestInsert1(Map<String, Object> map) {
+		  insert("lectureDetail.lectureRequestInsert1", map);
 	   }
 
-	
-	   
+	   public void lectureRequestInsert2(Map<String, Object> map) {
+			  insert("lectureDetail.lectureRequestInsert2", map);
+		   }
+
 }

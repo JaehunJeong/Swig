@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import swig.common.AbstractDAO;
+
 @Repository("categoryDAO")
 public class CategoryDAO extends AbstractDAO{
 	
@@ -41,8 +42,8 @@ public class CategoryDAO extends AbstractDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectcate1() throws Exception{
-		return (List<Map<String, Object>>)selectList("category.selectcate1");
+	public List<Map<String, Object>> selectcate1(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>)selectPagingList("category.selectcate1", map);
 	}
 
 	@SuppressWarnings("unchecked")

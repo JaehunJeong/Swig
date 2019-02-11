@@ -147,9 +147,9 @@ public class LectureController {
 
 		@RequestMapping(value="/cate1")
 		public ModelAndView cate1(CommandMap commandMap) throws Exception{
-			ModelAndView mav = new ModelAndView("/lecture/LectureList");
+			ModelAndView mav = new ModelAndView("jsonView");
 
-			List<Map<String,Object>> lseclist1 = categoryService.selectcate1();
+			List<Map<String,Object>> lseclist1 = categoryService.selectcate1(commandMap.getMap());
 			mav.addObject("lseclist1", lseclist1);
 			System.out.println(lseclist1);
 			return mav;
@@ -159,17 +159,17 @@ public class LectureController {
 		public ModelAndView cate2(CommandMap commandMap) throws Exception{
 			ModelAndView mav = new ModelAndView("/lecture/LectureList");
 
-			List<Map<String,Object>> list2 = categoryService.selectcate2();
-			mav.addObject("list2", list2);
-			
+			List<Map<String,Object>> lseclist2 = categoryService.selectcate2();
+			mav.addObject("lseclist2", lseclist2);
+			System.out.println(lseclist2);
 			return mav;
 		}
 		@RequestMapping(value="/cate3")
 		public ModelAndView cate3(CommandMap commandMap) throws Exception{
 			ModelAndView mav = new ModelAndView("/lecture/LectureList");
 
-			List<Map<String,Object>> list3 = categoryService.selectcate3();
-			mav.addObject("list3", list3);
+			List<Map<String,Object>> lseclist3 = categoryService.selectcate3();
+			mav.addObject("lseclist3", lseclist3);
 			
 			return mav;
 		}
@@ -177,8 +177,8 @@ public class LectureController {
 		public ModelAndView cate4(CommandMap commandMap) throws Exception{
 			ModelAndView mav = new ModelAndView("/lecture/LectureList");
 
-			List<Map<String,Object>> list4 = categoryService.selectcate4();
-			mav.addObject("list4", list4);
+			List<Map<String,Object>> lseclist4 = categoryService.selectcate4();
+			mav.addObject("lseclist4", lseclist4);
 			
 			return mav;
 		}
@@ -193,15 +193,28 @@ public class LectureController {
 	public ModelAndView selectLectureList (CommandMap commandMap) throws Exception{
 		ModelAndView mav = new ModelAndView("jsonView");
 		
-		List<Map<String,Object>> list = lectureService.selectLectureList(commandMap.getMap());
-		mav.addObject("list", list);
+		/*
+		 * List<Map<String,Object>> list =
+		 * lectureService.selectLectureList(commandMap.getMap()); mav.addObject("list",
+		 * list); System.out.println(list);
+		 */
 		
-		 if(list.size() > 0){
-		        mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		List<Map<String,Object>> lseclist1 = categoryService.selectcate1(commandMap.getMap());
+		mav.addObject("lseclist1", lseclist1);
+		
+		System.out.println(lseclist1);
+		/*
+		 * if(list.size() > 0){ mav.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		 * } else{ mav.addObject("TOTAL", 0); }
+		 */
+
+		 if(lseclist1.size() > 0){
+		        mav.addObject("TOTAL", lseclist1.get(0).get("TOTAL_COUNT"));
 		    }
 		    else{
 		        mav.addObject("TOTAL", 0);
 		    }
+		 
 		return mav;
 	}
 	
@@ -212,6 +225,7 @@ public class LectureController {
 		ModelAndView mav = new ModelAndView("/lecture/LectureDetail");
 		
 		Map<String,Object> map = lectureService.selectLectureDetail(commandMap.getMap());
+		
 		
 		/*commandMap.put("M_NO", session.getAttribute("session_member_no"));
 		// M_NO 瑜� �걣�뼱���빞 �닔媛뺤떊泥��쓣 �닃���쓣 �븣 �젣��濡� �꽆湲� �닔 �엳�떎. 洹몃윭�땲 �븘�닔 
@@ -277,31 +291,43 @@ public class LectureController {
 			
 		return mav;
 	}
-	
-		@RequestMapping(value = "/LectureApply")	// �닔媛� �떊泥�
-		public ModelAndView lectureApplyForm(CommandMap commandMap) throws Exception {
-			ModelAndView mav = new ModelAndView("/lecture/LectureApply");
+		
+		@RequestMapping(value = "/LectureApply")
+		public ModelAndView lectureApply(CommandMap commandMap) throws Exception {
+			ModelAndView mav = new ModelAndView("/lecture/LectureApply1");
 			
-			Map<String, Object> map1 = lectureService.lectureApply1(commandMap.getMap());
-			Map<String, Object> map2 = lectureService.lectureApply2(commandMap.getMap());
-			Map<String, Object> map3 = lectureService.lectureApply3(commandMap.getMap());
+			List<Map<String, Object>> map1 = lectureService.lectureApply1(commandMap.getMap());
+			List<Map<String, Object>> map2 = lectureService.lectureApply2(commandMap.getMap());
+			List<Map<String, Object>> map3 = lectureService.lectureApply3(commandMap.getMap());
 			
+			mav.addObject("map1", map1);
+			mav.addObject("map2", map2);
+			mav.addObject("map3", map3);
+			
+			System.out.println(map1);System.out.println(map2);System.out.println(map3);
 			return mav;	
 		}
 		
-		@RequestMapping(value="/lectureApplyInsert")
-		public ModelAndView LectureApplyInsert(CommandMap commandMap) throws Exception{
-			ModelAndView mav = new ModelAndView("redirect:/LectureApply");
+		@RequestMapping(value = "/LectureApplyInsert1")
+		public ModelAndView LectureApplyInsert1(CommandMap commandMap) throws Exception {
+			ModelAndView mav = new ModelAndView("/lecture/LectureApply2");
+	
+	    	  lectureService.LectureApplyInsert1(commandMap.getMap());
+			return mav;	
+		}
+		
+		@RequestMapping(value = "/LectureApplyInsert2")
+		public ModelAndView LectureApplyInsert2(CommandMap commandMap) throws Exception{
+		ModelAndView mav = new ModelAndView("/lecture/LectureApply3");
 			
-			 lectureService.lectureRequestInsert1(commandMap.getMap());
-			 
+			 lectureService.LectureApplyInsert2(commandMap.getMap());
 			return mav;
 		}
 		
 		@RequestMapping(value = "/wish")
 		public ModelAndView wish(CommandMap commandMap) throws Exception {
 			
-			ModelAndView mav = new ModelAndView("/lecture/LectureDetail/wish");
+			ModelAndView mav = new ModelAndView("/lecture/wish");
 			
 			return mav;
 		}	
@@ -309,7 +335,7 @@ public class LectureController {
 		@RequestMapping(value = "/talk")
 		public ModelAndView talk(CommandMap commandMap) throws Exception {
 			
-			ModelAndView mav = new ModelAndView("/lecture/LectureDetail/talk");
+			ModelAndView mav = new ModelAndView("/lecture/talk");
 		
 			return mav;
 		}

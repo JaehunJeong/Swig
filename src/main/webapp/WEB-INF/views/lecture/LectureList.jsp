@@ -15,12 +15,12 @@
 	
 	<div id="CA_LSECTION">
 	<form name="category" id="category" method="post">
-    <div name="cate1" onclick="selectcate1()"> <!-- onmouseover="SelectCa_Ssection('CA_SSECTION-1')" -->컴퓨터</div>
-	<div name="cate2" onclick="selectcate2()"><!--  onmouseover="SelectCa_Ssection('CA_SSECTION-2')"> -->외국어</div>
-	<div name="cate3" onclick="selectcate3()"><!--  onmouseover="SelectCa_Ssection('CA_SSECTION-3')"> -->라이프스타일</div>
+    <div name="cate1" onclick="selectcate1()"> 컴퓨터</div>
+	<div name="cate2" onclick="selectcate2()">외국어</div>
+	<div name="cate3" onclick="selectcate3()">라이프스타일</div>
 	<div name="cate4" onclick="selectcate4()"><!-- < onmouseover="SelectCa_Ssection('CA_SSECTION-4')"> -->기타</div>
 	</form>
-	</div>
+	
 
 	
 <div  id="CA_SSECTION" style="display:none;">
@@ -79,24 +79,36 @@
 </div>
 </div>
 </div>
+</div>
 
 <div name="list">
 	<table>
 	<c:choose>
 		<c:when test="${fn:length(lseclist1) > 0}">
 			<c:forEach items="${lseclist1}" var="lseclist1">
-				<thead>
-				</thead>
-				<tbody>
-				
-				</tbody>
+				<h5>${lseclist1}</h5>
+			</c:forEach>
+		</c:when>
+		<c:when test="${fn:length(lseclist2) > 0}">
+			<c:forEach items="${lseclist2}" var="lseclist2">
+				<h5>${lseclist2}</h5>
+			</c:forEach>
+		</c:when>
+		<c:when test="${fn:length(lseclist3) > 0}">
+			<c:forEach items="${lseclist3}" var="lseclist3">
+				<h5>${lseclist3}</h5>
+			</c:forEach>
+		</c:when>
+		<c:when test="${fn:length(lseclist4) > 0}">
+			<c:forEach items="${lseclist4}" var="lseclist4">
+				<h5>${lseclist4}</h5>
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<tr>
 				<td>개설된 강의가 없습니다.</td>
 			</tr>
-		</c:otherwise>
+		</c:otherwise>	
 	</c:choose>
 	</table>	
 	
@@ -115,10 +127,17 @@ $('#CA_LSECTION').mouseout(function(){
 	$('#CA_SSECTION').hide();
 });
 
-function selectcate1(){
+function selectcate1(pageNo){
 	var form = document.category;
 	form.action="<c:url value='/cate1' />";
 	form.submit();
+	
+	 var comAjax = new ComAjax();
+	    comAjax.setUrl("<c:url value='/selectLectureList' />");
+	    comAjax.setCallback("fn_selectLectureListCallback");
+	    comAjax.addParam("PAGE_INDEX",pageNo);
+	    comAjax.addParam("PAGE_ROW", 15);
+	    comAjax.ajax();
 }
 
 function selectcate2(){
@@ -140,7 +159,50 @@ function selectcate4(){
 }
 
 
-function fn_selectLectureList(pageNo){
+function fn_openLectureDetail(obj){
+	var comSubmit = new ComSubmit();
+	 comSubmit.setUrl("<c:url value='/LectureDetail' />");
+     comSubmit.addParam("L_NO", obj.parent().find("#L_NO").val());
+     comSubmit.submit();
+}
+
+function fn_selectLectureListCallback(data){
+    var total = data.TOTAL;
+    var body = $("table>tbody");
+    body.empty();
+    if(total == 0){
+        var str = "<tr>" +
+                        "<td colspan='4'>조회된 결과가 없습니다.</td>" +
+                    "</tr>";
+        body.append(str);
+    }
+    else{
+        var params = {
+            divId : "PAGE_NAVI",
+            pageIndex : "PAGE_INDEX",
+            totalCount : total,
+            eventName : "selectcate1"
+        };
+        gfn_renderPaging(params);
+         
+        var str = "";
+        $.each(data.list, function(key, value){
+            str += "<tr>" +
+                        "<td class='subject'>" +
+                            "<a href='#this' name='name'>" + value.L_SUBJECT + "</a>" +
+                            "<input type='hidden' id='L_NO' value=" + value.L_NO + ">" +
+                        "</td>" +
+                    "</tr>";
+        });
+        body.append(str);
+         
+        $("a[name='name']").on("click", function(e){ //제목
+            e.preventDefault();
+            fn_openLectureDetail($(this));
+        });
+    }
+}
+/* function fn_selectLectureList(pageNo){
 	 var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/selectLectureList' />");
     comAjax.setCallback("fn_selectLectureListCallback");
@@ -184,7 +246,7 @@ function fn_selectLectureListCallback(data){
            fn_openLectureDetail($(this));
        });
    }
-}
+} */
 </script>
 </body>
 </html>

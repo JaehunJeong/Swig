@@ -13,7 +13,7 @@
 
 <div id="container_detail">
 <input type="hidden" id="tutorinfo" value="${L_OPEN.L_DESCRIBE_T}">
-<input type="hidden" id="M_NO" value="MEMBER.M_NO">
+<input type="hidden" id="M_NO" value="${MEMBER.M_NO}">
 <input type="hidden" id="tutorImage" value="">
 <input type="hidden" id="TUTOR.M_NO" value="">
 <input type="hidden" id="R_RESULT" value="">
@@ -35,6 +35,8 @@
 
 	<div class="lectureApply">
 		<form name="Apply" id="Apply" method="post">
+		<input type="hidden" id="M_NO" value="">
+		<input type="hidden" id="L_NO" value="${L_OPEN.L_NO}">
 		<div class="apply" onclick="selectapply()">수업 신청하기 ▶</div>
 		</form>
 	</div>
@@ -261,7 +263,7 @@
 			<h1>실시간 톡</h1>
 		</div>
 	</div>
-	
+</div>
 <%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script type="text/javascript">
 $(document).ready(function(){

@@ -39,8 +39,8 @@ public class CategoryServiceImpl implements CategoryService{
 	
 	
 	@Override
-	public List<Map<String, Object>> selectcate1() throws Exception {
-		return categoryDAO.selectcate1();
+	public List<Map<String, Object>> selectcate1(Map<String, Object> map) throws Exception {
+		return categoryDAO.selectcate1(map);
 	}
 	
 	@Override

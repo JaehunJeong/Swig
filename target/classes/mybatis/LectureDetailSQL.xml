@@ -14,7 +14,7 @@
 				LL_DETAIL,
 				LL_ADDCOST
 			FROM L_LOCATION
-			WHERE L_NO=#{L_NO}
+			WHERE L_NO='60'
 		]]>
 	</select>
 	
@@ -23,7 +23,7 @@
 		<![CDATA[
 			SELECT
 				LD_NO,
-				LD_DATE,
+				LD_DATE
 			FROM LECTURE_DATE
 			WHERE LL_NO=#{LL_NO}
 		]]>
@@ -35,7 +35,7 @@
 			SELECT
 				LT_NO,
 				LT_TIME,
-				LT_TIME2,
+				LT_TIME2
 			FROM
 				LECTURE_TIME
 			WHERE
@@ -213,10 +213,8 @@
 	
 	<insert id="lectureRequestInsert1" parameterType="hashmap">
 		<![CDATA[
-			INSERT REQUEST
+			INSERT INTO REQUEST
 			(
-				M_NO,
-				L_NO,
 				R_NO,
 				R_REGDATE,
 				R_LOCATION,
@@ -224,8 +222,6 @@
 				R_TIME
 			)
 			VALUES(
-				#{M_NO},
-				#{L_NO},
 				R_NO_SEQ.NEXTVAL,
 				#{R_REGDATE},
 				#{R_LOCATION},
@@ -235,4 +231,19 @@
 		]]>
 	</insert>
 	
+	<insert id="lectureRequestInsert2" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO REQUEST
+			(
+				R_LEVEL,
+				R_CAREER,
+				R_COMMENT
+			)
+			VALUES(
+				#{R_LEVEL},
+				#{R_CAREER},
+				#{R_COMMENT}
+			)
+		]]>
+	</insert>
 </mapper>

@@ -52,55 +52,77 @@
 	</select>
 	
 	<select id="selectcate1" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/>
 		<![CDATA[
-		select l_no, l_subject from l_open
+		select ROW_NUMBER() OVER (ORDER BY a.L_NO DESC) RNUM, t.*, a.*
+		from l_location t, (select * from l_open
 					 where ca_idx in (select ca_idx 
             	     				 from category 
             	   					 where ca_no like '1-%'
            	    					 )
+           	    	 )a
+		where t.l_no = a.l_no
            	    	
         ]]>
+        <include refid="common.pagingPost"/>
 	</select>
 	
 	<select id="selectcate2" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select ll_location, l_no
-		from l_location
-		where l_no = (select l_no from l_open
+		select t.*, a.*
+		from l_location t, (select * from l_open
 					 where ca_idx in (select ca_idx 
             	     				 from category 
             	   					 where ca_no like '2-%'
            	    					 )
-           	    	 )
+           	    	 )a
+		where t.l_no = a.l_no
         ]]>
 	</select>
 	
 	<select id="selectcate3" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select ll_location, l_no
-		from l_location
-		where l_no = (select l_no from l_open
+	select t.*, a.*
+		from l_location t, (select * from l_open
 					 where ca_idx in (select ca_idx 
             	     				 from category 
             	   					 where ca_no like '3-%'
            	    					 )
-           	    	 )
+           	    	 )a
+		where t.l_no = a.l_no
         ]]>
 	</select>
 	
 	<select id="selectcate4" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-		select ll_location, l_no
+		select t.*, a.*
+		from l_location t, (select * from l_open
+					 where ca_idx in (select ca_idx 
+            	     				 from category 
+            	   					 where ca_no like '4-%'
+           	    					 )
+           	    	 )a
+		where t.l_no = a.l_no
+        ]]>
+	</select>
+	
+	
+	
+	<!--
+		혹시 나중에 필요할지도 모르니까..
+	 select l_no, l_subject from l_open
+					 where ca_idx in (select ca_idx 
+            	     				 from category 
+            	   					 where ca_no like '1-%'
+           	    					 )
+	
+	
+	select ll_location, l_no
 		from l_location
 		where l_no = (select l_no from l_open
 					  where ca_idx in (select ca_idx 
             	     				 from category 
             	   					 where ca_no like '4-%'
            	    					 )
-           	    	 )
-        ]]>
-	</select>
-	
-	
-	
+           	    	 ) -->
 </mapper>
