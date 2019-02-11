@@ -2,10 +2,11 @@
 (function ($) {
   // USE STRICT
   "use strict";
-  var map1 = '<%request.getParameter("map1")%>';
+ // var map1 = '<%request.getParameter("map1")%>';
   try {
     //WidgetChart 1
     var ctx = document.getElementById("widgetChart1");
+    var map1 = document.getElementById("map1").value;
     if (ctx) {
       ctx.height = 130;
       var myChart = new Chart(ctx, {
@@ -80,7 +81,7 @@
           labels: ['January', 'February', 'March', 'April', 'May', 'June'],
           type: 'line',
           datasets: [{
-            data: [1, 18, 9, 17, 34, 22],
+            data: [4, 18, 9, 17, 34, 22],
             label: 'Dataset',
             backgroundColor: 'transparent',
             borderColor: 'rgba(255,255,255,.55)',

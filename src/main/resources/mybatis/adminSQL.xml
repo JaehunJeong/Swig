@@ -505,6 +505,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			L_NO,
 			M_NO,
 			L_SUBJECT,
+			L_CLASSTYPE,
 			L_PRICEPH,
 			L_TIMEPL,
 			L_COUNTPM

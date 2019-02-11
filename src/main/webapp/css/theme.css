@@ -4727,6 +4727,9 @@ section {
 .table-data3 tbody td.denied {
     color: #fa4251;
 }
+.table-data3 th.th1{
+	width : 1%;
+}
 
 /* ----- Footer ----- */
 .copyright {

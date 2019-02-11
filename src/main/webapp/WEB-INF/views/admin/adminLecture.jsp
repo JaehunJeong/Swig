@@ -78,7 +78,7 @@
                    				//"<td>" + value.L_NO + "</td>" +
                    				"<td class='title'>" +
                                     "<a href='#this' name='num'>" + value.L_NO + "</a>" +
-                                    "<a href='#this' name='cancel'> 취소하기</a>" +
+                                    "<a href='#this' name='cancel'> 카.페취소</a>" +
                                     "<input type='text' id='L_NO' value=" + value.L_NO + ">" +
                                 "</td>" +
                                 "<td class='title'>" +
@@ -89,6 +89,7 @@
                                 	"<a href='#this' name='subject'>" + value.L_SUBJECT + "</a>" +
                                 	"<input type='text' id='L_SUBJECT' value=" + value.L_SUBJECT + ">" +
                             	"</td>" +
+                            	"<td>" + value.L_CLASSTYPE + "</td>"+
                                 "<td>" + value.L_PRICEPH + "</td>" +
                                 "<td>" + value.L_TIMEPL + "</td>" +
                                 
@@ -178,14 +179,15 @@
                                 <!-- DATA TABLE-->
                                 <div class="table-responsive m-b-40">
                                     <table class="table table-borderless table-data3">
-                                        <thead>
+								        <thead>
 											<tr>
-												<th>강의번호</th>
-												<th>회원번호</th>
-												<th>강의제목</th>
-												<th>시간당 가격</th>
-												<th>강의당 시간</th>
-												<th>강의 월 별 횟수</th>
+												<th class="th1">강의번호</th>
+												<th >회원번호</th>
+												<th >강의제목</th>
+												<th >강의타입</th>
+												<th >시간당 가격</th>
+												<th >강의당 시간</th>
+												<th >강의 월 별 횟수</th>
 											</tr>
                                         </thead>
                                         <tbody>

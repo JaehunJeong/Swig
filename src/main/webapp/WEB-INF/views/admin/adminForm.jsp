@@ -139,7 +139,7 @@
 <body>
 	<body class="animsition">
     <div class="page-wrapper">
-
+		
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -150,7 +150,9 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                    	<li class="active">
+                    	
+                    	<li>
+                    		
                             <a href="#this" id="list">
                                 <i class="fas fa-users"></i>Member</a>
                         </li>
@@ -455,6 +457,7 @@
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                    <input type="text" id="map1" name="map1" value="${map1 }">
                                 </div>
                             </div>
                         </div>
@@ -467,6 +470,7 @@
 
     </div>
    </div>
+   
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
 </body>
 </html>
