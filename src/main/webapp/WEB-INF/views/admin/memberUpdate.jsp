@@ -25,6 +25,46 @@
 			e.preventDefault();
 			fn_resetMemberList();
 		});
+		$("#tutorList").on("click",function(e){
+			e.preventDefault();
+			fn_openTutorList();
+		});
+		
+		$("#tutorApplyList").on("click",function(e){
+			e.preventDefault();
+			fn_openTutorApplyList();
+		});
+		
+		$("#categoryList").on("click",function(e){
+			e.preventDefault();
+			fn_openCategoryList();
+		});
+		
+		$("#lectureList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureList();
+		});
+		$("#lectureSellingList").on("click",function(e){
+			e.preventDefault();
+			fn_openLecturenSellingList();
+		});
+		$("#lectureDeleteList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureDeleteList();
+		});
+		$("#lectureSoldoutList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureSoldoutList();
+		});
+		$("#approveList").on("click",function(e){
+			e.preventDefault();
+			fn_openApproveList();
+		});
+		
+		$("#refundList").on("click",function(e){
+			e.preventDefault();
+			fn_openRefundList();
+		});
 	});
 	function fn_resetMemberList(){
 		document.getElementById("frm1").reset();
@@ -51,6 +91,55 @@
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='dropUser'/>");
 		comSubmit.addParam("M_NO",$("#M_NO").val());
+		comSubmit.submit();
+	}
+	function fn_openTutorList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openTutorList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openTutorApplyList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openTutorApplyList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openCategoryList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openCategoryList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openLectureList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureList'/>");
+		comSubmit.submit();
+	}
+	function fn_openLecturenSellingList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureSellingList'/>");
+		comSubmit.submit();
+	}
+	function fn_openLectureDeleteList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureDeletedList'/>");
+		comSubmit.submit();
+	}
+	function fn_openLectureSoldoutList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureSoldoutList'/>");
+		comSubmit.submit();
+	}
+	function fn_openApproveList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openApproveList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openRefundList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openRefundList'/>");
 		comSubmit.submit();
 	}
 	</script>
@@ -86,9 +175,37 @@
                             <a href="#this" id="categoryList">
                                 <i class="fas fa-th-large"></i>Category</a>
                         </li>
-                        <li>
-                            <a href="#this" id="lectureList">
-                                <i class="fas fa-tags"></i>Lecture</a>
+                        <li class="has-sub">
+                        	<a class="js-arrow" href="#this">
+                        		<i class ="fas fa-tags"></i>Lecture
+                        	</a>
+                        	<ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="#this" id="lectureList">Pending</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureSellingList">Selling</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureDeleteList">Deleted</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureSoldoutList">Sold Out</a>
+                                </li>
+                            </ul>
+                        </li> 
+                        <li class="has-sub">
+                        	<a class="js-arrow" href="#this">
+                        		<i class ="fas fa-credit-card"></i>Kakao Order Status
+                        	</a>
+                        	<ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="#this" id="approveList">Approve</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="refundList">Refund</a>
+                                </li>
+                            </ul>
                         </li> 
                     </ul>
                 </nav>

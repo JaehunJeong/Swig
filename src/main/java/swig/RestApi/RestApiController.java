@@ -20,7 +20,11 @@ public class RestApiController {
 
 	@Resource(name="payService")
 	private PayService payService;
-	private String tid;
+	
+	 private String cid = "TC0ONETIME";
+	 private String tid;
+	 private String partner_order_id = "SWIG.Corp";
+	 private String cancel_tax_free_amount = "0";
 	private static KakaoRestApiHelper apiHelper = new KakaoRestApiHelper();
 	
 	@RequestMapping(value="kakaotest")
@@ -166,40 +170,63 @@ public class RestApiController {
 	public ModelAndView paySuccess(CommandMap commandMap) throws Exception
 	{
 		
-		ModelAndView mav = new ModelAndView("redirect:openLectureList");
+		ModelAndView mav = new ModelAndView("redirect:openApproveList");
 		payService.insertOrder(commandMap.getMap());
 		return mav;
 	}
 	
 	@RequestMapping(value="payCancel")
-	public ModelAndView payCancel(CommandMap commandMap) throws Exception
+	public ModelAndView payCancel(CommandMap commandMap, HttpServletRequest request) throws Exception
 	{
-		
-		ModelAndView mav = new ModelAndView("/admin/payCancel");
-		Map<String, Object> map = payService.selectOneReserve(commandMap.getMap());
-		
-		String price = map.get("L_TOTALPRICE").toString();
-		String name = map.get("L_SUBJECT").toString();
-		String count = map.get("L_TIMEPL").toString();
-		//String people = map.get(")
-		
-		apiHelper.setAdminKey("c96a3dcf1bd646ad68f5d46d5318a748");
-		//일단 등록하고 받아온거 예제 소스 키3229bd5301d8eb8368280d477fa574ec
-		//c96a3dcf1bd646ad68f5d46d5318a748
-		Map<String, String> paramMap;
-		
-		paramMap = new HashMap<String,String>();
-		paramMap.put("cid", "TC0ONETIME");
-		//https://devtalk.kakao.com/t/cid/32989/2
-		paramMap.put("tid", "T2586406766081626135");
-		paramMap.put("cancel_amount", "90000");
-		paramMap.put("cancel_tax_free_amount", "0");
-		
-		String result = apiHelper.cancelPayment(paramMap);
-		System.out.println("resultready="+result);
-		//String result_url = result.substring(result.indexOf("next_redirect_pc_url")+23, result.indexOf("android_app_scheme")-3);
-		//tid = result.substring(result.indexOf("tid")+6,result.indexOf("tms_result")-3);
-		//System.out.println("resulttid=" +tid);
-		return mav;
+		String O_IDX = request.getParameter("O_IDX");
+		 ModelAndView mav = new ModelAndView("redirect:openRefundList?O_IDX="+O_IDX+"");
+	      
+	      apiHelper.setAdminKey("c96a3dcf1bd646ad68f5d46d5318a748");
+	      //일단 등록하고 받아온거 예제 소스 키3229bd5301d8eb8368280d477fa574ec
+	      //c96a3dcf1bd646ad68f5d46d5318a748
+	      payService.updatePayCancel(commandMap.getMap());
+	      Map<String, Object> map = payService.selectOneKakaoInfo(commandMap.getMap());
+	      
+	      String tid = (String)map.get("O_TID");
+		  String cancel_amount = (String)map.get("O_AMOUNT_TOTAL");
+		  
+		  Map<String, String> paramMap = new HashMap<String,String>();
+		  paramMap.put("cid", cid);
+		  paramMap.put("tid", tid);
+		  paramMap.put("cancel_amount", cancel_amount);
+		  paramMap.put("cancel_tax_free_amount", cancel_tax_free_amount);
+		  
+		  String result = apiHelper.cancelPayment(paramMap);
+		  System.out.println(result);
+	      return mav;
 	}
+	@RequestMapping(value="approvePay")
+	   public ModelAndView approvePay(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		String O_IDX = request.getParameter("O_IDX");
+			ModelAndView mav = new ModelAndView("redirect:openApproveList?O_IDX="+O_IDX+"");
+		   
+		   apiHelper.setAdminKey("c96a3dcf1bd646ad68f5d46d5318a748");
+		      //일단 등록하고 받아온거 예제 소스 키3229bd5301d8eb8368280d477fa574ec
+		      //c96a3dcf1bd646ad68f5d46d5318a748
+		   payService.updatePaySuccess(commandMap.getMap());
+		   Map<String, Object> map = payService.selectOneKakaoInfo(commandMap.getMap());
+		   
+		   String tid = (String)map.get("O_TID");
+		   String partner_user_id = (String)map.get("O_PARTNER_USER_ID");
+		   String pg_token = (String)map.get("O_PG_TOKEN");
+		   
+		   Map<String, String> paramMap = new HashMap<String,String>();
+		   
+		   paramMap.put("cid", cid);
+		   paramMap.put("tid", tid);
+		   paramMap.put("partner_order_id", partner_order_id);
+		   paramMap.put("partner_user_id", partner_user_id);
+		   paramMap.put("pg_token", pg_token);
+		   
+		   String result = apiHelper.approvePayment(paramMap);
+		   System.out.println("resultready="+result);
+		   
+		   return mav;
+
+	   }
 }

@@ -1,4 +1,3 @@
-
 (function ($) {
   // USE STRICT
   "use strict";
@@ -7,16 +6,56 @@
     //WidgetChart 1
     var ctx = document.getElementById("widgetChart1");
     var map1 = document.getElementById("map1").value;
+    var map2 = document.getElementById("map2").value;
+    var map3 = document.getElementById("map3").value;
+    var map4 = document.getElementById("map4").value;
+    var map5 = document.getElementById("map5").value;
+    var lectureMap1 = document.getElementById("lectureMap1").value;
+    var lectureMap2 = document.getElementById("lectureMap2").value;
+    var lectureMap3 = document.getElementById("lectureMap3").value;
+    var lectureMap4 = document.getElementById("lectureMap4").value;
+    var lectureMap5 = document.getElementById("lectureMap5").value;
+    var tutorMap1 = document.getElementById("tutorMap1").value;
+    var tutorMap2 = document.getElementById("tutorMap2").value;
+    var tutorMap3 = document.getElementById("tutorMap3").value;
+    var tutorMap4 = document.getElementById("tutorMap4").value;
+    var tutorMap5 = document.getElementById("tutorMap5").value;
+    var payMap1 = document.getElementById("payMap1").value;
+    var payMap2 = document.getElementById("payMap2").value;
+    var payMap3 = document.getElementById("payMap3").value;
+    var payMap4 = document.getElementById("payMap4").value;
+    var payMap5 = document.getElementById("payMap5").value;
+    var caMap1 = document.getElementById("caMap1").value;
+    var caMap2 = document.getElementById("caMap2").value;
+    var caMap3 = document.getElementById("caMap3").value;
+    var caMap4 = document.getElementById("caMap4").value;
+    var caJanMap1 = document.getElementById("caJanMap1").value;
+    var caJanMap2 = document.getElementById("caJanMap2").value;
+    var caJanMap3 = document.getElementById("caJanMap3").value;
+    var caJanMap4 = document.getElementById("caJanMap4").value;
+    var caDecMap1 = document.getElementById("caDecMap1").value;
+    var caDecMap2 = document.getElementById("caDecMap2").value;
+    var caDecMap3 = document.getElementById("caDecMap3").value;
+    var caDecMap4 = document.getElementById("caDecMap4").value;
+    var caNovMap1 = document.getElementById("caNovMap1").value;
+    var caNovMap2 = document.getElementById("caNovMap2").value;
+    var caNovMap3 = document.getElementById("caNovMap3").value;
+    var caNovMap4 = document.getElementById("caNovMap4").value;
+    var caOctMap1 = document.getElementById("caOctMap1").value;
+    var caOctMap2 = document.getElementById("caOctMap2").value;
+    var caOctMap3 = document.getElementById("caOctMap3").value;
+    var caOctMap4 = document.getElementById("caOctMap4").value;
+    //var payMap5 = document.getElementById("payMap5").value;
     if (ctx) {
-      ctx.height = 130;
+      ctx.height = 100;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['October', 'November', 'December', 'January', 'February', 'March'],
+          labels: ['October', 'November', 'December', 'January', 'February'],
           type: 'line',
           datasets: [{
-            data:[map1, 2, 1, 2, 2,0],
-            label: 'Dataset',
+            data:[map1, map2, map3, map4, map5],
+            label: '횟수',
             backgroundColor: 'rgba(255,255,255,.1)',
             borderColor: 'rgba(255,255,255,.55)',
           },]
@@ -74,15 +113,15 @@
     //WidgetChart 2
     var ctx = document.getElementById("widgetChart2");
     if (ctx) {
-      ctx.height = 130;
+      ctx.height = 150;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: ['October', 'November', 'December', 'January', 'February'],
           type: 'line',
           datasets: [{
-            data: [4, 18, 9, 17, 34, 22],
-            label: 'Dataset',
+            data: [lectureMap1, lectureMap2, lectureMap3, lectureMap4, lectureMap5],
+            label: '횟수',
             backgroundColor: 'transparent',
             borderColor: 'rgba(255,255,255,.55)',
           },]
@@ -149,11 +188,11 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: ['October', 'November', 'December', 'January', 'February'],
           type: 'line',
           datasets: [{
-            data: [65, 59, 84, 84, 51, 55],
-            label: 'Dataset',
+            data: [tutorMap1, tutorMap2, tutorMap3, tutorMap4, tutorMap5],
+            label: '횟수',
             backgroundColor: 'transparent',
             borderColor: 'rgba(255,255,255,.55)',
           },]
@@ -199,6 +238,7 @@
           },
           elements: {
             line: {
+            	tension: 0.00001,
               borderWidth: 1
             },
             point: {
@@ -219,11 +259,11 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          labels: ['October', 'November', 'December', 'January', 'February'],
           datasets: [
             {
-              label: "My First dataset",
-              data: [78, 81, 80, 65, 58, 75, 60, 75, 65, 60, 60, 75],
+              label: "횟수",
+              data: [payMap1, payMap2, payMap3, payMap4, payMap5],
               borderColor: "transparent",
               borderWidth: "0",
               backgroundColor: "rgba(255,255,255,.3)"
@@ -254,8 +294,8 @@
     const brandService = 'rgba(0,173,95,0.8)'
 
     var elements = 10
-    var data1 = [52, 60, 55, 50, 65, 80, 57, 70, 105, 115]
-    var data2 = [102, 70, 80, 100, 56, 53, 80, 75, 65, 90]
+    var data1 = [payMap1, payMap2, payMap3, payMap4, payMap5]
+    var data2 = [3, 4, 5, 6, 7]
 
     var ctx = document.getElementById("recent-rep-chart");
     if (ctx) {
@@ -263,10 +303,10 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
+          labels: ['October', 'November', 'December', 'January', 'February'],
           datasets: [
             {
-              label: 'My First dataset',
+              label: '결제 완료 건수',
               backgroundColor: brandService,
               borderColor: 'transparent',
               pointHoverBackgroundColor: '#fff',
@@ -275,7 +315,7 @@
 
             },
             {
-              label: 'My Second dataset',
+              label: '환불 완료 건수',
               backgroundColor: brandProduct,
               borderColor: 'transparent',
               pointHoverBackgroundColor: '#fff',
@@ -306,8 +346,8 @@
               ticks: {
                 beginAtZero: true,
                 maxTicksLimit: 5,
-                stepSize: 50,
-                max: 150,
+                stepSize: 5,
+                max: 15,
                 fontFamily: "Poppins",
                 fontSize: 12
               },
@@ -342,10 +382,12 @@
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: [caMap1, caMap2,caMap3,caMap4],
               backgroundColor: [
                 '#00b5e9',
-                '#fa4251'
+                '#fa4251',
+                '#00ad5f',
+                '#5f0173'
               ],
               hoverBackgroundColor: [
                 '#00b5e9',
@@ -361,8 +403,247 @@
             }
           ],
           labels: [
-            'Products',
-            'Services'
+            'Computer',
+            'Language',
+            'LifeStyle',
+            'Others'
+            
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          cutoutPercentage: 55,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            titleFontFamily: "Poppins",
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 0,
+            bodyFontSize: 16
+          }
+        }
+      });
+    }
+    
+    var ctx = document.getElementById("percent-chart-1");
+    if (ctx) {
+      ctx.height = 280;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [
+            {
+              label: "My First dataset",
+              data: [caJanMap1, caJanMap2,caJanMap3,caJanMap4],
+              backgroundColor: [
+                '#00b5e9',
+                '#fa4251',
+                '#00ad5f',
+                '#5f0173'
+              ],
+              hoverBackgroundColor: [
+                '#00b5e9',
+                '#fa4251'
+              ],
+              borderWidth: [
+                0, 0
+              ],
+              hoverBorderColor: [
+                'transparent',
+                'transparent'
+              ]
+            }
+          ],
+          labels: [
+            'Computer',
+            'Language',
+            'LifeStyle',
+            'Others'
+            
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          cutoutPercentage: 55,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            titleFontFamily: "Poppins",
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 0,
+            bodyFontSize: 16
+          }
+        }
+      });
+    }
+    
+    var ctx = document.getElementById("percent-chart-12");
+    if (ctx) {
+      ctx.height = 280;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [
+            {
+              label: "My First dataset",
+              data: [caDecMap1, caDecMap2,caDecMap3,caDecMap4],
+              backgroundColor: [
+                '#00b5e9',
+                '#fa4251',
+                '#00ad5f',
+                '#5f0173'
+              ],
+              hoverBackgroundColor: [
+                '#00b5e9',
+                '#fa4251'
+              ],
+              borderWidth: [
+                0, 0
+              ],
+              hoverBorderColor: [
+                'transparent',
+                'transparent'
+              ]
+            }
+          ],
+          labels: [
+            'Computer',
+            'Language',
+            'LifeStyle',
+            'Others'
+            
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          cutoutPercentage: 55,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            titleFontFamily: "Poppins",
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 0,
+            bodyFontSize: 16
+          }
+        }
+      });
+    }
+    
+    var ctx = document.getElementById("percent-chart-11");
+    if (ctx) {
+      ctx.height = 280;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [
+            {
+              label: "My First dataset",
+              data: [caNovMap1, caNovMap2,caNovMap3,caNovMap4],
+              backgroundColor: [
+                '#00b5e9',
+                '#fa4251',
+                '#00ad5f',
+                '#5f0173'
+              ],
+              hoverBackgroundColor: [
+                '#00b5e9',
+                '#fa4251'
+              ],
+              borderWidth: [
+                0, 0
+              ],
+              hoverBorderColor: [
+                'transparent',
+                'transparent'
+              ]
+            }
+          ],
+          labels: [
+            'Computer',
+            'Language',
+            'LifeStyle',
+            'Others'
+            
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          cutoutPercentage: 55,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            titleFontFamily: "Poppins",
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 0,
+            bodyFontSize: 16
+          }
+        }
+      });
+    }
+    
+    var ctx = document.getElementById("percent-chart-10");
+    if (ctx) {
+      ctx.height = 280;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [
+            {
+              label: "My First dataset",
+              data: [caOctMap1, caOctMap2,caOctMap3,caOctMap4],
+              backgroundColor: [
+                '#00b5e9',
+                '#fa4251',
+                '#00ad5f',
+                '#5f0173'
+              ],
+              hoverBackgroundColor: [
+                '#00b5e9',
+                '#fa4251'
+              ],
+              borderWidth: [
+                0, 0
+              ],
+              hoverBorderColor: [
+                'transparent',
+                'transparent'
+              ]
+            }
+          ],
+          labels: [
+            'Computer',
+            'Language',
+            'LifeStyle',
+            'Others'
+            
           ]
         },
         options: {
@@ -390,7 +671,8 @@
   } catch (error) {
     console.log(error);
   }
-
+  
+  
 
 
   try {
@@ -1067,10 +1349,10 @@
           datasets: [{
             data: [45, 25, 20, 10],
             backgroundColor: [
-              "rgba(0, 123, 255,0.9)",
-              "rgba(0, 123, 255,0.7)",
+              "rgba(255, 0, 0,0.3)",
+              "rgba(0, 255, 0,0.3)",
               "rgba(0, 123, 255,0.5)",
-              "rgba(0,0,0,0.07)"
+              "rgba(0,0,255,0.3)"
             ],
             hoverBackgroundColor: [
               "rgba(0, 123, 255,0.9)",

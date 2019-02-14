@@ -54,7 +54,8 @@ public class KakaoRestApiHelper {
     private static final String PAYMENT_ORDERS = "/v1/payment/orders";
     //결제 내역 조회
     private static final String MANAGE_REPORT = "/v1/payment/manage/report";
-    
+    //결제 승인
+    private static final String PAYMENT_APPROVE = "/v1/payment/approve";
     private static final String CANCEL_PAYMENT ="/v1/payment/cancel";
     //Json 저장하는 아이
     private static final ObjectMapper JACKSON_OBJECT_MAPPER = new ObjectMapper();
@@ -281,6 +282,9 @@ public class KakaoRestApiHelper {
     public String cancelPayment(final Map<String, String> params) {
     	return request(HttpMethodType.POST,CANCEL_PAYMENT, mapToParams(params));
     }
+    public String approvePayment(final Map<String, String> params) {
+        return request(HttpMethodType.POST,PAYMENT_APPROVE, mapToParams(params));
+     }
     ///////////////////////////////////////////////////////////////
     // Push Notification
     ///////////////////////////////////////////////////////////////

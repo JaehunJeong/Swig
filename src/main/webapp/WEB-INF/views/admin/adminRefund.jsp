@@ -4,13 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 리스트</title>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <script type="text/javascript">
-		$(document).ready(function(){
-			window.onload=function(){fn_selectTutorApplyList(1);};
-			
-			$("#list").on("click",function(e){
+        $(document).ready(function(){
+        	window.onload=function(){fn_selectRefundList(1);};
+        	//var w = window.open("about:blank","_blank",'popup','width=340,height=420,scrollbars=yes');
+        	$("#add").on("click",function(e){
+    			e.preventDefault();
+				
+    			fn_openTutorInsert();
+    		});
+        	$("#list").on("click",function(e){
 				e.preventDefault();
 				fn_openMemberList();
 			});
@@ -55,8 +60,9 @@
 				e.preventDefault();
 				fn_openRefundList();
 			});
-		});
-		function fn_openMemberList(){
+    		
+        });
+        function fn_openMemberList(){
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='openMemberList'/>");
 			comSubmit.submit();
@@ -111,14 +117,26 @@
 			comSubmit.setUrl("<c:url value='openRefundList'/>");
 			comSubmit.submit();
 		}
-		function fn_openMemberDetail(obj){
+		function fn_openkakao(obj){
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='userDetail' />");
-            comSubmit.addParam("M_NO", obj.parent().find("#M_NO").val());
+            comSubmit.setUrl("<c:url value='kakaotest' />");
+            comSubmit.addParam("L_NO", obj.parent().find("#L_NO").val());
             comSubmit.submit();
         }
-		function fn_openTutorDetail(val){
-			var url = "adminTutorApplyDetail?T_NO="+val;
+        function fn_openrefund(obj){
+            var comSubmit = new ComSubmit();
+            comSubmit.setUrl("<c:url value='payCancel' />");
+            comSubmit.addParam("L_NO", obj.parent().find("#L_NO").val());
+            comSubmit.submit();
+        }
+        function fn_openTutorInsert(obj){
+        	//var comSubmit = new ComSubmit();
+    		window.open('<c:url value="openAddCategory"/>','popup','width=500,height=600,scrollbars=yes');
+        	//comSubmit.setUrl("<c:url value='openAddCategory'/>");
+    		//comSubmit.submit();
+        } 
+        function fn_openApproveModify(val){
+			var url = "payCancel?O_IDX="+val;
 			var comSubmit = new ComSubmit();
 		    comSubmit.setUrl("<c:url value='"+url+"' />");
 		    //comSubmit.addParam("T_NO",$("#T_NO").val());
@@ -126,99 +144,86 @@
 			
 		    //lacation.href="url";
 		}
-		function fn_openTutorPermit(obj){
-		    var comSubmit = new ComSubmit();
-		    comSubmit.setUrl("<c:url value='tutorApplyPermit' />");
-		    comSubmit.addParam("T_NO",$("#T_NO").val());
-		    comSubmit.submit();
-		}
-		
-		function fn_openTutorDeny()
-		{
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='tutorApplyDeny'/>");
-			comSubmit.addParam("T_NO",$("#T_NO").val());
-			comSubmit.submit();
-		}
-		 
-		function fn_selectTutorApplyList(pageNo){
-		    var comAjax = new ComAjax();
-		    comAjax.setUrl("<c:url value='tutorApplyList' />");
-		    comAjax.setCallback("fn_selectTutorApplyListCallback");
-		    comAjax.addParam("PAGE_INDEX",$("#PAGE_INDEX").val());
+        
+        
+        function fn_openCategoryDelete(val){
+        	var url = "deleteCategory?CA_IDX="+val;
+        	var comSubmit = new ComSubmit();
+    		comSubmit.setUrl("<c:url value='"+url+"'/>");
+    		comSubmit.submit();
+        }
+         
+        function fn_selectRefundList(pageNo){
+            var comAjax = new ComAjax();
+            comAjax.setUrl("<c:url value='refundList' />");
+            comAjax.setCallback("fn_selectRefundListCallback");
+            comAjax.addParam("PAGE_INDEX",$("#PAGE_INDEX").val());
 			comAjax.addParam("PAGE_ROW", 15);
-			//comAjax.addParam("T_NO_FE", $("#T_NO_FE").val());
-		    comAjax.ajax();
-		}
+			comAjax.addParam("CA_NO_FE", $("#CA_NO_FE").val());
+            comAjax.ajax();
+        }
         
          
-        function fn_selectTutorApplyListCallback(data){
+        function fn_selectRefundListCallback(data){
             var total = data.TOTAL;
             var body = $("table>tbody");
             body.empty();
             if(total == 0){
                 var str = "<tr>" +
-                                "<td colspan='10' style='text-align:center'>조회된 결과가 없습니다.</td>" +
+                                "<td colspan='18'>조회된 결과가 없습니다.</td>" +
                             "</tr>";
                 body.append(str);
             }
             else{
-            	var params = {
-                        divId : "PAGE_NAVI",
-                        pageIndex : "PAGE_INDEX",
-                        totalCount : total,
-                        eventName : "fn_selectTutorApplyList"
-                    };
+                var params = {
+                    divId : "PAGE_NAVI",
+                    pageIndex : "PAGE_INDEX",
+                    totalCount : total,
+                    eventName : "fn_selectRefundList"
+                };
                 gfn_renderPaging(params);
                  
                 var str = "";
-                $.each(data.applyList, function(key, value){
+                $.each(data.kakaoList, function(key, value){
                     str += "<tr>" +
-                                "<td>" + value.T_NO + "</td>" +
-                                "<td class='title'>" +
-                                    "<a href='#this' name='name'>" + value.M_NO + "</a>" +
-                                    "<input type='hidden' id='M_NO' value=" + value.M_NO + ">" +
-                                "</td>" +
-                                "<td>" + value.T_NICK + "</td>" +
-                                "<td>" + value.T_FINALEDU + "</td>" +
-                                "<td>" + value.T_COLLEGE + "</td>" +
-                                "<td>" + value.T_DEPT + "</td>" +
-                                "<td>" + value.T_QUALIFICATION + "</td>" +
-                                "<td>"+
-                                	"<input type='button' class='btn btn-link' value='DETAIL' onclick='fn_openTutorDetail("+value.T_NO+");'/>"+
-                           		"</td>"+
-                                "<td>"+
-                                	"<a href='#this' class='btn' name='tutorPermit' id='tutorPermit'>신청 수락</a>"+
-                                "</td>"+
-                                "<td>"+
-                            		"<a href='#this' class='btn' name='tutorDeny' id='tutorDeny'>신청 거절</a>"+
-                            	"</td>"+
+                                "<td>" + value.O_IDX + "</td>" +
+                                "<td>" + value.O_TID + "</td>" +
+                                "<td>" + value.O_CID + "</td>" +
+                                "<td>" + value.O_STATUS + "</td>" +
+                                "<td>" + value.O_PARTNER_ID + "</td>" +
+                                "<td>" + value.O_PARTNER_USER_ID + "</td>" +
+                                "<td>" + value.O_PAYMENT_METHOD_TYPE + "</td>" +
+                                "<td>" + value.O_ITEM_NAME + "</td>" +
+                                "<td>" + value.O_QUANTITY + "</td>" +
+                                "<td>" + value.O_AMOUNT_TOTAL + "</td>" +
+                                "<td>" + value.O_AMOUNT_VAT + "</td>" +
+                                "<td>" + value.O_CANCELAVAILABLE_TOTAL + "</td>" +
+                                "<td>" + value.O_CANCELAVAILABLE_VAT + "</td>" +
+                                "<td>" + value.O_CREATED_AT + "</td>" +
+                                "<td>" + value.O_CARD_BIN + "</td>" +
+                                "<td>" + value.O_CARD_CORP_NAME + "</td>" +
+                                "<td>" + value.O_INSTALL_MONTH + "</td>" +
+                                "<td>" + value.L_NO + "</td>" +
+                                "<td>" +
+                                	"<button type='submit' class='btn btn-success btn-sm' onclick='fn_openApproveModify("+value.O_IDX+");'>"+
+                                		"<i class='fa fa-eraser'></i> 환불하기"+
+                            		"</button>"+
+                        		"</td>" +
                             "</tr>";
                 });
                 body.append(str);
                  
-                $("a[name='name']").on("click", function(e){ //제목
-                    e.preventDefault();
-                    fn_openMemberDetail($(this));
-                });
-                $("a[name='detail']").on("click", function(e){ //제목
-                    e.preventDefault();
-                    fn_openTutorDetail($(this));
-                });
-                $("a[name='tutorPermit']").on("click", function(e){ //제목
-                    e.preventDefault();
-                    fn_openTutorPermit($(this));
-                });
-                $("a[name='tutorDeny']").on("click", function(e){ //제목
-                    e.preventDefault();
-                    fn_openTutorDeny($(this));
-                });
+              
+                
+                
+               
             }
         }
+        
     </script>
 </head>
 <body>
-<aside class="menu-sidebar d-none d-lg-block">
+	<aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="adminForm">
                     <img src="images/icon/logo.png" width ="120" height="100" alt="SWig" />
@@ -231,7 +236,7 @@
                             <a href="#this" id="list">
                                 <i class="fas fa-users"></i>Member</a>
                         </li>
-                        <li class="has-sub active">
+                        <li class="has-sub ">
                         	<a class="js-arrow" href="openMemberList">
                         		<i class ="fas fa-male"></i>Tutor
                         	</a>
@@ -239,7 +244,7 @@
                             	<li >
                                     <a href="#this" id="tutorList">Tutor List</a>
                                 </li>
-                                <li class="active">
+                                <li>
                                     <a href="#this" id="tutorApplyList">Apply List</a>
                                 </li>
                             </ul>
@@ -248,7 +253,7 @@
                             <a href="#this" id="categoryList">
                                 <i class="fas fa-th-large"></i>Category</a>
                         </li>
-                        <li class="has-sub">
+                         <li class="has-sub">
                         	<a class="js-arrow" href="#this">
                         		<i class ="fas fa-tags"></i>Lecture
                         	</a>
@@ -267,7 +272,7 @@
                                 </li>
                             </ul>
                         </li> 
-                       <li class="has-sub">
+                        <li class="has-sub active">
                         	<a class="js-arrow" href="#this">
                         		<i class ="fas fa-credit-card"></i>Kakao Order Status
                         	</a>
@@ -275,7 +280,7 @@
                             	<li>
                                     <a href="#this" id="approveList">Approve</a>
                                 </li>
-                                <li>
+                                <li class="active">
                                     <a href="#this" id="refundList">Refund</a>
                                 </li>
                             </ul>
@@ -289,7 +294,8 @@
             <header class="header-desktop">
                 
             </header>
-            <!-- END HEADER DESKTOP-->					
+            <!-- END HEADER DESKTOP-->
+			
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -298,23 +304,36 @@
                             <div class="col-md-12">   
                                 <!-- DATA TABLE-->
                                 <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
+                                    <table class="table table-borderless table-striped table-earning">
                                         <thead>
 											<tr>
-												<th>튜터번호</th>
-												<th>회원번호</th>
-												<th>닉네임</th>
-												<th>인증</th>
-												<th>학교</th>
-												<th>학과</th>
-												<th>상태</th>
-												<th>증명서 조회</th>
-												<th>승인</th>
-												<th>거절</th>
+												<th>승인번호</th>
+												<th>결제고유번호</th>
+												<th>가맹점 코드</th>
+												<th>결제상태값</th>
+												<th>가맹점</th>
+												<th>가맹점 회원 id</th>
+												<th>결제 수단</th>
+												<th>상품이름</th>
+												<th>상품 수량</th>
+												<th>결제금액</th>
+												<th>부가세</th>
+												<th>취소 가능 금액</th>
+												<th>취소 가능 부가세</th>
+												<th>결제 준비 요청 시각</th>
+												<th>카드 빈</th>
+												<th>카드사</th>
+												<th>할부 개월 수</th>
+												<th>강의 넘버</th>
+												<th>결제 승인</th>
+												
 											</tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                            
+                                        </tbody>
                                     </table>
+                                    <div id ="div_list"></div>
                                     <div id="PAGE_NAVI"></div>
 									<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
 									<br />
@@ -336,8 +355,6 @@
 
 
 <%@ include file="/WEB-INF/include/include-body.jspf" %>
+
 </body>
 </html>
-
-	
-	

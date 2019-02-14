@@ -145,7 +145,7 @@
          
         function fn_selectLectureList(pageNo){
             var comAjax = new ComAjax();
-            var url = "lectureList?L_CHK=P";
+            var url = "lectureList?L_CHK=N";
             comAjax.setUrl("<c:url value='"+url+"' />");
             comAjax.setCallback("fn_selectLectureListCallback");
             comAjax.addParam("PAGE_INDEX",$("#PAGE_INDEX").val());
@@ -155,7 +155,7 @@
         }
         function fn_selectComputerList(pageNo){
             var comAjax = new ComAjax();
-            var url = "computerList?L_CHK=P";
+            var url = "computerList?L_CHK=N";
             comAjax.setUrl("<c:url value='"+url+"' />");
             //comAjax.setUrl("<c:url value='computerList' />");
             comAjax.setCallback("fn_selectComputerListCallback");
@@ -166,7 +166,7 @@
         }
         function fn_selectLanguageList(pageNo){
             var comAjax = new ComAjax();
-            var url = "languageList?L_CHK=P";
+            var url = "languageList?L_CHK=N";
             //comAjax.setUrl("<c:url value='languageList' />");
             comAjax.setUrl("<c:url value='"+url+"' />");
             comAjax.setCallback("fn_selectLanguageListCallback");
@@ -177,7 +177,7 @@
         }
         function fn_selectLifeList(pageNo){
             var comAjax = new ComAjax();
-            var url = "lifeList?L_CHK=P";
+            var url = "lifeList?L_CHK=N";
             comAjax.setUrl("<c:url value='"+url+"' />");
             //comAjax.setUrl("<c:url value='lifeList' />");
             comAjax.setCallback("fn_selectLifeListCallback");
@@ -188,7 +188,7 @@
         }
         function fn_selectEtcList(pageNo){
             var comAjax = new ComAjax();
-            var url = "etcList?L_CHK=P";
+            var url = "etcList?L_CHK=N";
             comAjax.setUrl("<c:url value='"+url+"' />");
             //comAjax.setUrl("<c:url value='etcList' />");
             comAjax.setCallback("fn_selectEtcListCallback");
@@ -583,7 +583,7 @@
                         		<i class ="fas fa-tags"></i>Lecture
                         	</a>
                         	<ul class="list-unstyled navbar__sub-list js-sub-list">
-                            	<li class="active">
+                            	<li>
                                     <a href="#this" id="lectureList">Pending</a>
                                 </li>
                                 <li>
@@ -592,7 +592,7 @@
                                 <li>
                                     <a href="#this" id="lectureDeleteList">Deleted</a>
                                 </li>
-                                <li>
+                                <li class="active">
                                     <a href="#this" id="lectureSoldoutList">Sold Out</a>
                                 </li>
                             </ul>

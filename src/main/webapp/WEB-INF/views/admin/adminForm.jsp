@@ -8,11 +8,39 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var map1 = ${map1};
-		var map2 = ${map2};
-		var map3 = ${map3};
-		var map4 = ${map4};
-		var map5 = ${map5};
+		
+		document.getElementById('febchart').style.display="block";
+		document.getElementById('janchart').style.display="none";
+		document.getElementById('decchart').style.display="none";
+		document.getElementById('novchart').style.display="none";
+		document.getElementById('octchart').style.display="none";
+		///
+		document.getElementById('compercent').style.display="block";
+		document.getElementById('langpercent').style.display="block";
+		document.getElementById('lifepercent').style.display="block";
+		document.getElementById('otherspercent').style.display="block";
+		//////
+		document.getElementById('jancompercent').style.display="none";
+		document.getElementById('janlangpercent').style.display="none";
+		document.getElementById('janlifepercent').style.display="none";
+		document.getElementById('janotherspercent').style.display="none";
+		/////
+		document.getElementById('deccompercent').style.display="none";
+		document.getElementById('declangpercent').style.display="none";
+		document.getElementById('declifepercent').style.display="none";
+		document.getElementById('decotherspercent').style.display="none";
+		//////
+		document.getElementById('novcompercent').style.display="none";
+		document.getElementById('novlangpercent').style.display="none";
+		document.getElementById('novlifepercent').style.display="none";
+		document.getElementById('novotherspercent').style.display="none";
+		//////
+		document.getElementById('octcompercent').style.display="none";
+		document.getElementById('octlangpercent').style.display="none";
+		document.getElementById('octlifepercent').style.display="none";
+		document.getElementById('octotherspercent').style.display="none";
+		
+		
 		$("#list").on("click",function(e){
 			e.preventDefault();
 			fn_openMemberList();
@@ -36,6 +64,27 @@
 		$("#lectureList").on("click",function(e){
 			e.preventDefault();
 			fn_openLectureList();
+		});
+		$("#lectureSellingList").on("click",function(e){
+			e.preventDefault();
+			fn_openLecturenSellingList();
+		});
+		$("#lectureDeleteList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureDeleteList();
+		});
+		$("#lectureSoldoutList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureSoldoutList();
+		});
+		$("#approveList").on("click",function(e){
+			e.preventDefault();
+			fn_openApproveList();
+		});
+		
+		$("#refundList").on("click",function(e){
+			e.preventDefault();
+			fn_openRefundList();
 		});
 	});
 	
@@ -68,72 +117,176 @@
 		comSubmit.setUrl("<c:url value='openLectureList'/>");
 		comSubmit.submit();
 	}
+	function fn_openLecturenSellingList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureSellingList'/>");
+		comSubmit.submit();
+	}
+	function fn_openLectureDeleteList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureDeletedList'/>");
+		comSubmit.submit();
+	}
+	function fn_openLectureSoldoutList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureSoldoutList'/>");
+		comSubmit.submit();
+	}
+	function fn_openApproveList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openApproveList'/>");
+		comSubmit.submit();
+	}
 	
-	
-	/* var ctx = document.getElementById("widgetChart1");
-    if (ctx) {
-      ctx.height = 130;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['October', 'November', 'December', 'January', 'February'],
-          type: 'line',
-          datasets: [{
-            data: [1, 2, 1, 2, 2],
-            label: 'Dataset',
-            backgroundColor: 'rgba(255,255,255,.1)',
-            borderColor: 'rgba(255,255,255,.55)',
-          },]
-        },
-        options: {
-          maintainAspectRatio: true,
-          legend: {
-            display: false
-          },
-          layout: {
-            padding: {
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0
-            }
-          },
-          responsive: true,
-          scales: {
-            xAxes: [{
-              gridLines: {
-                color: 'transparent',
-                zeroLineColor: 'transparent'
-              },
-              ticks: {
-                fontSize: 2,
-                fontColor: 'transparent'
-              }
-            }],
-            yAxes: [{
-              display: false,
-              ticks: {
-                display: false,
-              }
-            }]
-          },
-          title: {
-            display: false,
-          },
-          elements: {
-            line: {
-              borderWidth: 0
-            },
-            point: {
-              radius: 0,
-              hitRadius: 10,
-              hoverRadius: 4
-            }
-          }
-        }
-      });
-    } */
-      
+	function fn_openRefundList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openRefundList'/>");
+		comSubmit.submit();
+	}
+	function checkLayer(val){
+    	if(val == 1)
+		{
+    		document.getElementById('febchart').style.display="block";
+    		document.getElementById('compercent').style.display="block";
+    		document.getElementById('langpercent').style.display="block";
+    		document.getElementById('lifepercent').style.display="block";
+    		document.getElementById('otherspercent').style.display="block";
+    		document.getElementById('janchart').style.display="none";
+    		document.getElementById('jancompercent').style.display="none";
+    		document.getElementById('janlangpercent').style.display="none";
+    		document.getElementById('janlifepercent').style.display="none";
+    		document.getElementById('janotherspercent').style.display="none";
+    		document.getElementById('decchart').style.display="none";
+    		document.getElementById('deccompercent').style.display="none";
+    		document.getElementById('declangpercent').style.display="none";
+    		document.getElementById('declifepercent').style.display="none";
+    		document.getElementById('decotherspercent').style.display="none";
+    		document.getElementById('novchart').style.display="none";
+    		document.getElementById('novcompercent').style.display="none";
+    		document.getElementById('novlangpercent').style.display="none";
+    		document.getElementById('novlifepercent').style.display="none";
+    		document.getElementById('novotherspercent').style.display="none";
+    		document.getElementById('octchart').style.display="none";
+    		document.getElementById('octcompercent').style.display="none";
+    		document.getElementById('octlangpercent').style.display="none";
+    		document.getElementById('octlifepercent').style.display="none";
+    		document.getElementById('octotherspercent').style.display="none";
+			
+		}
+		else if(val==2)
+		{
+			document.getElementById('febchart').style.display="none";
+    		document.getElementById('compercent').style.display="none";
+    		document.getElementById('langpercent').style.display="none";
+    		document.getElementById('lifepercent').style.display="none";
+    		document.getElementById('otherspercent').style.display="none";
+    		document.getElementById('janchart').style.display="block";
+    		document.getElementById('jancompercent').style.display="block";
+    		document.getElementById('janlangpercent').style.display="block";
+    		document.getElementById('janlifepercent').style.display="block";
+    		document.getElementById('janotherspercent').style.display="block";
+    		document.getElementById('decchart').style.display="none";
+    		document.getElementById('deccompercent').style.display="none";
+    		document.getElementById('declangpercent').style.display="none";
+    		document.getElementById('declifepercent').style.display="none";
+    		document.getElementById('decotherspercent').style.display="none";
+    		document.getElementById('novchart').style.display="none";
+    		document.getElementById('novcompercent').style.display="none";
+    		document.getElementById('novlangpercent').style.display="none";
+    		document.getElementById('novlifepercent').style.display="none";
+    		document.getElementById('novotherspercent').style.display="none";
+    		document.getElementById('octchart').style.display="none";
+    		document.getElementById('octcompercent').style.display="none";
+    		document.getElementById('octlangpercent').style.display="none";
+    		document.getElementById('octlifepercent').style.display="none";
+    		document.getElementById('octotherspercent').style.display="none";
+		}
+		else if(val==3)
+		{
+			document.getElementById('febchart').style.display="none";
+    		document.getElementById('compercent').style.display="none";
+    		document.getElementById('langpercent').style.display="none";
+    		document.getElementById('lifepercent').style.display="none";
+    		document.getElementById('otherspercent').style.display="none";
+    		document.getElementById('janchart').style.display="none";
+    		document.getElementById('jancompercent').style.display="none";
+    		document.getElementById('janlangpercent').style.display="none";
+    		document.getElementById('janlifepercent').style.display="none";
+    		document.getElementById('janotherspercent').style.display="none";
+    		document.getElementById('decchart').style.display="block";
+    		document.getElementById('deccompercent').style.display="block";
+    		document.getElementById('declangpercent').style.display="block";
+    		document.getElementById('declifepercent').style.display="block";
+    		document.getElementById('decotherspercent').style.display="block";
+    		document.getElementById('novchart').style.display="none";
+    		document.getElementById('novcompercent').style.display="none";
+    		document.getElementById('novlangpercent').style.display="none";
+    		document.getElementById('novlifepercent').style.display="none";
+    		document.getElementById('novotherspercent').style.display="none";
+    		document.getElementById('octchart').style.display="none";
+    		document.getElementById('octcompercent').style.display="none";
+    		document.getElementById('octlangpercent').style.display="none";
+    		document.getElementById('octlifepercent').style.display="none";
+    		document.getElementById('octotherspercent').style.display="none";
+		}
+		else if(val==4)
+		{
+			document.getElementById('febchart').style.display="none";
+    		document.getElementById('compercent').style.display="none";
+    		document.getElementById('langpercent').style.display="none";
+    		document.getElementById('lifepercent').style.display="none";
+    		document.getElementById('otherspercent').style.display="none";
+    		document.getElementById('janchart').style.display="none";
+    		document.getElementById('jancompercent').style.display="none";
+    		document.getElementById('janlangpercent').style.display="none";
+    		document.getElementById('janlifepercent').style.display="none";
+    		document.getElementById('janotherspercent').style.display="none";
+    		document.getElementById('decchart').style.display="none";
+    		document.getElementById('deccompercent').style.display="none";
+    		document.getElementById('declangpercent').style.display="none";
+    		document.getElementById('declifepercent').style.display="none";
+    		document.getElementById('decotherspercent').style.display="none";
+    		document.getElementById('novchart').style.display="block";
+    		document.getElementById('novcompercent').style.display="block";
+    		document.getElementById('novlangpercent').style.display="block";
+    		document.getElementById('novlifepercent').style.display="block";
+    		document.getElementById('novotherspercent').style.display="block";
+    		document.getElementById('octchart').style.display="none";
+    		document.getElementById('octcompercent').style.display="none";
+    		document.getElementById('octlangpercent').style.display="none";
+    		document.getElementById('octlifepercent').style.display="none";
+    		document.getElementById('octotherspercent').style.display="none";
+		}
+		else if(val==5)
+		{
+			document.getElementById('febchart').style.display="none";
+    		document.getElementById('compercent').style.display="none";
+    		document.getElementById('langpercent').style.display="none";
+    		document.getElementById('lifepercent').style.display="none";
+    		document.getElementById('otherspercent').style.display="none";
+    		document.getElementById('janchart').style.display="none";
+    		document.getElementById('jancompercent').style.display="none";
+    		document.getElementById('janlangpercent').style.display="none";
+    		document.getElementById('janlifepercent').style.display="none";
+    		document.getElementById('janotherspercent').style.display="none";
+    		document.getElementById('decchart').style.display="none";
+    		document.getElementById('deccompercent').style.display="none";
+    		document.getElementById('declangpercent').style.display="none";
+    		document.getElementById('declifepercent').style.display="none";
+    		document.getElementById('decotherspercent').style.display="none";
+    		document.getElementById('novchart').style.display="none";
+    		document.getElementById('novcompercent').style.display="none";
+    		document.getElementById('novlangpercent').style.display="none";
+    		document.getElementById('novlifepercent').style.display="none";
+    		document.getElementById('novotherspercent').style.display="none";
+    		document.getElementById('octchart').style.display="block";
+    		document.getElementById('octcompercent').style.display="block";
+    		document.getElementById('octlangpercent').style.display="block";
+    		document.getElementById('octlifepercent').style.display="block";
+    		document.getElementById('octotherspercent').style.display="block";
+		}
+
+	}
 	</script>
 </head>
 <body>
@@ -173,9 +326,37 @@
                             <a href="#this" id="categoryList">
                                 <i class="fas fa-th-large"></i>Category</a>
                         </li>
-                        <li>
-                            <a href="#this" id="lectureList">
-                                <i class="fas fa-tags"></i>Lecture</a>
+                        <li class="has-sub">
+                        	<a class="js-arrow" href="#this">
+                        		<i class ="fas fa-tags"></i>Lecture
+                        	</a>
+                        	<ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="#this" id="lectureList">Pending</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureSellingList">Selling</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureDeleteList">Deleted</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureSoldoutList">Sold Out</a>
+                                </li>
+                            </ul>
+                        </li> 
+                        <li class="has-sub">
+                        	<a class="js-arrow" href="#this">
+                        		<i class ="fas fa-credit-card"></i>Kakao Order Status
+                        	</a>
+                        	<ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="#this" id="approveList">Approve</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="refundList">Refund</a>
+                                </li>
+                            </ul>
                         </li> 
                     </ul>
                 </nav>
@@ -241,9 +422,13 @@
                                             <div class="icon">
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
+                                            
                                             <div class="text">
-                                                <h2>회원가입률</h2>
-                                                <!-- <span>회원가입률</span> -->
+                                                <h2 id="maptotal"></h2>
+                                                <script>
+	                                    		document.getElementById("maptotal").innerHTML = ${map1}+${map2}+${map3}+${map4}+${map5};
+	                                            </script>
+                                                <span>회원 가입 현황</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -257,11 +442,14 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                                <i class="zmdi zmdi-tv-alt-play"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>388,688</h2>
-                                                <span>items solid</span>
+                                                <h2 id="lectureTotal"></h2>
+                                                <script>
+	                                    		document.getElementById("lectureTotal").innerHTML = ${lectureMap1}+${lectureMap2}+${lectureMap3}+${lectureMap4}+${lectureMap5};
+	                                            </script>
+                                                <span>강의 개설 현황</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -275,11 +463,14 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-calendar-note"></i>
+                                                <i class="zmdi zmdi-account-add"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>1,086</h2>
-                                                <span>this week</span>
+                                                <h2 id="tutorTotal"></h2>
+                                                <script>
+	                                    		document.getElementById("tutorTotal").innerHTML = ${tutorMap1}+${tutorMap2}+${tutorMap3}+${tutorMap4}+${tutorMap5};
+	                                            </script>
+                                                <span>튜터 신청 현황</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -293,11 +484,14 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-money"></i>
+                                                <i class="zmdi zmdi-money-box"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>$1,060,386</h2>
-                                                <span>total earnings</span>
+                                                <h2 id="costTotal"></h2>
+                                                <script>
+	                                    		document.getElementById("costTotal").innerHTML = ${costMap1}+${costMap2}+${costMap3}+${costMap4}+${costMap5};
+	                                            </script>
+                                                <span>결제 승인 현황</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -311,28 +505,38 @@
                             <div class="col-lg-6">
                                 <div class="au-card recent-report">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2">recent reports</h3>
+                                        <h3 class="title-2">Revenue Chart</h3>
+                                        <br>
+                                        <br>
                                         <div class="chart-info">
                                             <div class="chart-info__left">
                                                 <div class="chart-note">
                                                     <span class="dot dot--blue"></span>
-                                                    <span>products</span>
+                                                    <span>Refund</span>
                                                 </div>
                                                 <div class="chart-note mr-0">
                                                     <span class="dot dot--green"></span>
-                                                    <span>services</span>
+                                                    <span>Income</span>
                                                 </div>
                                             </div>
                                             <div class="chart-info__right">
                                                 <div class="chart-statis">
-                                                    <span class="index incre">
-                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                    <span class="label">products</span>
+                                                    <span class="index incre" id="average"></span>
+                                                        <script>
+                                                        document.getElementById("average").innerHTML += "<i class='zmdi zmdi-long-arrow-up'></i>"
+			                                    		document.getElementById("average").innerHTML += (((${costMap2}-((${costMap5}+${costMap4}+${costMap3}+${costMap1}) / 4))/((${costMap5}+${costMap4}+${costMap3}+${costMap1}) / 4)))*100
+                                                        document.getElementById("average").innerHTML += "%";
+                                                        </script>
+                                                    <span class="label">income rate</span>
                                                 </div>
                                                 <div class="chart-statis mr-0">
-                                                    <span class="index decre">
-                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                    <span class="label">services</span>
+                                                    <span class="index decre" id="refund"></span>
+                                                        <script>
+                                                        document.getElementById("refund").innerHTML += "<i class='zmdi zmdi-long-arrow-down'></i>"
+			                                    		document.getElementById("refund").innerHTML += (((${costMap2} - ((${costMap5} + ${costMap4} + ${costMap3} + ${costMap1}) / 4)) / ((${costMap5}+${costMap4}+${costMap3}+${costMap1}) / 4)))*100
+                                                        document.getElementById("refund").innerHTML += "%";
+                                                        </script>
+                                                    <span class="label">refund rate</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -345,23 +549,134 @@
                             <div class="col-lg-6">
                                 <div class="au-card chart-percent-card">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5">char by %</h3>
+                                        <h3 class="title-2 tm-b-5">Monthly Popular Category Chart by %</h3>
+                                        <br>
+                                        <div id="selectCA_NO" class="form-check-inline form-check">
+											<div id="radio1">
+											<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="1"  class="form-check-input" onclick="checkLayer(1);" checked="checked"/>2월
+											</div>
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<div id="radio2">
+											<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" class="form-check-input" onclick="checkLayer(2);"/>1월
+											</div>
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<div id="radio3">
+											<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" class="form-check-input" onclick="checkLayer(3);"/>12월
+											</div>
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<div id="radio4">
+											<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" class="form-check-input" onclick="checkLayer(4);"/>11월
+											</div>
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<div id="radio5">
+											<input id="tmp_tabs_1" name="tmp_tabs_1" type="radio" value="0" class="form-check-input" onclick="checkLayer(5);"/>10월
+											</div>
+										</div>
                                         <div class="row no-gutters">
                                             <div class="col-xl-6">
                                                 <div class="chart-note-wrap">
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--blue"></span>
-                                                        <span>products</span>
+                                                        <span>Computer</span>
+                                                        <span class="index decre" id="compercent"></span>
+                                                        <span class="index decre" id="jancompercent"></span>
+                                                        <span class="index decre" id="deccompercent"></span>
+                                                        <span class="index decre" id="novcompercent"></span>
+                                                        <span class="index decre" id="octcompercent"></span>
                                                     </div>
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--red"></span>
-                                                        <span>services</span>
+                                                        <span>Language</span>
+                                                        <span class="index decre" id="langpercent"></span>
+                                                        <span class="index decre" id="janlangpercent"></span>
+                                                        <span class="index decre" id="declangpercent"></span>
+                                                        <span class="index decre" id="novlangpercent"></span>
+                                                        <span class="index decre" id="octlangpercent"></span>
                                                     </div>
+                                                    <div class="chart-note mr-0 d-block">
+	                                                    <span class="dot dot--purple"></span>
+	                                                    <span>LifeStyle</span>
+	                                                    <span class="index decre" id="lifepercent"></span>
+	                                                    <span class="index decre" id="janlifepercent"></span>
+	                                                    <span class="index decre" id="declifepercent"></span>
+	                                                    <span class="index decre" id="novlifepercent"></span>
+	                                                    <span class="index decre" id="octlifepercent"></span>
+	                                                </div>
+	                                                <div class="chart-note mr-0 d-block">
+	                                                    <span class="dot dot--green"></span>
+	                                                    <span>Others</span>
+	                                                    <span class="index decre" id="otherspercent"></span>
+	                                                    <span class="index decre" id="janotherspercent"></span>
+	                                                    <span class="index decre" id="decotherspercent"></span>
+	                                                    <span class="index decre" id="novotherspercent"></span>
+	                                                    <span class="index decre" id="octotherspercent"></span>
+	                                                    
+	                                                </div>
+	                                                	
+                                                        <script>
+                                                        //document.getElementById("percent").innerHTML += "<i class='zmdi zmdi-long-arrow-down'></i>"
+			                                    		document.getElementById("compercent").innerHTML += (${caMap1}/${caMap}) * 100 
+                                                        document.getElementById("compercent").innerHTML += "%";
+                                                        document.getElementById("langpercent").innerHTML += (${caMap2}/${caMap}) * 100 
+                                                        document.getElementById("langpercent").innerHTML += "%";
+                                                        document.getElementById("lifepercent").innerHTML += (${caMap3}/${caMap}) * 100 
+                                                        document.getElementById("lifepercent").innerHTML += "%";
+                                                        document.getElementById("otherspercent").innerHTML += (${caMap4}/${caMap}) * 100 
+                                                        document.getElementById("otherspercent").innerHTML += "%";
+                                                        /////
+                                                        document.getElementById("jancompercent").innerHTML += (${caJanMap1}/${caJanMap}) * 100 
+                                                        document.getElementById("jancompercent").innerHTML += "%";
+                                                        document.getElementById("janlangpercent").innerHTML += (${caJanMap2}/${caJanMap}) * 100 
+                                                        document.getElementById("janlangpercent").innerHTML += "%";
+                                                        document.getElementById("janlifepercent").innerHTML += (${caJanMap3}/${caJanMap}) * 100 
+                                                        document.getElementById("janlifepercent").innerHTML += "%";
+                                                        document.getElementById("janotherspercent").innerHTML += (${caJanMap4}/${caJanMap}) * 100 
+                                                        document.getElementById("janotherspercent").innerHTML += "%";
+                                                        /////
+                                                        document.getElementById("deccompercent").innerHTML += (${caDecMap1}/${caDecMap}) * 100 
+                                                        document.getElementById("deccompercent").innerHTML += "%";
+                                                        document.getElementById("declangpercent").innerHTML += (${caDecMap2}/${caDecMap}) * 100 
+                                                        document.getElementById("declangpercent").innerHTML += "%";
+                                                        document.getElementById("declifepercent").innerHTML += (${caDecMap3}/${caDecMap}) * 100 
+                                                        document.getElementById("declifepercent").innerHTML += "%";
+                                                        document.getElementById("decotherspercent").innerHTML += (${caDecMap4}/${caDecMap}) * 100 
+                                                        document.getElementById("decotherspercent").innerHTML += "%";
+                                                        ////////
+                                                        document.getElementById("novcompercent").innerHTML += (${caNovMap1}/${caNovMap}) * 100 
+                                                        document.getElementById("novcompercent").innerHTML += "%";
+                                                        document.getElementById("novlangpercent").innerHTML += (${caNovMap2}/${caNovMap}) * 100 
+                                                        document.getElementById("novlangpercent").innerHTML += "%";
+                                                        document.getElementById("novlifepercent").innerHTML += (${caNovMap3}/${caNovMap}) * 100 
+                                                        document.getElementById("novlifepercent").innerHTML += "%";
+                                                        document.getElementById("novotherspercent").innerHTML += (${caNovMap4}/${caNovMap}) * 100 
+                                                        document.getElementById("novotherspercent").innerHTML += "%";
+                                                        /////////
+                                                        document.getElementById("octcompercent").innerHTML += (${caOctMap1}/${caOctMap}) * 100 
+                                                        document.getElementById("octcompercent").innerHTML += "%";
+                                                        document.getElementById("octlangpercent").innerHTML += (${caOctMap2}/${caOctMap}) * 100 
+                                                        document.getElementById("octlangpercent").innerHTML += "%";
+                                                        document.getElementById("octlifepercent").innerHTML += (${caOctMap3}/${caOctMap}) * 100 
+                                                        document.getElementById("octlifepercent").innerHTML += "%";
+                                                        document.getElementById("octotherspercent").innerHTML += (${caOctMap4}/${caOctMap}) * 100 
+                                                        document.getElementById("octotherspercent").innerHTML += "%";
+                                                        </script>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
-                                                <div class="percent-chart">
+                                                <div class="percent-chart" id="febchart">
                                                     <canvas id="percent-chart"></canvas>
+                                                </div>
+                                                <div class="percent-chart" id="janchart">
+                                                    <canvas id="percent-chart-1"></canvas>
+                                                </div>
+                                                <div class="percent-chart" id="decchart">
+                                                    <canvas id="percent-chart-12"></canvas>
+                                                </div>
+                                                <div class="percent-chart" id="novchart">
+                                                    <canvas id="percent-chart-11"></canvas>
+                                                </div>
+                                                <div class="percent-chart" id="octchart">
+                                                    <canvas id="percent-chart-10"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -369,95 +684,51 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <h2 class="title-1 m-b-25">Earnings By Items</h2>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-                                            <tr>
-                                                <th>date</th>
-                                                <th>order ID</th>
-                                                <th>name</th>
-                                                <th class="text-right">price</th>
-                                                <th class="text-right">quantity</th>
-                                                <th class="text-right">total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="text-right">$999.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$999.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>100397</td>
-                                                <td>Samsung S8 Black</td>
-                                                <td class="text-right">$756.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$756.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>100396</td>
-                                                <td>Game Console Controller</td>
-                                                <td class="text-right">$22.00</td>
-                                                <td class="text-right">2</td>
-                                                <td class="text-right">$44.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td>iPhone X 256Gb Black</td>
-                                                <td class="text-right">$1199.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100392</td>
-                                                <td>Smartwatch 4.0 LTE Wifi</td>
-                                                <td class="text-right">$199.00</td>
-                                                <td class="text-right">6</td>
-                                                <td class="text-right">$1494.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>100391</td>
-                                                <td>Camera C430W 4k</td>
-                                                <td class="text-right">$699.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$699.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-22 00:43</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                       
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                    <input type="text" id="map1" name="map1" value="${map1 }">
+                                    <input type="hidden" id="map1" name="map1" value="${map1 }">
+                                    <input type="hidden" id="map2" name="map2" value="${map2 }">
+                                    <input type="hidden" id="map3" name="map3" value="${map3 }">
+                                    <input type="hidden" id="map4" name="map4" value="${map4 }">
+                                    <input type="hidden" id="map5" name="map5" value="${map5 }">
+                                    <input type="hidden" id="lectureMap1" name="lectureMap1" value="${lectureMap1 }">
+                                    <input type="hidden" id="lectureMap2" name="lectureMap2" value="${lectureMap2 }">
+                                    <input type="hidden" id="lectureMap3" name="lectureMap3" value="${lectureMap3 }">
+                                    <input type="hidden" id="lectureMap4" name="lectureMap4" value="${lectureMap4 }">
+                                    <input type="hidden" id="lectureMap5" name="lectureMap5" value="${lectureMap5 }">
+                                    <input type="hidden" id="tutorMap1" name="tutorMap1" value="${tutorMap1 }">
+                                    <input type="hidden" id="tutorMap2" name="tutorMap2" value="${tutorMap2 }">
+                                    <input type="hidden" id="tutorMap3" name="tutorMap3" value="${tutorMap3 }">
+                                    <input type="hidden" id="tutorMap4" name="tutorMap4" value="${tutorMap4 }">
+                                    <input type="hidden" id="tutorMap5" name="tutorMap5" value="${tutorMap5 }">
+                                    <input type="hidden" id="payMap1" name="payMap1" value="${payMap1 }">
+                                    <input type="hidden" id="payMap2" name="payMap2" value="${payMap2 }">
+                                    <input type="hidden" id="payMap3" name="payMap3" value="${payMap3 }">
+                                    <input type="hidden" id="payMap4" name="payMap4" value="${payMap4 }">
+                                    <input type="hidden" id="payMap5" name="payMap5" value="${payMap5 }">
+                                    <input type="hidden" id="caMap1" name="caMap1" value="${camp1 }">
+                                    <input type="hidden" id="caMap2" name="caMap2" value="${camp2 }">
+                                    <input type="hidden" id="caMap3" name="caMap3" value="${camp3 }">
+                                    <input type="hidden" id="caMap4" name="caMap4" value="${camp4 }">
+                                    <input type="hidden" id="caJanMap1" name="caJanMap1" value="${jancamp1 }">
+                                    <input type="hidden" id="caJanMap2" name="caJanMap2" value="${jancamp2 }">
+                                    <input type="hidden" id="caJanMap3" name="caJanMap3" value="${jancamp3 }">
+                                    <input type="hidden" id="caJanMap4" name="caJanMap4" value="${jancamp4 }">
+                                    <input type="hidden" id="caDecMap1" name="caDecMap1" value="${deccamp1 }">
+                                    <input type="hidden" id="caDecMap2" name="caDecMap2" value="${deccamp2 }">
+                                    <input type="hidden" id="caDecMap3" name="caDecMap3" value="${deccamp3 }">
+                                    <input type="hidden" id="caDecMap4" name="caDecMap4" value="${deccamp4 }">
+                                    <input type="hidden" id="caNovMap1" name="caNovMap1" value="${novcamp1 }">
+                                    <input type="hidden" id="caNovMap2" name="caNovMap2" value="${novcamp2 }">
+                                    <input type="hidden" id="caNovMap3" name="caNovMap3" value="${novcamp3 }">
+                                    <input type="hidden" id="caNovMap4" name="caNovMap4" value="${novcamp4 }">
+                                    <input type="hidden" id="caOctMap1" name="caOctMap1" value="${octcamp1 }">
+                                    <input type="hidden" id="caOctMap2" name="caOctMap2" value="${octcamp2 }">
+                                    <input type="hidden" id="caOctMap3" name="caOctMap3" value="${octcamp3 }">
+                                    <input type="hidden" id="caOctMap4" name="caOctMap4" value="${octcamp4 }">
                                 </div>
                             </div>
                         </div>

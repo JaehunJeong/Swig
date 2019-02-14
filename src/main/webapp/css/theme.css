@@ -4130,6 +4130,9 @@ section {
 .dot--red {
     background: #fa4251;
 }
+.dot--purple{
+	background: #5f0173;
+}
 
 .chart-note-wrap {
     margin-top: 20px;

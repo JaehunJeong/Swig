@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#list").on("click",function(e){
+		$("#listlecture").on("click",function(e){
 			e.preventDefault();
 			fn_openLectureList();
 		});
@@ -15,19 +15,108 @@
 			e.preventDefault();
 			fn_openLectureUpdate();
 		});
+		$("#list").on("click",function(e){
+			e.preventDefault();
+			fn_openMemberList();
+		});
+		
+		$("#tutorList").on("click",function(e){
+			e.preventDefault();
+			fn_openTutorList();
+		});
+		
+		$("#tutorApplyList").on("click",function(e){
+			e.preventDefault();
+			fn_openTutorApplyList();
+		});
+		
+		$("#categoryList").on("click",function(e){
+			e.preventDefault();
+			fn_openCategoryList();
+		});
+		
+		$("#lectureList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureList();
+		});
+		$("#lectureSellingList").on("click",function(e){
+			e.preventDefault();
+			fn_openLecturenSellingList();
+		});
+		$("#lectureDeleteList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureDeleteList();
+		});
+		$("#lectureSoldoutList").on("click",function(e){
+			e.preventDefault();
+			fn_openLectureSoldoutList();
+		});
+		$("#approveList").on("click",function(e){
+			e.preventDefault();
+			fn_openApproveList();
+		});
+		
+		$("#refundList").on("click",function(e){
+			e.preventDefault();
+			fn_openRefundList();
+		});
 	});
 	function fn_openMemberList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openMemberList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openTutorList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openTutorList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openTutorApplyList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openTutorApplyList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openCategoryList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openCategoryList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openLectureList(){
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='openLectureList'/>");
 		comSubmit.submit();
 	}
-	function fn_openMemberUpdate(){
-		var M_NO = "${map.M_NO}";
+	function fn_openLecturenSellingList(){
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='lectureModify'/>");
-		comSubmit.addParam("M_NO",M_NO);
+		comSubmit.setUrl("<c:url value='openLectureSellingList'/>");
 		comSubmit.submit();
-	} 
+	}
+	function fn_openLectureDeleteList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureDeletedList'/>");
+		comSubmit.submit();
+	}
+	function fn_openLectureSoldoutList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openLectureSoldoutList'/>");
+		comSubmit.submit();
+	}
+	function fn_openApproveList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openApproveList'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_openRefundList(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='openRefundList'/>");
+		comSubmit.submit();
+	}
+	
 	</script>
 </head>
 <body>
@@ -91,8 +180,7 @@
 	</table>
 	<br/>
 	
-	<a href="#this" class="btn" id="list">목록으로</a>
-	<a href="#this" class="btn" id="update">수정하기</a>
+	<a href="#this" class="btn" id="listlecture">목록으로</a>
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
 	
 </body>

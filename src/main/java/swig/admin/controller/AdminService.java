@@ -6,6 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface AdminService {
 	Map<String,Object> selectDateValue()throws Exception;
+	Map<String,Object> selectLectureValue()throws Exception;
+	Map<String,Object> selectTutorValue()throws Exception;
+	Map<String,Object> selectPayValue()throws Exception;
+	Map<String,Object> selectCostValue()throws Exception;
+	Map<String,Object> selectCaValue()throws Exception;
+	Map<String,Object> selectCaJanValue()throws Exception;
+	Map<String,Object> selectCaDecValue()throws Exception;
+	Map<String,Object> selectCaNovValue()throws Exception;
+	Map<String,Object> selectCaOctValue()throws Exception;
 	////////////////////////////////////
 	List<Map<String,Object>> selectMemberList(Map<String,Object> map) throws Exception;
 	
@@ -26,6 +35,8 @@ public interface AdminService {
 	///////////////////////////////////////////////////////////
 	
 	List<Map<String, Object>> selectTutorList(Map<String,Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectTutorChkList(Map<String,Object> map) throws Exception;
 	
 	Map<String,Object> selectTutorDetail(Map<String,Object> map)throws Exception;
 	
@@ -65,6 +76,10 @@ public interface AdminService {
 	///////////////////////////////////////////////////////////
 	
 	List<Map<String, Object>> selectLectureList(Map<String,Object>map)throws Exception;
+	List<Map<String, Object>> selectComputerList(Map<String,Object>map)throws Exception;
+	List<Map<String, Object>> selectLanguageList(Map<String,Object>map)throws Exception;
+	List<Map<String, Object>> selectLifeList(Map<String,Object>map)throws Exception;
+	List<Map<String, Object>> selectEtcList(Map<String,Object>map)throws Exception;
 	
 	Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception;
 	
@@ -73,4 +88,8 @@ public interface AdminService {
 	void deleteLecture(Map<String, Object> map) throws Exception;
 	////////////////////////////////////////////
 	void paySuccess(Map<String,Object>map) throws Exception;
+	
+	List<Map<String,Object>> approveList(Map<String,Object> map) throws Exception;
+	
+	List<Map<String,Object>> refundList(Map<String,Object> map) throws Exception;
 }

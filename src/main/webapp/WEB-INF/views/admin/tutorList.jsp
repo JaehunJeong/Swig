@@ -9,7 +9,7 @@
 <script type="text/javascript">
 		$(document).ready(function(){
 			window.onload=function(){fn_selectTutorList(1);};
-		      
+		    //var ch1=${list.TF_CCHECK1};   
 			$("#list").on("click",function(e){
 				e.preventDefault();
 				fn_openMemberList();
@@ -33,6 +33,27 @@
 			$("#lectureList").on("click",function(e){
 				e.preventDefault();
 				fn_openLectureList();
+			});
+			$("#lectureSellingList").on("click",function(e){
+				e.preventDefault();
+				fn_openLecturenSellingList();
+			});
+			$("#lectureDeleteList").on("click",function(e){
+				e.preventDefault();
+				fn_openLectureDeleteList();
+			});
+			$("#lectureSoldoutList").on("click",function(e){
+				e.preventDefault();
+				fn_openLectureSoldoutList();
+			});
+			$("#approveList").on("click",function(e){
+				e.preventDefault();
+				fn_openApproveList();
+			});
+			
+			$("#refundList").on("click",function(e){
+				e.preventDefault();
+				fn_openRefundList();
 			});
 			
 
@@ -66,12 +87,39 @@
 			comSubmit.setUrl("<c:url value='openLectureList'/>");
 			comSubmit.submit();
 		}
+		function fn_openLecturenSellingList(){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='openLectureSellingList'/>");
+			comSubmit.submit();
+		}
+		function fn_openLectureDeleteList(){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='openLectureDeletedList'/>");
+			comSubmit.submit();
+		}
+		function fn_openLectureSoldoutList(){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='openLectureSoldoutList'/>");
+			comSubmit.submit();
+		}
+		function fn_openApproveList(){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='openApproveList'/>");
+			comSubmit.submit();
+		}
+		
+		function fn_openRefundList(){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='openRefundList'/>");
+			comSubmit.submit();
+		}
 		function fn_openMemberDetail(obj){
             var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='userDetail' />");
             comSubmit.addParam("M_NO", obj.parent().find("#M_NO").val());
             comSubmit.submit();
         }
+		
 		function fn_openTutorDetail(val){
 			var url = "adminTutorDetail?T_NO="+val;
 			var comSubmit = new ComSubmit();
@@ -111,7 +159,10 @@
 			comAjax.addParam("T_NO_FE", $("#T_NO_FE").val());
 		    comAjax.ajax();
 		}
-        
+        function fn_calchk(){
+        	var count =0;
+        	count +=1;
+        }
          
         function fn_selectTutorListCallback(data){
             var total = data.TOTAL;
@@ -214,9 +265,37 @@
                             <a href="#this" id="categoryList">
                                 <i class="fas fa-th-large"></i>Category</a>
                         </li>
-                        <li>
-                            <a href="#this" id="lectureList">
-                                <i class="fas fa-tags"></i>Lecture</a>
+                        <li class="has-sub">
+                        	<a class="js-arrow" href="#this">
+                        		<i class ="fas fa-tags"></i>Lecture
+                        	</a>
+                        	<ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="#this" id="lectureList">Pending</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureSellingList">Selling</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureDeleteList">Deleted</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="lectureSoldoutList">Sold Out</a>
+                                </li>
+                            </ul>
+                        </li>  
+                        <li class="has-sub">
+                        	<a class="js-arrow" href="#this">
+                        		<i class ="fas fa-credit-card"></i>Kakao Order Status
+                        	</a>
+                        	<ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="#this" id="approveList">Approve</a>
+                                </li>
+                                <li>
+                                    <a href="#this" id="refundList">Refund</a>
+                                </li>
+                            </ul>
                         </li> 
                     </ul>
                 </nav>
@@ -266,6 +345,7 @@
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                	
                                 </div>
                             </div>
                         </div>

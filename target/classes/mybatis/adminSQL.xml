@@ -46,6 +46,375 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		BETWEEN '20181001' AND '20181031'
 	]]>
 	</select>
+	<!-- 강의개설 수 -->
+	<select id="selectJanLectureValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM L_OPEN
+		WHERE TO_CHAR(L_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectFebLectureValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM L_OPEN
+		WHERE TO_CHAR(L_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190230'
+	]]>
+	</select>
+	<select id="selectDecLectureValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM L_OPEN
+		WHERE TO_CHAR(L_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectNovLectureValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM L_OPEN
+		WHERE TO_CHAR(L_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181130'
+	]]>
+	</select>
+	<select id="selectOctLectureValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM L_OPEN
+		WHERE TO_CHAR(L_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<!-- 튜터 현황 -->
+	<select id="selectJanTutorValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM TUTOR
+		WHERE TO_CHAR(T_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectFebTutorValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM TUTOR
+		WHERE TO_CHAR(T_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190230'
+	]]>
+	</select>
+	<select id="selectDecTutorValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM TUTOR
+		WHERE TO_CHAR(T_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectNovTutorValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM TUTOR
+		WHERE TO_CHAR(T_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181130'
+	]]>
+	</select>
+	<select id="selectOctTutorValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM TUTOR
+		WHERE TO_CHAR(T_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<!-- 결제 현황 -->
+	<select id="selectJanPayValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectFebPayValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190230'
+	]]>
+	</select>
+	<select id="selectDecPayValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectNovPayValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181130'
+	]]>
+	</select>
+	<select id="selectOctPayValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<select id="selectJanCostValue" resultType="int">
+	<![CDATA[
+		SELECT 
+    		SUM(O_AMOUNT_TOTAL)  as total
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE, 'YYYYMMDD') BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectFebCostValue" resultType="int">
+	<![CDATA[
+		SELECT 
+    		SUM(O_AMOUNT_TOTAL)  as total
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE, 'YYYYMMDD') BETWEEN '20190201' AND '20190231'
+	]]>
+	</select>
+	<select id="selectDecCostValue" resultType="int">
+	<![CDATA[
+		SELECT 
+    		SUM(O_AMOUNT_TOTAL)  as total
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE, 'YYYYMMDD') BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectNovCostValue" resultType="int">
+	<![CDATA[
+		SELECT 
+    		SUM(O_AMOUNT_TOTAL)  as total
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE, 'YYYYMMDD') BETWEEN '20181101' AND '20181131'
+	]]>
+	</select>
+	<select id="selectOctCostValue" resultType="int">
+	<![CDATA[
+		SELECT 
+    		SUM(O_AMOUNT_TOTAL)  as total
+		FROM KAKAOORDER
+		WHERE O_DEL='Y' AND TO_CHAR(O_REGDATE, 'YYYYMMDD') BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<!-- 카테고리 -->
+	<select id="selectCaValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX  AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190231'
+	]]>
+	</select>
+	<select id="selectJanCaValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX  AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectDecCaValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX  AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectNovCaValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX  AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181131'
+	]]>
+	</select>
+	<select id="selectOctCaValue" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX  AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<!--2월  -->
+	<select id="selectCa1Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='컴퓨터' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190231'
+	]]>
+	</select>
+	<select id="selectCa2Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='외국어' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190231'
+	]]>
+	</select>
+	<select id="selectCa3Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='라이프스타일' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190231'
+	]]>
+	</select>
+	<select id="selectCa4Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='기타' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190201' AND '20190231'
+	]]>
+	</select>
+	<!-- 1월 -->
+	<select id="selectJanCa1Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='컴퓨터' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectJanCa2Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='외국어' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectJanCa3Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='라이프스타일' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<select id="selectJanCa4Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='기타' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20190101' AND '20190131'
+	]]>
+	</select>
+	<!-- 12월 -->
+	<select id="selectDecCa1Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='컴퓨터' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectDecCa2Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='외국어' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectDecCa3Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='라이프스타일' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<select id="selectDecCa4Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='기타' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181201' AND '20181231'
+	]]>
+	</select>
+	<!-- 11월 -->
+	<select id="selectNovCa1Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='컴퓨터' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181131'
+	]]>
+	</select>
+	<select id="selectNovCa2Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='외국어' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181131'
+	]]>
+	</select>
+	<select id="selectNovCa3Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='라이프스타일' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181131'
+	]]>
+	</select>
+	<select id="selectNovCa4Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='기타' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181101' AND '20181131'
+	]]>
+	</select>
+	<!-- 10월 -->
+	<select id="selectOctCa1Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='컴퓨터' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<select id="selectOctCa2Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='외국어' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<select id="selectOctCa3Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='라이프스타일' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
+	<select id="selectOctCa4Value" resultType="int">
+	<![CDATA[
+		SELECT COUNT(C.CA_LSECTION)
+		FROM REQUEST R, L_OPEN L,CATEGORY C
+		WHERE R.L_NO = L.L_NO AND L.CA_IDX = C.CA_IDX AND C.CA_LSECTION='기타' AND TO_CHAR(R_REGDATE,'YYYYMMDD')
+		BETWEEN '20181001' AND '20181031'
+	]]>
+	</select>
 	<!-- 멤버 관련  -->
 	
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
@@ -116,7 +485,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			T_COLLEGE,
 			T_DEPT,
 			T_QUALIFICATION,
-			T_CNAME
+			T_CNAME0,
+			T_CNAME1,
+			T_CNAME2,
+			T_CNAME3,
+			T_CNAME4
 		FROM
 			TUTOR 
 		WHERE
@@ -155,14 +528,120 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			T_COLLEGE,
 			T_DEPT,
 			T_QUALIFICATION,
-			T_CNAME
+			T_CNAME0,
+			T_CNAME1,
+			T_CNAME2,
+			T_CNAME3,
+			T_CNAME4
+			
 		FROM
-			TUTOR 
+			TUTOR
 		WHERE
-			T_PASS = 'Y'
+			T_PASS = 'Y' 
 			
 	]]>
 	<include refid="common.pagingPost"/>
+	</select>
+	<!-- <select id="selectChkTutorList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY T.T_NO DESC) RNUM,
+			T.T_NO,
+			TCF.TF_CCHECK1,
+			TCF.TF_CCHECK2,
+			TCF.TF_CCHECK3,
+			TCF.TF_CCHECK4,
+			TCF.TF_CCHECK5,
+			TF.TF_SCHECK,
+			TF.TF_IDCHECK
+		FROM
+			TUTOR T,TUTOR_CFILE TCF, TUTOR_FILE TF
+		WHERE
+			T.T_PASS = 'Y' AND (T.T_NO = TCF.T_NO) AND(T.T_NO = TF.T_NO) 
+			
+	]]>
+	<include refid="common.pagingPost"/>
+	</select> -->
+	<!-- <select id="selectTutorList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY T.T_NO DESC) RNUM,
+			T.T_NO,
+			T.M_NO,
+			T.T_NICK,
+			T.T_FINALEDU,
+			T.T_COLLEGE,
+			T.T_DEPT,
+			T.T_QUALIFICATION,
+			T.T_CNAME0,
+			T.T_CNAME1,
+			T.T_CNAME2,
+			T.T_CNAME3,
+			T.T_CNAME4,
+			TCF.TF_CCHECK1,
+			TCF.TF_CCHECK2,
+			TCF.TF_CCHECK3,
+			TCF.TF_CCHECK4,
+			TCF.TF_CCHECK5,
+			TF.TF_SCHECK,
+			TF.TF_IDCHECK
+		FROM
+			TUTOR T, TUTOR_CFILE TCF, TUTOR_FILE TF
+		WHERE
+			T.T_PASS = 'Y'  AND (T.T_NO = TCF.T_NO) AND(T.T_NO = TF.T_NO) 
+			
+	]]> 
+	<include refid="common.pagingPost"/>
+	</select>-->
+	<select id ="selectTutorCheck1" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			TF_CCHECK1,TF_CCHECK2,TF_CCHECK3,TF_CCHECK4,TF_CCHECK5
+		FROM
+			TUTOR_CFILE
+		
+	]]>
+	</select>
+	<select id ="selectTutorCheck2" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			count(*)
+		FROM
+			TUTOR_CFILE
+		where
+			T_NO=#{T_NO} AND TF_CCHECK2='N'
+	]]>
+	</select>
+	<select id ="selectTutorCheck3" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			count(*)
+		FROM
+			TUTOR_CFILE
+		where
+			T_NO=#{T_NO} AND TF_CCHECK3='N'
+	]]>
+	</select>
+	<select id ="selectTutorCheck4" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			count(*)
+		FROM
+			TUTOR_CFILE
+		where
+			T_NO=#{T_NO} AND TF_CCHECK4='N'
+	]]>
+	</select><select id ="selectTutorCheck5" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			count(*)
+		FROM
+			TUTOR_CFILE
+		where
+			T_NO=#{T_NO} AND TF_CCHECK5='N'
+	]]>
 	</select>
 	<update id="deleteTutor" parameterType="hashmap">
 	<![CDATA[
@@ -178,7 +657,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 			Q.T_NO,
 			Q.T_FINALEDU,
-	      	Q.T_CNAME,
+	      	Q.T_CNAME0,
+	      	Q.T_CNAME1,
+	      	Q.T_CNAME2,
+	      	Q.T_CNAME3,
+	      	Q.T_CNAME4,
 	      	TF.TF_ORIGINPROFILE,
 	      	TF.TF_STOREDPROFILE,
 	      	TF.TF_SCERTORIGIN,
@@ -512,11 +995,86 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			L_OPEN
 		WHERE
-			L_CHK='N'
+			L_CHK=#{L_CHK}
 	]]>
 	<include refid="common.pagingPost"/>
 	</select>
-	
+	<select id="selectComputerList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[	
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY L_NO DESC) RNUM,
+			L_NO,
+			M_NO,
+			L_SUBJECT,
+			L_CLASSTYPE,
+			L_PRICEPH,
+			L_TIMEPL,
+			L_COUNTPM
+		FROM
+			L_OPEN
+		WHERE
+			L_CHK=#{L_CHK} AND (CA_IDX='50' OR CA_IDX='51' OR CA_IDX='52')
+	]]>
+	<include refid="common.pagingPost"/>
+	</select>
+	<select id="selectLanguageList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[	
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY L_NO DESC) RNUM,
+			L_NO,
+			M_NO,
+			L_SUBJECT,
+			L_CLASSTYPE,
+			L_PRICEPH,
+			L_TIMEPL,
+			L_COUNTPM
+		FROM
+			L_OPEN
+		WHERE
+			L_CHK=#{L_CHK} AND (CA_IDX='53' OR CA_IDX='54' OR CA_IDX='55')
+	]]>
+	<include refid="common.pagingPost"/>
+	</select>
+	<select id="selectLifeList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[	
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY L_NO DESC) RNUM,
+			L_NO,
+			M_NO,
+			L_SUBJECT,
+			L_CLASSTYPE,
+			L_PRICEPH,
+			L_TIMEPL,
+			L_COUNTPM
+		FROM
+			L_OPEN
+		WHERE
+			L_CHK=#{L_CHK} AND (CA_IDX='56' OR CA_IDX='57' OR CA_IDX='58')
+	]]>
+	<include refid="common.pagingPost"/>
+	</select>
+	<select id="selectEtcList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[	
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY L_NO DESC) RNUM,
+			L_NO,
+			M_NO,
+			L_SUBJECT,
+			L_CLASSTYPE,
+			L_PRICEPH,
+			L_TIMEPL,
+			L_COUNTPM
+		FROM
+			L_OPEN
+		WHERE
+			L_CHK=#{L_CHK} AND (CA_IDX='59' OR CA_IDX='60' OR CA_IDX='61')
+	]]>
+	<include refid="common.pagingPost"/>
+	</select>
 	<update id="updateLecture" parameterType="hashmap">
 	<![CDATA[
 		UPDATE CATEGORY
@@ -644,4 +1202,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	]]>
 	</insert>
+	 <select id="selectOneKakaoInfo" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+         SELECT 
+         	*
+         FROM 
+         	KAKAOORDER
+         WHERE
+         	O_IDX = #{O_IDX}
+      ]]>
+   </select>
+   
+   <select id="selectPayList" parameterType ="hashmap" resultType="hashmap">
+   	<![CDATA[
+   		SELECT
+   			*
+   		FROM
+   			KAKAOORDER
+   		WHERE
+   			O_DEL = 'N'
+   	]]>
+   </select>
+   
+   <select id="selectCancelList" parameterType ="hashmap" resultType="hashmap">
+   	<![CDATA[
+   		SELECT
+   			*
+   		FROM
+   			KAKAOORDER
+   		WHERE
+   			O_DEL = 'Y'
+   	]]>
+   </select>
+   
+   <update id="updatePaySuccess" parameterType="hashmap">
+   <![CDATA[
+      UPDATE KAKAOORDER
+         SET 
+         	O_DEL = 'Y',
+         	O_REGDATE = SYSDATE
+         WHERE O_IDX = #{O_IDX}
+   ]]>
+   </update>
+   
+   <update id="updatePayCancel" parameterType="hashmap">
+   <![CDATA[
+      UPDATE KAKAOORDER
+         SET O_DEL = 'N'
+         WHERE O_IDX = #{O_IDX}
+   ]]>
+   </update>
 </mapper>

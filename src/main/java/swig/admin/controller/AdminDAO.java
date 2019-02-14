@@ -22,6 +22,150 @@ public class AdminDAO extends AbstractDAO{
 	public int selectOctValue() {
 		return (int) selectOne("admin.selectOctValue");
 	}
+	/////////////////////////////////////
+	public int selectJanLectureValue() {
+		return (int) selectOne("admin.selectJanLectureValue");
+	}
+	public int selectFebLectureValue() {
+		return (int) selectOne("admin.selectFebLectureValue");
+	}
+	public int selectDecLectureValue() {
+		return (int) selectOne("admin.selectDecLectureValue");
+	}
+	public int selectNovLectureValue() {
+		return (int) selectOne("admin.selectNovLectureValue");
+	}
+	public int selectOctLectureValue() {
+		return (int) selectOne("admin.selectOctLectureValue");
+	}
+	////////////////////////////////////////////////////
+	public int selectJanTutorValue() {
+		return (int) selectOne("admin.selectJanTutorValue");
+	}
+	public int selectFebTutorValue() {
+		return (int) selectOne("admin.selectFebTutorValue");
+	}
+	public int selectDecTutorValue() {
+		return (int) selectOne("admin.selectDecTutorValue");
+	}
+	public int selectNovTutorValue() {
+		return (int) selectOne("admin.selectNovTutorValue");
+	}
+	public int selectOctTutorValue() {
+		return (int) selectOne("admin.selectOctTutorValue");
+	}
+	//////////////////////////////////////////////////////////
+	public int selectJanPayValue() {
+		return (int) selectOne("admin.selectJanPayValue");
+	}
+	public int selectFebPayValue() {
+		return (int) selectOne("admin.selectFebPayValue");
+	}
+	public int selectDecPayValue() {
+		return (int) selectOne("admin.selectDecPayValue");
+	}
+	public int selectNovPayValue() {
+		return (int) selectOne("admin.selectNovPayValue");
+	}
+	public int selectOctPayValue() {
+		return (int) selectOne("admin.selectOctPayValue");
+	}
+	////////////////////////////////////////////////////////////
+	public int selectJanCostValue() {
+		return (int) selectOne("admin.selectJanCostValue");
+	}
+	public int selectFebCostValue() {
+		return (int) selectOne("admin.selectFebCostValue");
+	}
+	public int selectDecCostValue() {
+		return (int) selectOne("admin.selectDecCostValue");
+	}
+	public int selectNovCostValue() {
+		return (int) selectOne("admin.selectNovCostValue");
+	}
+	public int selectOctCostValue() {
+		return (int) selectOne("admin.selectOctCostValue");
+	}
+	/////////////////////////////////////////////////
+	public int selectCa1Value() {
+		return (int) selectOne("admin.selectCa1Value");
+	}
+	public int selectCa2Value() {
+		return (int) selectOne("admin.selectCa2Value");
+	}
+	public int selectCa3Value() {
+		return (int) selectOne("admin.selectCa3Value");
+	}
+	public int selectCa4Value() {
+		return (int) selectOne("admin.selectCa4Value");
+	}
+	public int selectCaValue() {
+		return (int) selectOne("admin.selectCaValue");
+	}
+	////////////////////////////////////
+	public int selectJanCa1Value() {
+		return (int) selectOne("admin.selectJanCa1Value");
+	}
+	public int selectJanCa2Value() {
+		return (int) selectOne("admin.selectJanCa2Value");
+	}
+	public int selectJanCa3Value() {
+		return (int) selectOne("admin.selectJanCa3Value");
+	}
+	public int selectJanCa4Value() {
+		return (int) selectOne("admin.selectJanCa4Value");
+	}
+	public int selectJanCaValue() {
+		return (int) selectOne("admin.selectJanCaValue");
+	}
+	//////////////////////////////
+	public int selectDecCa1Value() {
+		return (int) selectOne("admin.selectDecCa1Value");
+	}
+	public int selectDecCa2Value() {
+		return (int) selectOne("admin.selectDecCa2Value");
+	}
+	public int selectDecCa3Value() {
+		return (int) selectOne("admin.selectDecCa3Value");
+	}
+	public int selectDecCa4Value() {
+		return (int) selectOne("admin.selectDecCa4Value");
+	}
+	public int selectDecCaValue() {
+		return (int) selectOne("admin.selectDecCaValue");
+	}
+	///////////////////////////////////
+	public int selectNovCa1Value() {
+		return (int) selectOne("admin.selectNovCa1Value");
+	}
+	public int selectNovCa2Value() {
+		return (int) selectOne("admin.selectNovCa2Value");
+	}
+	public int selectNovCa3Value() {
+		return (int) selectOne("admin.selectNovCa3Value");
+	}
+	public int selectNovCa4Value() {
+		return (int) selectOne("admin.selectNovCa4Value");
+	}
+	public int selectNovCaValue() {
+		return (int) selectOne("admin.selectNovCaValue");
+	}
+	///////////////////////////////
+	public int selectOctCa1Value() {
+		return (int) selectOne("admin.selectOctCa1Value");
+	}
+	public int selectOctCa2Value() {
+		return (int) selectOne("admin.selectOctCa2Value");
+	}
+	public int selectOctCa3Value() {
+		return (int) selectOne("admin.selectOctCa3Value");
+	}
+	public int selectOctCa4Value() {
+		return (int) selectOne("admin.selectOctCa4Value");
+	}
+	public int selectOctCaValue() {
+		return (int) selectOne("admin.selectOctCaValue");
+	}
 	///////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> selectMemberList(Map<String,Object> map) throws Exception{
@@ -59,6 +203,10 @@ public class AdminDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectTutorList(Map<String,Object> map) throws Exception{
 		return (List<Map<String,Object>>) selectPagingList("admin.selectTutorList",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectTutorChkList(Map<String,Object> map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectChkTutorList",map);
 	}
 	public void deleteTutor(Map<String,Object> map) throws Exception{
 		update("admin.deleteTutor", map);
@@ -171,6 +319,22 @@ public class AdminDAO extends AbstractDAO{
 		return (List<Map<String,Object>>) selectPagingList("admin.selectLectureList",map);
 	}
 	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectComputerList(Map<String,Object>map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectComputerList",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectLanguageList(Map<String,Object>map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectLanguageList",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectLifeList(Map<String,Object>map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectLifeList",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectEtcList(Map<String,Object>map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectEtcList",map);
+	}
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception{
 		return (Map<String,Object>) selectOne("admin.selectLectureDetail", map);
 	}
@@ -198,5 +362,13 @@ public class AdminDAO extends AbstractDAO{
 	//////////////////////////////////////////////
 	public void paySuccess(Map<String, Object> map) throws Exception{
 		update("admin.paySuccess",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> approveList(Map<String,Object>map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectPayList",map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> refundList(Map<String,Object>map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectCancelList",map);
 	}
 }

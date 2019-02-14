@@ -42,6 +42,159 @@ public class AdminServiceImpl implements AdminService {
 		
 		return map;
 	}
+	@Override
+	public Map<String, Object> selectLectureValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectJanLectureValue();
+		map.put("lectureMap1", str);
+		str = adminDAO.selectFebLectureValue();
+		map.put("lectureMap2", str);
+		str = adminDAO.selectDecLectureValue();
+		map.put("lectureMap3", str);
+		str = adminDAO.selectNovLectureValue();
+		map.put("lectureMap4", str);
+		str = adminDAO.selectOctLectureValue();
+		map.put("lectureMap5", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectTutorValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectJanTutorValue();
+		map.put("tutorMap1", str);
+		str = adminDAO.selectFebTutorValue();
+		map.put("tutorMap2", str);
+		str = adminDAO.selectDecTutorValue();
+		map.put("tutorMap3", str);
+		str = adminDAO.selectNovTutorValue();
+		map.put("tutorMap4", str);
+		str = adminDAO.selectOctTutorValue();
+		map.put("tutorMap5", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectPayValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectJanPayValue();
+		map.put("payMap1", str);
+		str = adminDAO.selectFebPayValue();
+		map.put("payMap2", str);
+		str = adminDAO.selectDecPayValue();
+		map.put("payMap3", str);
+		str = adminDAO.selectNovPayValue();
+		map.put("payMap4", str);
+		str = adminDAO.selectOctPayValue();
+		map.put("payMap5", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectCostValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectJanCostValue();
+		map.put("costMap1", str);
+		str = adminDAO.selectFebCostValue();
+		map.put("costMap2", str);
+		str = adminDAO.selectDecCostValue();
+		map.put("costMap3", str);
+		str = adminDAO.selectNovCostValue();
+		map.put("costMap4", str);
+		str = adminDAO.selectOctCostValue();
+		map.put("costMap5", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectCaValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectCa1Value();
+		map.put("caMap1", str);
+		str = adminDAO.selectCa2Value();
+		map.put("caMap2", str);
+		str = adminDAO.selectCa3Value();
+		map.put("caMap3", str);
+		str = adminDAO.selectCa4Value();
+		map.put("caMap4", str);
+		str = adminDAO.selectCaValue();
+		map.put("caMap", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectCaJanValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectJanCa1Value();
+		map.put("caJanMap1", str);
+		str = adminDAO.selectJanCa2Value();
+		map.put("caJanMap2", str);
+		str = adminDAO.selectJanCa3Value();
+		map.put("caJanMap3", str);
+		str = adminDAO.selectJanCa4Value();
+		map.put("caJanMap4", str);
+		str = adminDAO.selectJanCaValue();
+		map.put("caJanMap", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectCaDecValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectDecCa1Value();
+		map.put("caDecMap1", str);
+		str = adminDAO.selectDecCa2Value();
+		map.put("caDecMap2", str);
+		str = adminDAO.selectDecCa3Value();
+		map.put("caDecMap3", str);
+		str = adminDAO.selectDecCa4Value();
+		map.put("caDecMap4", str);
+		str = adminDAO.selectDecCaValue();
+		map.put("caDecMap", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectCaNovValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectNovCa1Value();
+		map.put("caNovMap1", str);
+		str = adminDAO.selectNovCa2Value();
+		map.put("caNovMap2", str);
+		str = adminDAO.selectNovCa3Value();
+		map.put("caNovMap3", str);
+		str = adminDAO.selectNovCa4Value();
+		map.put("caNovMap4", str);
+		str = adminDAO.selectNovCaValue();
+		map.put("caNovMap", str);
+		return map;
+	}
+	@Override
+	public Map<String, Object> selectCaOctValue() throws Exception {
+		// TODO Auto-generated method stub
+		int str;
+		Map<String,Object> map	=new HashMap<String,Object>();
+		str = adminDAO.selectOctCa1Value();
+		map.put("caOctMap1", str);
+		str = adminDAO.selectOctCa2Value();
+		map.put("caOctMap2", str);
+		str = adminDAO.selectOctCa3Value();
+		map.put("caOctMap3", str);
+		str = adminDAO.selectOctCa4Value();
+		map.put("caOctMap4", str);
+		str = adminDAO.selectOctCaValue();
+		map.put("caOctMap", str);
+		return map;
+	}
 	//////////////////////////////////////////
 	@Override
 	public List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception {
@@ -109,6 +262,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<Map<String, Object>> selectTutorList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.selectTutorList(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectTutorChkList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.selectTutorChkList(map);
 	}
 	@Override
 	public void deleteTutor(Map<String, Object> map) throws Exception {
@@ -342,7 +500,26 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDAO.selectLectureList(map);
 	}
-	
+	@Override
+	public List<Map<String, Object>> selectComputerList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.selectComputerList(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectLanguageList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.selectLanguageList(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectLifeList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.selectLifeList(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectEtcList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.selectEtcList(map);
+	}
 	@Override
 	public Map<String, Object> selectLectureDetail(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -382,5 +559,16 @@ public class AdminServiceImpl implements AdminService {
 	public void paySuccess(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		adminDAO.paySuccess(map);
+	}
+	@Override
+	public List<Map<String, Object>> approveList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return adminDAO.approveList(map);
+	}
+	@Override
+	public List<Map<String, Object>> refundList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.refundList(map);
 	}
 }
