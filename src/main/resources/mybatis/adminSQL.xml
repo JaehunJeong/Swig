@@ -877,50 +877,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE ROWNUM = 1
 		]]>
 	</select>
-	<!-- <select id="selectFiveMaxValue" resultType="string">
-		<![CDATA[
-			SELECT
-				CA_NO
-			FROM 
-    			(SELECT CA_NO
-      			 FROM CATEGORY
-      			 WHERE CA_NO LIKE'5-%' ORDER BY CA_NO desc )
-			WHERE ROWNUM = 1
-		]]>
-	</select>
-	<select id="selectSixMaxValue" resultType="string">
-		<![CDATA[
-			SELECT
-				CA_NO
-			FROM 
-    			(SELECT CA_NO
-      			 FROM CATEGORY
-      			 WHERE CA_NO LIKE'6-%' ORDER BY CA_NO desc )
-			WHERE ROWNUM = 1
-		]]>
-	</select>
-	<select id="selectSevenMaxValue" resultType="string">
-		<![CDATA[
-			SELECT
-				CA_NO
-			FROM 
-    			(SELECT CA_NO
-      			 FROM CATEGORY
-      			 WHERE CA_NO LIKE'7-%' ORDER BY CA_NO desc )
-			WHERE ROWNUM = 1
-		]]>
-	</select>
-	<select id="selectEightMaxValue" resultType="string">
-		<![CDATA[
-			SELECT
-				CA_NO
-			FROM 
-    			(SELECT CA_NO
-      			 FROM CATEGORY
-      			 WHERE CA_NO LIKE'8-%' ORDER BY CA_NO desc )
-			WHERE ROWNUM = 1
-		]]>
-	</select> -->
+	
 	<insert id="insertCategory" parameterType="hashmap" >
 	<![CDATA[
 		INSERT INTO CATEGORY
@@ -1224,7 +1181,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	]]>
    </select>
    
-   <select id="selectCancelList" parameterType ="hashmap" resultType="hashmap">
+   <select id="selectApproveList" parameterType ="hashmap" resultType="hashmap">
    	<![CDATA[
    		SELECT
    			*
@@ -1232,6 +1189,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    			KAKAOORDER
    		WHERE
    			O_DEL = 'Y'
+   	]]>
+   </select>
+   <select id="selectCancelList" parameterType ="hashmap" resultType="hashmap">
+   	<![CDATA[
+   		SELECT
+   			*
+   		FROM
+   			KAKAOORDER
+   		WHERE
+   			O_R_DEL = 'Y'
    	]]>
    </select>
    
@@ -1248,7 +1215,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <update id="updatePayCancel" parameterType="hashmap">
    <![CDATA[
       UPDATE KAKAOORDER
-         SET O_DEL = 'N'
+         SET O_R_DEL = 'C',
+         	 O_DEL='C'
          WHERE O_IDX = #{O_IDX}
    ]]>
    </update>

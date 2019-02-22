@@ -567,6 +567,12 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.approveList(map);
 	}
 	@Override
+	public List<Map<String, Object>> approveComList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return adminDAO.approveComList(map);
+	}
+	@Override
 	public List<Map<String, Object>> refundList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.refundList(map);

@@ -368,6 +368,10 @@ public class AdminDAO extends AbstractDAO{
 		return (List<Map<String,Object>>) selectPagingList("admin.selectPayList",map);
 	}
 	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> approveComList(Map<String,Object>map) throws Exception{
+		return (List<Map<String,Object>>) selectPagingList("admin.selectApproveList",map);
+	}
+	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> refundList(Map<String,Object>map) throws Exception{
 		return (List<Map<String,Object>>) selectPagingList("admin.selectCancelList",map);
 	}

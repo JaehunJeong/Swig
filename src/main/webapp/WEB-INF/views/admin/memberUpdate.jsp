@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header_wb.jspf" %>
 <script type="text/javascript">
 	var gfv_count = '${fn:length(list)+1}';
 
@@ -369,7 +369,7 @@
                 </div>
             </div>
         </div>
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>
+	<%@ include file="/WEB-INF/include/include-body_wb.jspf" %>
 	
 </body>
 </html>

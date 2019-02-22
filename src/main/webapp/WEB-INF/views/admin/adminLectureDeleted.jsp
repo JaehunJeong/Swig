@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 리스트</title>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header_wb.jspf" %>
 <script type="text/javascript">
         $(document).ready(function(){
         	window.onload=function(){fn_selectLectureList(1);};
@@ -679,7 +679,7 @@
                 </div>
             </div>
         </div>
-<%@ include file="/WEB-INF/include/include-body.jspf" %>
+<%@ include file="/WEB-INF/include/include-body_wb.jspf" %>
 
 </body>
 </html>

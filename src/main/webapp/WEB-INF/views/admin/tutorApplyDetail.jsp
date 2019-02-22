@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header_wb.jspf" %>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#list").on("click",function(e){
@@ -609,6 +609,6 @@
         </div>
 
 
-<%@ include file="/WEB-INF/include/include-body.jspf" %>
+<%@ include file="/WEB-INF/include/include-body_wb.jspf" %>
 </body>
 </html>

@@ -91,5 +91,7 @@ public interface AdminService {
 	
 	List<Map<String,Object>> approveList(Map<String,Object> map) throws Exception;
 	
+	List<Map<String,Object>> approveComList(Map<String,Object> map) throws Exception;
+	
 	List<Map<String,Object>> refundList(Map<String,Object> map) throws Exception;
 }

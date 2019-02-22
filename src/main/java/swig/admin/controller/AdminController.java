@@ -781,6 +781,23 @@ public class AdminController {
 		return mav;
 		
 	}
+	@RequestMapping(value="approveComList")
+	public ModelAndView approveComList(CommandMap commandMap) throws Exception
+	{
+		ModelAndView mav = new ModelAndView("jsonView");
+		
+		List<Map<String, Object>> kakaoList = adminService.approveComList(commandMap.getMap());
+		mav.addObject("kakaoList", kakaoList);
+		
+		if(kakaoList.size()>0) {
+			mav.addObject("TOTAL", kakaoList.get(0).get("TOTAL_COUNT"));
+		}
+		else {
+			mav.addObject("TOTAL", 0);
+		}
+		return mav;
+		
+	}
 	@RequestMapping(value="openRefundList")
 	public ModelAndView openRefundList(CommandMap commandMap)throws Exception{
 		ModelAndView mav = new ModelAndView("/admin/adminRefund");

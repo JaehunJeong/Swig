@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header_wb.jspf" %>
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -742,6 +742,6 @@
     </div>
    </div>
    
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>
+	<%@ include file="/WEB-INF/include/include-body_wb.jspf" %>
 </body>
 </html>

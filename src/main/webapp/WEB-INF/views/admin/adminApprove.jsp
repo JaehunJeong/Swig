@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 리스트</title>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header_wb.jspf" %>
 <script type="text/javascript">
         $(document).ready(function(){
         	window.onload=function(){fn_selectApproveList(1);};
@@ -136,7 +136,7 @@
     		//comSubmit.submit();
         } 
         function fn_openApproveModify(val){
-			var url = "approvePay?O_IDX="+val;
+			var url = "payCancel?O_IDX="+val;
 			var comSubmit = new ComSubmit();
 		    comSubmit.setUrl("<c:url value='"+url+"' />");
 		    //comSubmit.addParam("T_NO",$("#T_NO").val());
@@ -164,7 +164,7 @@
         }
         function fn_selectApproveComList(pageNo){
             var comAjax = new ComAjax();
-            comAjax.setUrl("<c:url value='refundList' />");
+            comAjax.setUrl("<c:url value='approveComList' />");
             comAjax.setCallback("fn_selectRefundListCallback");
             comAjax.addParam("PAGE_INDEX",$("#PAGE_INDEX").val());
 			comAjax.addParam("PAGE_ROW", 15);
@@ -424,7 +424,7 @@
         </div>
 
 
-<%@ include file="/WEB-INF/include/include-body.jspf" %>
+<%@ include file="/WEB-INF/include/include-body_wb.jspf" %>
 
 </body>
 </html>
